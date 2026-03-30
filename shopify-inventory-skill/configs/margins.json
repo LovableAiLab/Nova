@@ -1,0 +1,172 @@
+{
+  "targets": {
+    "minimum_margin": 0.20,
+    "target_margin": 0.40,
+    "premium_margin": 0.60,
+    "overall_target": 0.90,
+    "category_targets": {
+      "electronics": 0.25,
+      "fashion": 0.50,
+      "home": 0.35,
+      "beauty": 0.60,
+      "sports": 0.30
+    }
+  },
+  "cost_components": {
+    "product_cost": true,
+    "shipping_cost": true,
+    "packaging_cost": true,
+    "payment_fees": true,
+    "platform_fees": true,
+    "marketing_cost": true,
+    "overhead_allocation": true,
+    "returns_allowance": true
+  },
+  "pricing_strategies": {
+    "cost_plus": {
+      "enabled": true,
+      "markup_percent": 0.50,
+      "min_margin": 0.20
+    },
+    "competitor_based": {
+      "enabled": true,
+      "position": "market_leader",
+      "adjustment_range": 0.10,
+      "monitoring_interval": 3600
+    },
+    "value_based": {
+      "enabled": true,
+      "customer_segments": ["premium", "standard", "budget"],
+      "willingness_to_pay": true
+    },
+    "dynamic_pricing": {
+      "enabled": true,
+      "factors": ["demand", "inventory", "competition", "time"],
+      "algorithm": "reinforcement_learning",
+      "update_frequency": 900
+    }
+  },
+  "optimization": {
+    "auto_adjustment": true,
+    "adjustment_frequency": 86400,
+    "max_adjustment_percent": 0.15,
+    "min_price_change": 0.01,
+    "rounding_rules": {
+      "enabled": true,
+      "endings": [0.95, 0.99],
+      "psychological_pricing": true
+    },
+    "bundle_pricing": {
+      "enabled": true,
+      "discount_percent": 0.10,
+      "min_items": 2
+    },
+    "volume_discounts": {
+      "enabled": true,
+      "tiers": [
+        {"quantity": 10, "discount": 0.05},
+        {"quantity": 50, "discount": 0.10},
+        {"quantity": 100, "discount": 0.15}
+      ]
+    }
+  },
+  "monitoring": {
+    "real_time_calculation": true,
+    "alert_thresholds": {
+      "margin_drop": 0.05,
+      "cost_increase": 0.10,
+      "price_decrease": 0.15
+    },
+    "channels": ["telegram", "email", "dashboard"],
+    "reporting_frequency": "daily"
+  },
+  "analysis": {
+    "product_profitability": true,
+    "category_profitability": true,
+    "customer_profitability": true,
+    "channel_profitability": true,
+    "lifetime_value": true,
+    "break_even_analysis": true,
+    "sensitivity_analysis": true
+  },
+  "forecasting": {
+    "demand_forecasting": true,
+    "price_elasticity": true,
+    "seasonal_adjustments": true,
+    "promotional_impact": true,
+    "competitor_reaction": true,
+    "forecast_horizon": 30,
+    "confidence_level": 0.95
+  },
+  "rules": {
+    "price_floor": {
+      "enabled": true,
+      "based_on": "cost",
+      "multiplier": 1.2
+    },
+    "price_ceiling": {
+      "enabled": true,
+      "based_on": "competition",
+      "multiplier": 1.5
+    },
+    "competitive_positioning": {
+      "strategy": "premium",
+      "price_gap_percent": 0.10,
+      "quality_positioning": true
+    },
+    "geographic_pricing": {
+      "enabled": true,
+      "regions": ["us", "eu", "asia"],
+      "adjustment_factors": {
+        "us": 1.0,
+        "eu": 1.15,
+        "asia": 0.85
+      }
+    }
+  },
+  "integration": {
+    "cost_accounting": true,
+    "inventory_system": true,
+    "sales_data": true,
+    "competitor_data": true,
+    "market_data": true
+  },
+  "reporting": {
+    "daily_margin_report": true,
+    "weekly_profit_analysis": true,
+    "monthly_performance": true,
+    "product_health_score": true,
+    "recommendations": true,
+    "dashboard": {
+      "enabled": true,
+      "refresh_interval": 300,
+      "key_metrics": ["gross_margin", "net_margin", "roi", "cm1"]
+    }
+  },
+  "automation": {
+    "auto_price_updates": true,
+    "auto_cost_updates": true,
+    "auto_margin_calculation": true,
+    "auto_alert_generation": true,
+    "auto_report_generation": true,
+    "learning_mode": true
+  },
+  "advanced": {
+    "machine_learning": {
+      "enabled": true,
+      "models": ["price_optimization", "demand_prediction"],
+      "training_frequency": 7,
+      "prediction_accuracy": 0.85
+    },
+    "scenario_analysis": {
+      "enabled": true,
+      "scenarios": ["cost_increase", "demand_drop", "new_competitor"],
+      "simulation_count": 1000
+    },
+    "portfolio_optimization": {
+      "enabled": true,
+      "objective": "maximize_margin",
+      "constraints": ["inventory", "cash_flow", "capacity"]
+    }
+  }
+}

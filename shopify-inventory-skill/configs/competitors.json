@@ -1,0 +1,130 @@
+{
+  "platforms": [
+    {
+      "name": "amazon",
+      "enabled": true,
+      "api_key": "optional",
+      "api_secret": "optional",
+      "monitoring_interval": 3600,
+      "products_to_track": ["asin1", "asin2", "asin3"],
+      "regions": ["us", "ca", "uk", "de"],
+      "proxy_enabled": true,
+      "max_concurrent": 5
+    },
+    {
+      "name": "ebay",
+      "enabled": true,
+      "app_id": "optional",
+      "cert_id": "optional",
+      "dev_id": "optional",
+      "monitoring_interval": 1800,
+      "categories": ["electronics", "fashion", "home"],
+      "proxy_enabled": true
+    },
+    {
+      "name": "walmart",
+      "enabled": true,
+      "api_key": "optional",
+      "private_key": "optional",
+      "monitoring_interval": 7200,
+      "partner_id": "optional"
+    },
+    {
+      "name": "etsy",
+      "enabled": true,
+      "api_key": "optional",
+      "monitoring_interval": 5400,
+      "shop_id": "optional"
+    },
+    {
+      "name": "aliexpress",
+      "enabled": true,
+      "monitoring_interval": 10800,
+      "proxy_enabled": true,
+      "use_api": false
+    },
+    {
+      "name": "wish",
+      "enabled": true,
+      "api_key": "optional",
+      "monitoring_interval": 9000
+    },
+    {
+      "name": "target",
+      "enabled": true,
+      "api_key": "optional",
+      "monitoring_interval": 14400
+    },
+    {
+      "name": "bestbuy",
+      "enabled": true,
+      "api_key": "optional",
+      "monitoring_interval": 7200
+    },
+    {
+      "name": "home_depot",
+      "enabled": true,
+      "monitoring_interval": 18000,
+      "use_scraping": true
+    },
+    {
+      "name": "wayfair",
+      "enabled": true,
+      "api_key": "optional",
+      "monitoring_interval": 21600
+    },
+    {
+      "name": "overstock",
+      "enabled": true,
+      "monitoring_interval": 25200
+    }
+  ],
+  "monitoring": {
+    "price_change_threshold": 0.05,
+    "stock_change_threshold": 10,
+    "new_product_detection": true,
+    "review_monitoring": true,
+    "rating_monitoring": true
+  },
+  "alerts": {
+    "channels": ["telegram", "email", "webhook", "sms"],
+    "price_drop_alert": true,
+    "price_increase_alert": true,
+    "stock_out_alert": true,
+    "new_competitor_alert": true,
+    "urgent_threshold": 0.15
+  },
+  "analysis": {
+    "trend_analysis": true,
+    "seasonality_detection": true,
+    "competitor_count": 3,
+    "historical_data_days": 90,
+    "prediction_horizon": 30
+  },
+  "automation": {
+    "auto_price_adjustment": true,
+    "adjustment_delay_minutes": 15,
+    "max_adjustment_percent": 0.10,
+    "min_profit_margin": 0.20,
+    "competitive_positioning": "market_leader"
+  },
+  "proxy": {
+    "enabled": true,
+    "rotation_interval": 300,
+    "pool_size": 10,
+    "geographic_distribution": true,
+    "residential_proxies": false
+  },
+  "data_storage": {
+    "price_history_days": 365,
+    "competitor_data_days": 180,
+    "backup_enabled": true,
+    "encryption_enabled": true
+  },
+  "performance": {
+    "concurrent_scrapers": 10,
+    "request_timeout": 30000,
+    "retry_attempts": 3,
+    "cache_ttl": 3600
+  }
+}

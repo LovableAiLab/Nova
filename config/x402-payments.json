@@ -1,0 +1,90 @@
+{
+  "payment_protocol": "x402",
+  "network": "base",
+  "base_rpc_url": "https://mainnet.base.org",
+  "x402_contract_address": "0x4200000000000000000000000000000000000042",
+  "usdc_contract_address": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  
+  "pricing": {
+    "shopify_skill_license": {
+      "price_usdc": "50",
+      "description": "Shopify Inventory Automation Skill License",
+      "validity": "1 year",
+      "features": [
+        "Full skill functionality",
+        "1 store license",
+        "Basic support",
+        "Monthly updates"
+      ]
+    },
+    "real_estate_skill_license": {
+      "price_usdc": "50",
+      "description": "Real Estate Lead Generation Skill License",
+      "validity": "1 year"
+    },
+    "content_creation_skill_license": {
+      "price_usdc": "50",
+      "description": "Content Creation Pipeline Skill License",
+      "validity": "1 year"
+    },
+    "managed_hosting": {
+      "monthly_usdc": "49",
+      "description": "Managed OpenClaw Hosting",
+      "includes": [
+        "Server hosting",
+        "Security hardening",
+        "Automated backups",
+        "24/7 monitoring",
+        "Skill updates"
+      ]
+    },
+    "white_glove_setup": {
+      "one_time_usdc": "199",
+      "description": "White-Glove Setup & Security",
+      "includes": [
+        "Full environment setup",
+        "Security audit",
+        "Custom configuration",
+        "2-hour training",
+        "Priority support"
+      ]
+    }
+  },
+  
+  "revenue_wallets": {
+    "primary": "TBD_AFTER_HUMAN_APPROVAL",
+    "development": "TBD_20_PERCENT",
+    "marketing": "TBD_30_PERCENT",
+    "operations": "TBD_50_PERCENT"
+  },
+  
+  "webhook_endpoints": {
+    "payment_success": "https://api.nova.openclaw.ai/webhook/payment-success",
+    "payment_failed": "https://api.nova.openclaw.ai/webhook/payment-failed",
+    "subscription_renewal": "https://api.nova.openclaw.ai/webhook/subscription-renewal"
+  },
+  
+  "license_management": {
+    "activation_webhook": "https://api.nova.openclaw.ai/license/activate",
+    "validation_endpoint": "https://api.nova.openclaw.ai/license/validate",
+    "revocation_endpoint": "https://api.nova.openclaw.ai/license/revoke"
+  },
+  
+  "compliance": {
+    "kyc_required": false,
+    "tax_reporting": true,
+    "invoice_generation": true,
+    "refund_policy": "14-day money back guarantee",
+    "terms_url": "https://nova.openclaw.ai/terms",
+    "privacy_url": "https://nova.openclaw.ai/privacy"
+  },
+  
+  "estimated_revenue_timeline": {
+    "month_1": "$500 (10 licenses)",
+    "month_3": "$5,000 (100 licenses + hosting)",
+    "month_6": "$20,000 (400 licenses + hosting)",
+    "year_1": "$100,000 (2,000 licenses + hosting + setup)"
+  },
+  
+  "integration_notes": "To be implemented by Ralph Loop. Lightweight integration focusing on 90%+ profit margins."
+}

@@ -1,0 +1,138 @@
+{
+  "suppliers": [
+    {
+      "name": "supplier-1",
+      "type": "api",
+      "endpoint": "https://api.supplier1.com/v1",
+      "api_key": "supplier_key_1",
+      "api_secret": "supplier_secret_1",
+      "sync_interval": 900,
+      "products": ["sku1", "sku2", "sku3"],
+      "priority": 1,
+      "auto_order": true,
+      "min_order_quantity": 10,
+      "lead_time_days": 7,
+      "shipping_cost": 5.99
+    },
+    {
+      "name": "supplier-2",
+      "type": "csv",
+      "endpoint": "https://supplier2.com/inventory.csv",
+      "username": "user",
+      "password": "pass",
+      "sync_interval": 1800,
+      "products": ["sku4", "sku5"],
+      "priority": 2,
+      "auto_order": false,
+      "min_order_quantity": 5,
+      "lead_time_days": 14,
+      "shipping_cost": 8.99
+    },
+    {
+      "name": "supplier-3",
+      "type": "ftp",
+      "endpoint": "ftp.supplier3.com",
+      "username": "ftp_user",
+      "password": "ftp_pass",
+      "sync_interval": 3600,
+      "directory": "/inventory",
+      "filename_pattern": "stock_*.csv",
+      "priority": 3
+    }
+  ],
+  "rules": {
+    "restock_threshold": 10,
+    "safety_stock": 5,
+    "lead_time_days": 7,
+    "forecast_period": 30,
+    "reorder_point_formula": "daily_sales * lead_time + safety_stock",
+    "economic_order_quantity": true,
+    "batch_size_optimization": true,
+    "seasonal_adjustment": true
+  },
+  "alerts": {
+    "low_stock": {
+      "enabled": true,
+      "threshold": 10,
+      "channels": ["telegram", "email"],
+      "repeat_interval": 86400
+    },
+    "out_of_stock": {
+      "enabled": true,
+      "channels": ["telegram", "email", "sms"],
+      "urgent": true
+    },
+    "restock_suggestions": {
+      "enabled": true,
+      "min_savings_percent": 5,
+      "channels": ["telegram", "email"]
+    },
+    "inventory_discrepancy": {
+      "enabled": true,
+      "threshold_percent": 5,
+      "channels": ["telegram", "email"]
+    }
+  },
+  "forecasting": {
+    "enabled": true,
+    "method": "exponential_smoothing",
+    "history_days": 90,
+    "confidence_interval": 0.95,
+    "seasonal_patterns": true,
+    "promotional_impact": true,
+    "external_factors": ["weather", "holidays", "events"]
+  },
+  "optimization": {
+    "inventory_turnover_target": 6,
+    "carrying_cost_percent": 0.25,
+    "stockout_cost_multiplier": 3,
+    "service_level_target": 0.95,
+    "abc_analysis": true,
+    "xyz_analysis": true
+  },
+  "bundles_kits": {
+    "enabled": true,
+    "component_tracking": true,
+    "auto_disassembly": true,
+    "kit_availability": true,
+    "bundle_pricing": true
+  },
+  "multi_location": {
+    "enabled": true,
+    "locations": ["warehouse-1", "warehouse-2", "store-1"],
+    "transfer_rules": {
+      "auto_transfer": true,
+      "min_transfer_quantity": 1,
+      "transfer_cost": 2.50,
+      "transfer_time_days": 2
+    },
+    "allocation_rules": {
+      "proximity_based": true,
+      "cost_based": true,
+      "priority_based": true
+    }
+  },
+  "sync": {
+    "real_time": true,
+    "batch_size": 100,
+    "max_retries": 3,
+    "retry_delay": 5000,
+    "timeout": 30000,
+    "validation": true,
+    "reconciliation": true
+  },
+  "reporting": {
+    "daily_summary": true,
+    "weekly_analysis": true,
+    "monthly_forecast": true,
+    "custom_alerts": true,
+    "dashboard_enabled": true
+  },
+  "integration": {
+    "shopify_sync": true,
+    "quickbooks_sync": false,
+    "xero_sync": false,
+    "shipstation_sync": false,
+    "custom_erp": false
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "automation": {
+    "auto_fulfill": true,
+    "auto_ship": true,
+    "auto_notify": true,
+    "auto_refund": true,
+    "auto_archive": true,
+    "auto_cancel": false,
+    "delay_minutes": 5,
+    "batch_processing": true,
+    "batch_size": 50,
+    "processing_window": {
+      "start": "08:00",
+      "end": "20:00",
+      "timezone": "America/New_York"
+    }
+  },
+  "shipping": {
+    "carriers": [
+      {
+        "name": "usps",
+        "enabled": true,
+        "api_key": "usps_api_key",
+        "account_number": "usps_account",
+        "services": ["Priority", "First Class", "Parcel Select"],
+        "default_service": "Priority"
+      },
+      {
+        "name": "fedex",
+        "enabled": true,
+        "api_key": "fedex_api_key",
+        "account_number": "fedex_account",
+        "meter_number": "fedex_meter",
+        "services": ["Ground", "Express Saver", "2Day", "Overnight"],
+        "default_service": "Ground"
+      },
+      {
+        "name": "ups",
+        "enabled": true,
+        "api_key": "ups_api_key",
+        "account_number": "ups_account",
+        "services": ["Ground", "3 Day Select", "2nd Day Air", "Next Day Air"],
+        "default_service": "Ground"
+      }
+    ],
+    "auto_label": true,
+    "tracking_updates": true,
+    "insurance": {
+      "enabled": true,
+      "threshold": 100,
+      "carrier": "shipcover"
+    },
+    "packaging": {
+      "auto_select": true,
+      "default_box": "small",
+      "weight_buffer": 0.25,
+      "dimensional_weight": true
+    },
+    "optimization": {
+      "rate_shopping": true,
+      "consolidation": true,
+      "route_optimization": true,
+      "delivery_windows": true
+    }
+  },
+  "notifications": {
+    "order_confirmation": {
+      "enabled": true,
+      "template": "order_confirmation.html",
+      "channels": ["email", "sms"],
+      "delay_minutes": 0
+    },
+    "shipping_confirmation": {
+      "enabled": true,
+      "template": "shipping_confirmation.html",
+      "channels": ["email", "sms"],
+      "include_tracking": true,
+      "delay_minutes": 15
+    },
+    "delivery_confirmation": {
+      "enabled": true,
+      "template": "delivery_confirmation.html",
+      "channels": ["email", "sms"],
+      "delay_days": 1
+    },
+    "backorder_notification": {
+      "enabled": true,
+      "template": "backorder_notification.html",
+      "channels": ["email"],
+      "delay_hours": 24
+    },
+    "review_request": {
+      "enabled": true,
+      "template": "review_request.html",
+      "channels": ["email"],
+      "delay_days": 7
+    }
+  },
+  "returns": {
+    "auto_approve": false,
+    "refund_threshold": 100,
+    "restock_items": true,
+    "return_window_days": 30,
+    "return_shipping": {
+      "prepaid": true,
+      "carrier": "usps",
+      "label_auto_generate": true
+    },
+    "inspection": {
+      "required": true,
+      "timeframe_days": 3,
+      "auto_restock": true
+    },
+    "refunds": {
+      "auto_process": true,
+      "processing_days": 2,
+      "restocking_fee_percent": 0,
+      "original_shipping_refund": false
+    }
+  },
+  "fraud_prevention": {
+    "enabled": true,
+    "services": ["shopify_fraud", "signifyd", "riskified"],
+    "rules": {
+      "high_risk_hold": true,
+      "avs_mismatch_hold": true,
+      "cvv_mismatch_hold": true,
+      "ip_country_mismatch": true,
+      "velocity_check": true
+    },
+    "review_threshold": 0.7,
+    "auto_review": true
+  },
+  "tax": {
+    "auto_calculate": true,
+    "services": ["taxjar", "avalara", "vertex"],
+    "nexus_locations": [],
+    "exempt_categories": []
+  },
+  "customs": {
+    "international_enabled": true,
+    "auto_documents": true,
+    "hs_code_lookup": true,
+    "export_declaration": true
+  },
+  "workflow": {
+    "stages": ["received", "processing", "fulfilled", "shipped", "delivered"],
+    "auto_transitions": true,
+    "manual_review_stages": [],
+    "sla": {
+      "processing_hours": 24,
+      "shipping_hours": 48,
+      "delivery_days": 7
+    }
+  },
+  "integration": {
+    "quickbooks": false,
+    "xero": false,
+    "netsuite": false,
+    "sap": false,
+    "custom_erp": false
+  },
+  "analytics": {
+    "order_volume": true,
+    "fulfillment_time": true,
+    "shipping_costs": true,
+    "return_rates": true,
+    "customer_satisfaction": true
+  },
+  "backup": {
+    "auto_backup": true,
+    "backup_interval": 86400,
+    "retention_days": 90,
+    "encryption": true
+  }
+}
