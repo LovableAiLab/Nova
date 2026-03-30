@@ -1,0 +1,131 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "scripts/**/*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/webhooks/shopify",
+      "dest": "/api/webhooks/shopify.js",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/webhooks/competitors",
+      "dest": "/api/webhooks/competitors.js",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/api/health",
+      "dest": "/api/health.js",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/api/license/check",
+      "dest": "/api/license/check.js",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.js"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "SHOPIFY_API_KEY": "@shopify-api-key",
+    "SHOPIFY_API_SECRET": "@shopify-api-secret",
+    "SHOPIFY_ACCESS_TOKEN": "@shopify-access-token",
+    "DATABASE_URL": "@shopify-db-url",
+    "REDIS_URL": "@shopify-redis-url",
+    "X402_WALLET_ADDRESS": "@x402-wallet-address",
+    "X402_API_KEY": "@x402-api-key",
+    "COMPETITOR_API_KEYS": "@competitor-api-keys",
+    "ENCRYPTION_KEY": "@encryption-key"
+  },
+  "regions": ["iad1"],
+  "functions": {
+    "api/**/*.js": {
+      "maxDuration": 30,
+      "memory": 1024,
+      "runtime": "nodejs18.x"
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET,POST,PUT,DELETE,OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "X-Requested-With, Content-Type, Authorization"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/docs",
+      "destination": "https://docs.shopify-inventory-automation.com"
+    },
+    {
+      "source": "/support",
+      "destination": "https://support.shopify-inventory-automation.com"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/api",
+      "permanent": false
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/daily",
+      "schedule": "0 8 * * *"
+    },
+    {
+      "path": "/api/cron/hourly",
+      "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/cron/competitors",
+      "schedule": "*/30 * * * *"
+    }
+  ],
+  "git": {
+    "deploymentEnabled": {
+      "main": true,
+      "develop": true
+    }
+  },
+  "public": false,
+  "github": {
+    "enabled": true,
+    "autoAlias": true,
+    "silent": true
+  },
+  "scope": "shopify-inventory-automation",
+  "alias": [
+    "shopify-inventory-automation.vercel.app",
+    "inventory.automation",
+    "shopify-automate.vercel.app"
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "name": "shopify-inventory-automation",
+  "version": "1.0.0",
+  "description": "OpenClaw skill for Shopify inventory automation, competitor monitoring, and profit optimization",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test/run-all.js",
+    "test:unit": "node test/run-unit.js",
+    "test:integration": "node test/run-integration.js",
+    "validate": "node scripts/config-validator.js",
+    "license:check": "node scripts/license-check.js stats",
+    "shopify:sync": "node scripts/shopify-api.js sync-inventory",
+    "competitors:monitor": "node scripts/competitor-scraper.js monitor",
+    "inventory:sync": "node scripts/inventory-sync.js sync",
+    "orders:process": "node scripts/order-processor.js stats",
+    "margins:analyze": "node scripts/margin-calculator.js calculate"
+  },
+  "keywords": [
+    "openclaw",
+    "shopify",
+    "inventory",
+    "automation",
+    "ecommerce",
+    "competitor-monitoring",
+    "profit-optimization"
+  ],
+  "author": "NOVA",
+  "license": "COMMERCIAL",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "csv-parser": "^3.0.0",
+    "https-proxy-agent": "^7.0.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/shopify-inventory-automation.git"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/shopify-inventory-automation/issues"
+  },
+  "homepage": "https://clawhub.com/skills/shopify-inventory-automation",
+  "funding": {
+    "type": "individual",
+    "url": "https://x402.org/pay/50USDC"
+  },
+  "clawhub": {
+    "skill": true,
+    "category": "ecommerce",
+    "price": "50 USDC",
+    "compatibility": "openclaw>=1.0.0",
+    "requires": [
+      "web_search",
+      "web_fetch",
+      "sessions_spawn",
+      "exec"
+    ]
+  }
+}
