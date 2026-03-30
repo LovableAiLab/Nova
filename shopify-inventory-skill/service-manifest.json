@@ -1,113 +1,188 @@
 {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Shopify Inventory Automation Skill",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "OpenClaw",
-  "description": "Premium OpenClaw skill for automated Shopify inventory management, competitor price monitoring, and order processing.",
-  
-  "creator": {
-    "@type": "Organization",
-    "name": "NOVA",
-    "description": "Sovereign Agent Entity providing picks and shovels for OpenClaw ecosystem"
+  "name": "shopify-inventory-automation",
+  "version": "1.0.0",
+  "title": "Shopify Inventory Automation",
+  "description": "Automated inventory management, competitor monitoring, order processing, and profit optimization for Shopify stores",
+  "author": "NOVA",
+  "license": "COMMERCIAL",
+  "price": "50 USDC",
+  "category": "ecommerce",
+  "tags": ["shopify", "inventory", "automation", "competitor", "profit", "margin"],
+  "compatibility": {
+    "openclaw": ">=1.0.0",
+    "node": ">=18.0.0"
   },
-  
-  "offers": {
-    "@type": "Offer",
-    "price": "50",
-    "priceCurrency": "USDC",
-    "priceValidUntil": "2026-12-31",
-    "availability": "https://schema.org/InStock",
-    "eligibleRegion": {
-      "@type": "Place",
-      "name": "Global"
+  "requirements": [
+    "web_search",
+    "web_fetch",
+    "sessions_spawn",
+    "exec"
+  ],
+  "dependencies": [
+    "axios",
+    "cheerio",
+    "csv-parser",
+    "https-proxy-agent"
+  ],
+  "entryPoints": {
+    "cli": "index.js",
+    "api": "api/index.js"
+  },
+  "commands": {
+    "init": "Initialize the skill",
+    "daily": "Run daily workflow",
+    "status": "Get system status",
+    "sync": "Sync inventory"
+  },
+  "configuration": {
+    "files": [
+      "configs/shopify.json",
+      "configs/competitors.json",
+      "configs/inventory.json",
+      "configs/orders.json",
+      "configs/margins.json"
+    ],
+    "validator": "scripts/config-validator.js"
+  },
+  "scripts": {
+    "shopify:sync": "Sync Shopify inventory",
+    "competitors:monitor": "Monitor competitors",
+    "inventory:sync": "Sync supplier inventory",
+    "orders:process": "Process orders",
+    "margins:analyze": "Analyze margins",
+    "validate": "Validate configurations",
+    "license:check": "Check license status"
+  },
+  "apis": {
+    "rest": {
+      "basePath": "/api",
+      "endpoints": [
+        {
+          "path": "/sync",
+          "method": "POST",
+          "description": "Sync inventory"
+        },
+        {
+          "path": "/monitor",
+          "method": "POST",
+          "description": "Monitor competitors"
+        },
+        {
+          "path": "/process",
+          "method": "POST",
+          "description": "Process orders"
+        },
+        {
+          "path": "/analyze",
+          "method": "POST",
+          "description": "Analyze margins"
+        },
+        {
+          "path": "/daily",
+          "method": "POST",
+          "description": "Run daily workflow"
+        },
+        {
+          "path": "/status",
+          "method": "GET",
+          "description": "Get system status"
+        }
+      ]
     }
   },
-  
-  "featureList": [
-    "Real-time Shopify inventory synchronization",
-    "Competitor price monitoring across 10+ platforms",
-    "Automated restocking alerts and purchase orders",
-    "Order processing and fulfillment automation",
-    "Customer service ticket triage",
-    "Abandoned cart recovery automation",
-    "Multi-store inventory management",
-    "Profit margin optimization",
-    "Sales forecasting and demand prediction",
-    "API integration with major suppliers"
+  "deployment": {
+    "vercel": {
+      "config": "vercel.json",
+      "env": [
+        "SHOPIFY_API_KEY",
+        "SHOPIFY_API_SECRET",
+        "SHOPIFY_ACCESS_TOKEN",
+        "X402_WALLET_ADDRESS",
+        "DATABASE_URL",
+        "REDIS_URL"
+      ]
+    },
+    "docker": {
+      "file": "Dockerfile",
+      "compose": "docker-compose.yml"
+    }
+  },
+  "testing": {
+    "framework": "jest",
+    "scripts": {
+      "test": "Run all tests",
+      "test:unit": "Run unit tests",
+      "test:integration": "Run integration tests"
+    }
+  },
+  "documentation": {
+    "readme": "README.md",
+    "skill": "SKILL.md",
+    "api": "docs/README.md",
+    "configuration": "docs/configuration.md"
+  },
+  "support": {
+    "email": "support@shopify-inventory-automation.com",
+    "telegram": "@shopify_inventory_automation",
+    "github": "https://github.com/openclaw/shopify-inventory-automation/issues",
+    "documentation": "https://docs.shopify-inventory-automation.com"
+  },
+  "metrics": {
+    "targetLicenses": 200,
+    "targetRevenue": 20000,
+    "targetMargin": 0.9,
+    "sla": {
+      "uptime": 0.995,
+      "supportResponse": 3600
+    }
+  },
+  "roadmap": [
+    {
+      "version": "1.1.0",
+      "quarter": "Q2 2026",
+      "features": [
+        "Advanced AI pricing recommendations",
+        "Predictive inventory forecasting",
+        "Multi-currency support",
+        "Enhanced reporting dashboard"
+      ]
+    },
+    {
+      "version": "1.2.0",
+      "quarter": "Q3 2026",
+      "features": [
+        "Mobile app integration",
+        "Voice command support",
+        "Blockchain inventory tracking",
+        "AR product visualization"
+      ]
+    },
+    {
+      "version": "2.0.0",
+      "quarter": "Q4 2026",
+      "features": [
+        "Full AI automation",
+        "Cross-platform expansion",
+        "Enterprise features",
+        "Global marketplace integration"
+      ]
+    }
   ],
-  
-  "targetAudience": {
-    "@type": "Audience",
-    "audienceType": [
-      "Shopify store owners",
-      "E-commerce managers",
-      "Dropshipping businesses",
-      "Inventory managers",
-      "Retail automation specialists"
-    ],
-    "estimatedSize": "1.2M+ Shopify merchants"
-  },
-  
-  "technicalSpecifications": {
-    "openclawVersion": ">=1.0.0",
-    "dependencies": ["web_fetch", "web_search", "sessions_spawn", "exec"],
-    "apis": ["Shopify Admin API", "Google Shopping API", "Amazon Product API"],
-    "storage": "100MB minimum",
-    "updateFrequency": "Weekly",
-    "supportedLanguages": ["JavaScript", "Python"],
-    "compatibility": ["Shopify Plus", "Shopify Basic", "Shopify Advanced"]
-  },
-  
-  "revenueModel": {
-    "primary": "Premium Skill License ($50 USDC per installation)",
-    "secondary": "Managed Hosting ($49/month per store)",
-    "tertiary": "White-Glove Setup ($199 one-time)",
-    "projectedMonthlyRevenue": "$10,000 - $25,000",
-    "targetCustomers": "200+ paid licenses in first quarter",
-    "profitMargin": "90%+ (lightweight SKILL.md + config packages)"
-  },
-  
-  "developmentTimeline": {
-    "mvp": "4 hours",
-    "testing": "2 hours",
-    "deployment": "1 hour",
-    "total": "7 hours"
-  },
-  
-  "marketAnalysis": {
-    "totalAddressableMarket": "1.2M Shopify merchants",
-    "serviceableAddressableMarket": "240,000 merchants (20% automation-ready)",
-    "serviceableObtainableMarket": "24,000 merchants (1% conversion)",
-    "monthlyRecurringRevenuePotential": "$1.2M at 1% penetration",
-    "competitiveAdvantage": "First-mover in OpenClaw ecosystem, 90%+ profit margins"
-  },
-  
-  "successMetrics": {
-    "month_1": "10 paid licenses ($500 MRR)",
-    "month_3": "50 paid licenses + hosting ($5,000 MRR)",
-    "month_6": "200 paid licenses ($20,000 MRR)",
-    "year_1": "1,000 paid licenses ($100,000 MRR)"
-  },
-  
-  "contact": {
-    "support": "https://t.me/NOVA_Support",
-    "documentation": "https://docs.nova.openclaw.ai/shopify",
-    "sourceCode": "https://github.com/nova-agent/shopify-inventory-skill"
-  },
-  
-  "created": "2026-03-30T23:32:00+02:00",
-  "version": "1.0.0-goldrush",
-  "status": "development",
-  "license": "Proprietary - Commercial use requires subscription",
-  
-  "tags": [
-    "openclaw",
-    "shopify",
-    "ecommerce",
-    "automation",
-    "inventory",
-    "premium-skill",
-    "nova"
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-03-30",
+      "changes": [
+        "Initial release",
+        "Core inventory automation",
+        "Competitor price monitoring",
+        "Order processing automation",
+        "Profit margin optimization",
+        "Multi-store management",
+        "Vercel deployment ready",
+        "x402 payment integration",
+        "Complete test suite"
+      ]
+    }
   ]
 }

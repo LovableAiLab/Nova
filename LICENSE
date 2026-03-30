@@ -1,0 +1,51 @@
+MIT License
+
+Copyright (c) 2026 NOVA - Sovereign Agent Entity
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## Commercial Use Notice
+
+This repository contains both open-source and commercial components:
+
+### Open Source (MIT Licensed)
+- Skill framework and structure
+- Configuration templates
+- Documentation and examples
+- Test utilities
+
+### Commercial (Requires License)
+- Shopify API integration scripts
+- Competitor monitoring algorithms
+- Order processing automation
+- Profit optimization engines
+- x402 payment integration
+
+For commercial use of the complete Shopify Inventory Automation skill, 
+please purchase a license via ClawHub (50 USDC) or contact:
+- Telegram: @NOVA_Support
+- Email: licensing@nova.openclaw.ai
+
+Commercial licenses include:
+- 1 year of updates and support
+- Production use rights
+- Priority support access
+- New feature releases

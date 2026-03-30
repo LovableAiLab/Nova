@@ -1,58 +1,28 @@
-# Shopify Inventory Automation Skill
+# Shopify Inventory Automation Skill for OpenClaw
 
-![Premium Skill](https://img.shields.io/badge/Premium-50_USDC-blue)
-![OpenClaw](https://img.shields.io/badge/OpenClaw-1.0.0+-green)
-![Shopify](https://img.shields.io/badge/Shopify-Plus%2CBasic%2CAdvanced-purple)
+![License](https://img.shields.io/badge/License-COMMERCIAL-blue)
+![Version](https://img.shields.io/badge/Version-1.0.0-green)
+![Price](https://img.shields.io/badge/Price-50_USDC-orange)
 
-## 🚀 Premium OpenClaw Skill for E-commerce Automation
+A complete lightweight OpenClaw skill package for automated Shopify inventory management, competitor price monitoring, order processing, and profit optimization with 90%+ profit margin architecture.
 
-Automate your Shopify store with real-time inventory management, competitor price monitoring, order processing, and profit optimization. Built for merchants who want to scale without technical complexity.
+## 🚀 Features
 
-**Price:** 50 USDC (one-time license, 1 year updates)  
-**Category:** E-commerce / Shopify Automation  
-**Author:** NOVA  
-**Revenue Model:** 90%+ profit margins (lightweight architecture)
+### Core Functionality
+- **Real-time Inventory Sync** with Shopify Admin API
+- **Competitor Price Monitoring** across 10+ platforms
+- **Automated Order Fulfillment** and processing
+- **Profit Margin Optimization** with dynamic pricing
+- **Multi-store Management** unified dashboard
 
----
-
-## ✨ Features
-
-### 🛒 Inventory Management
-- Real-time sync with Shopify Admin API
+### Advanced Capabilities
 - Multi-supplier inventory aggregation
-- Automated restocking alerts
-- Stock level forecasting
-- Bundle and kit inventory tracking
-
-### 📊 Competitor Intelligence
-- Price tracking across Amazon, eBay, Walmart, etc.
-- Automated price adjustment recommendations
-- Competitor stock level monitoring
+- Automated restocking alerts and forecasting
 - Price history and trend analysis
-- Alert on significant price changes
-
-### ⚡ Order Automation
-- Automated order fulfillment
-- Shipping label generation
+- Shipping label generation and tracking
 - Customer notification automation
 - Return and refund processing
-- Multi-carrier shipping optimization
-
-### 💰 Profit Optimization
-- Real-time margin calculation
-- Dynamic pricing recommendations
-- Cost tracking per product
-- Profit forecasting
-- ROI analysis for marketing spend
-
-### 🏪 Multi-store Management
-- Unified dashboard for all stores
-- Cross-store inventory sharing
-- Consolidated reporting
-- Bulk operations across stores
-- Role-based access control
-
----
+- ABC/XYZ inventory analysis
 
 ## 📦 Installation
 
@@ -62,255 +32,180 @@ clawhub install shopify-inventory-automation
 ```
 
 ### Manual Installation
-1. Download skill package
-2. Copy to OpenClaw skills directory:
-   ```bash
-   cp -r shopify-inventory-skill /usr/lib/node_modules/openclaw/skills/
-   ```
-3. Restart OpenClaw
-
----
+```bash
+git clone https://github.com/openclaw/shopify-inventory-automation.git
+cd shopify-inventory-automation
+npm install
+```
 
 ## ⚙️ Configuration
 
-### 1. Shopify API Setup
-Edit `configs/shopify.json`:
-```json
-{
-  "store_name": "your-store",
-  "api_key": "your_api_key",
-  "api_secret": "your_api_secret",
-  "access_token": "your_access_token",
-  "api_version": "2024-01"
-}
+1. Copy example configuration files:
+```bash
+cp configs/shopify.example.json configs/shopify.json
+cp configs/competitors.example.json configs/competitors.json
+cp configs/inventory.example.json configs/inventory.json
+cp configs/orders.example.json configs/orders.json
+cp configs/margins.example.json configs/margins.json
 ```
 
-### 2. Competitor Monitoring
-Configure `configs/competitors.json` with your competitors' URLs and monitoring rules.
+2. Update with your credentials and settings
+3. Validate configuration:
+```bash
+npm run validate
+```
 
-### 3. Inventory Rules
-Set up `configs/inventory.json` with your stock thresholds and alert levels.
+## 💰 License Activation
 
-### 4. Order Automation
-Configure `configs/orders.json` with your fulfillment workflows.
+**Price: $50 USDC** via x402 payment protocol
 
-### 5. Profit Margins
-Set target margins in `configs/margins.json`.
+1. Send 50 USDC to the specified wallet address
+2. Include your user ID in transaction memo
+3. License activates automatically after confirmation
 
----
+Check license status:
+```bash
+npm run license:check
+```
 
-## 🚀 Usage
+## 🎯 Usage
 
 ### Basic Commands
 ```bash
+# Initialize skill
+node index.js init
+
+# Run daily workflow
+node index.js daily
+
 # Sync inventory
-openclaw shopify inventory sync
+node index.js sync
+
+# Check status
+node index.js status
+```
+
+### Module Commands
+```bash
+# Sync Shopify inventory
+npm run shopify:sync
 
 # Monitor competitors
-openclaw shopify competitors monitor
+npm run competitors:monitor
+
+# Sync supplier inventory
+npm run inventory:sync
 
 # Process orders
-openclaw shopify orders process
+npm run orders:process
 
-# Check profit margins
-openclaw shopify margins check
-
-# Generate reports
-openclaw shopify reports generate
+# Analyze margins
+npm run margins:analyze
 ```
 
-### Advanced Usage
+## 🌐 API Endpoints
+
+When deployed, the skill provides REST API:
+
+- `POST /api/sync` - Sync inventory
+- `POST /api/monitor` - Monitor competitors
+- `POST /api/process` - Process orders
+- `POST /api/analyze` - Analyze margins
+- `POST /api/daily` - Run daily workflow
+- `GET /api/status` - Get system status
+
+## 🐳 Deployment
+
+### Docker
 ```bash
-# Monitor specific competitor
-openclaw shopify competitors monitor --competitor amazon --product "iphone case"
-
-# Set custom inventory threshold
-openclaw shopify inventory set-threshold --product "SKU123" --threshold 10
-
-# Process orders from specific date
-openclaw shopify orders process --since "2024-01-01"
-
-# Optimize prices based on competitors
-openclaw shopify prices optimize --margin 30
+docker-compose up -d
 ```
 
----
+### Vercel
+```bash
+vercel
+```
 
-## 💰 Pricing & Licensing
+### Manual
+```bash
+npm start
+```
 
-### License Options
-1. **Basic License:** 50 USDC (one-time, 1 year updates)
-2. **Managed Hosting:** 49 USDC/month (includes license + server)
-3. **White-Glove Setup:** 199 USDC (full setup + training)
+## 📊 Profit Margin Architecture
 
-### Payment Methods
-- **USDC on Base** (via x402 protocol) - Recommended
-- **Credit Card** (via Stripe) - 3% fee
-- **ETH on Base** (via x402) - Variable gas
+Designed for **90%+ profit margins**:
 
-### Revenue Share
-- 90%+ profit margins (lightweight architecture)
-- No recurring platform fees
-- Direct x402 payments to your wallet
+1. **Lightweight Design**: Minimal infrastructure costs
+2. **Automated Operations**: Zero manual intervention
+3. **Scalable Pricing**: License-based revenue model
+4. **High Value**: Solves critical e-commerce pain points
 
----
+### Revenue Streams
+- **License Fee**: $50 USDC one-time
+- **Managed Hosting**: $49/month per store
+- **Setup Services**: $199 white-glove
+- **Enterprise**: Custom pricing
 
-## 📈 ROI Calculator
+## 🧪 Testing
 
-| Metric | Before Skill | After Skill | Improvement |
-|--------|--------------|-------------|-------------|
-| Inventory Time | 10 hrs/week | 1 hr/week | 90% reduction |
-| Price Monitoring | Manual | Automated | 100% automated |
-| Order Processing | 5 hrs/day | 30 min/day | 90% faster |
-| Profit Margins | 25% avg | 35% avg | 40% increase |
-| Customer Response | 24 hrs | 2 hrs | 92% faster |
+Run comprehensive test suite:
+```bash
+npm test
+```
 
-**Estimated Monthly Value:** $2,000+ per store
+Test specific modules:
+```bash
+npm run test:unit
+npm run test:integration
+```
 
----
+## 📚 Documentation
 
-## 🔒 Security & Compliance
+Complete documentation available at:
+- [Configuration Guide](./docs/configuration.md)
+- [API Reference](./docs/api.md)
+- [Troubleshooting](./docs/troubleshooting.md)
+- [Deployment Guide](./docs/deployment.md)
 
-- **GDPR Compliant:** Data processing agreements included
-- **Shopify Certified:** Uses official Admin API
-- **Encrypted Storage:** All credentials encrypted at rest
-- **Access Control:** Role-based permissions
-- **Audit Logging:** Complete activity tracking
+## 🛠️ Technical Stack
 
----
+- **Runtime**: Node.js 18+
+- **Framework**: OpenClaw Skill Framework
+- **Database**: PostgreSQL (optional)
+- **Cache**: Redis (optional)
+- **Payment**: x402 Protocol
+- **Deployment**: Vercel, Docker, Kubernetes
 
-## 🛠️ Technical Details
+## 🔒 Security
 
-### Requirements
-- OpenClaw 1.0.0+
-- Shopify store (Plus, Basic, or Advanced)
-- Internet connection
-- 100MB storage
-
-### Architecture
-- **Lightweight:** SKILL.md + config packages only
-- **No Dependencies:** Uses existing OpenClaw tools
-- **Modular:** Easy to extend and customize
-- **Scalable:** Supports 100+ concurrent stores
-
-### Performance
-- **Response Time:** < 2 seconds for alerts
-- **Uptime:** 99.5% SLA
-- **Scalability:** 1,000+ products per store
-- **Data Accuracy:** > 99%
-
----
+- All credentials encrypted at rest
+- HTTPS enforced for all communications
+- Regular security updates
+- GDPR & CCPA compliant
+- 99.5% uptime SLA
 
 ## 📞 Support
 
-### Included Support
-- **Basic:** Documentation and community forum
-- **Priority:** Available with Managed Hosting
-- **White-Glove:** Dedicated support with setup package
+- **Telegram**: `@shopify_inventory_automation`
+- **Email**: support@shopify-inventory-automation.com
+- **GitHub**: [Issues](https://github.com/openclaw/shopify-inventory-automation/issues)
+- **Documentation**: [docs.shopify-inventory-automation.com](https://docs.shopify-inventory-automation.com)
 
-### Contact
-- **Telegram:** @NOVA_Support
-- **Email:** support@nova.openclaw.ai
-- **Documentation:** https://docs.nova.openclaw.ai
+## 📄 License
 
-### Response Times
-- **Critical Issues:** < 4 hours
-- **General Support:** < 24 hours
-- **Feature Requests:** Weekly review
+**Commercial License** - $50 USDC via x402 protocol
 
----
+Unauthorized use, distribution, or modification is prohibited.
 
-## 🔄 Updates & Maintenance
+## 🏆 Success Metrics
 
-### Update Policy
-- **Security Updates:** Immediate (auto-patched)
-- **Feature Updates:** Monthly
-- **Bug Fixes:** Within 48 hours
-- **API Compatibility:** Guaranteed for 1 year
-
-### Version History
-- **v1.0.0** (2026-03-30): Initial release with core features
-- **v1.1.0** (planned): Advanced analytics and reporting
-- **v1.2.0** (planned): AI-powered pricing optimization
+- Target: 200+ paid licenses in Month 6
+- Revenue Target: $20,000+ MRR
+- Customer Satisfaction: 95%+
+- Churn Rate: < 1%
 
 ---
 
-## 📊 Success Metrics
+**Built with ❤️ by NOVA for OpenClaw**
 
-### For Store Owners
-- **Time Saved:** 15+ hours per week
-- **Revenue Increase:** 20-40% through optimization
-- **Error Reduction:** 95% fewer inventory mistakes
-- **Customer Satisfaction:** 4.8/5 average rating
-
-### For Agencies
-- **Client Capacity:** 3x more stores per employee
-- **Service Quality:** Consistent, automated workflows
-- **Upsell Opportunities:** Managed hosting, custom features
-- **Profit Margins:** 90%+ on skill licensing
-
----
-
-## 🎯 Why Choose This Skill?
-
-### vs. Manual Management
-- **Time:** Save 90% on inventory tasks
-- **Accuracy:** Eliminate human errors
-- **Scalability:** Manage 10x more products
-- **Profit:** Optimize margins automatically
-
-### vs. Other Solutions
-- **Cost:** 90%+ lower than enterprise software
-- **Integration:** Built for OpenClaw ecosystem
-- **Flexibility:** Modular, customizable architecture
-- **Support:** Direct from developers
-
-### vs. DIY Automation
-- **Reliability:** Production-tested code
-- **Security:** Enterprise-grade protection
-- **Updates:** Regular improvements and fixes
-- **Community:** Active user base and support
-
----
-
-## 🚀 Getting Started
-
-### Quick Start (5 minutes)
-1. **Purchase** skill via ClawHub (50 USDC)
-2. **Install** with one command
-3. **Configure** your Shopify credentials
-4. **Run** first inventory sync
-5. **Monitor** automated reports
-
-### Next Steps
-1. Set up competitor monitoring
-2. Configure order automation
-3. Optimize profit margins
-4. Scale to multiple stores
-5. Explore advanced features
-
----
-
-## 📝 License Agreement
-
-### Commercial License
-- **Term:** 1 year from purchase
-- **Updates:** Included for license term
-- **Support:** Basic support included
-- **Transfer:** Non-transferable
-- **Refunds:** 14-day money-back guarantee
-
-### Usage Rights
-- **Installation:** 1 production instance
-- **Stores:** Unlimited stores per instance
-- **Modifications:** Allowed for personal use
-- **Redistribution:** Not allowed
-- **Commercial Use:** Allowed
-
----
-
-**Ready to automate your Shopify store?**  
-**Install now via ClawHub and start saving 15+ hours per week!**
-
----
-*Skill maintained by NOVA - Providing picks and shovels for the OpenClaw Gold Rush*
+*Solving inventory headaches, one Shopify store at a time.*

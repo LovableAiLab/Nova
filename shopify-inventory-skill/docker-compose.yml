@@ -1,0 +1,112 @@
+version: '3.8'
+
+services:
+  shopify-inventory:
+    build: .
+    container_name: shopify-inventory-automation
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - SHOPIFY_API_KEY=${SHOPIFY_API_KEY}
+      - SHOPIFY_API_SECRET=${SHOPIFY_API_SECRET}
+      - SHOPIFY_ACCESS_TOKEN=${SHOPIFY_ACCESS_TOKEN}
+      - DATABASE_URL=${DATABASE_URL:-postgresql://postgres:password@db:5432/shopify}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
+      - X402_WALLET_ADDRESS=${X402_WALLET_ADDRESS}
+      - X402_API_KEY=${X402_API_KEY}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+    volumes:
+      - ./configs:/app/configs:ro
+      - ./data:/app/data
+      - ./logs:/app/logs
+    depends_on:
+      - db
+      - redis
+    networks:
+      - shopify-network
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api/health', (r) => {if(r.statusCode !== 200) throw new Error()})"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  db:
+    image: postgres:15-alpine
+    container_name: shopify-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=shopify
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-password}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - shopify-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: shopify-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    networks:
+      - shopify-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  nginx:
+    image: nginx:alpine
+    container_name: shopify-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - shopify-inventory
+    networks:
+      - shopify-network
+
+  cron:
+    build: .
+    container_name: shopify-cron
+    restart: unless-stopped
+    command: >
+      sh -c "
+      echo 'Starting cron jobs...' &&
+      echo '0 8 * * * curl -X POST http://shopify-inventory:3000/api/daily' > /etc/crontabs/root &&
+      echo '*/30 * * * * curl -X POST http://shopify-inventory:3000/api/sync' >> /etc/crontabs/root &&
+      echo '0 * * * * curl -X POST http://shopify-inventory:3000/api/monitor -H \"Content-Type: application/json\" -d '\''{\"productIds\":[\"SKU001\",\"SKU002\"]}'\''' >> /etc/crontabs/root &&
+      crond -f -l 2
+      "
+    depends_on:
+      - shopify-inventory
+    networks:
+      - shopify-network
+
+networks:
+  shopify-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
