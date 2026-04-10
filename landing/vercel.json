@@ -1,0 +1,37 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "tripwire-landing.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/tripwire-landing.html"
+    },
+    {
+      "src": "/thank-you",
+      "dest": "/thank-you.html"
+    },
+    {
+      "src": "/download/(.*)",
+      "dest": "/api/download.js?id=$1"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "github": {
+    "enabled": true,
+    "silent": true
+  },
+  "public": true,
+  "cleanUrls": true,
+  "trailingSlash": false
+}
