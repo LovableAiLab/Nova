@@ -527,9 +527,9 @@
                 <div class="text-center text-slate-400 text-sm mb-4">
                     <i class="fas fa-shield-alt mr-1"></i> Secure Payments
                 </div>
-                <button class="mobile-cta-button" onclick="purchaseShopifySkill(5000)" style="text-decoration: none; width: 100%; border: none; font: inherit; color: inherit; background: inherit; cursor: pointer;">
+                <a href="https://buy.stripe.com/YOUR_SHOPIFY_CHECKOUT_LINK" target="_blank" class="mobile-cta-button" style="text-decoration: none; width: 100%; display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 500;">
                     <i class="fas fa-rocket mr-2"></i> Get Shopify Skill - $50
-                </button>
+                </a>
             </div>
         </div>
     </div>
@@ -674,9 +674,9 @@
                                     Get instant access to complete inventory automation. License includes 24/7 support and lifetime updates.
                                 </p>
                             </div>
-                            <button class="nova-payment-button" onclick="purchaseShopifySkill(5000)" style="text-decoration: none; width: 100%; background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                            <a href="https://buy.stripe.com/YOUR_SHOPIFY_CHECKOUT_LINK" target="_blank" class="nova-payment-button" style="text-decoration: none; width: 100%; display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 500;">
                                 <i class="fas fa-bolt mr-2"></i> Purchase License - $50.00
-                            </button>
+                            </a>
                         </div>
                         
                         <!-- Payment Options Note -->
@@ -899,9 +899,9 @@
                             <span class="price-amount" style="color: #f59e0b; font-size: 1.5rem;">$0.50</span>
                             <span class="price-period">test purchase</span>
                         </div>
-                        <button class="nova-payment-button" onclick="purchaseTestProduct(50)" style="text-decoration: none; width: 100%; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                        <a href="https://buy.stripe.com/YOUR_TEST_CHECKOUT_LINK" target="_blank" class="nova-payment-button" style="text-decoration: none; width: 100%; display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 500;">
                             <i class="fas fa-vial mr-2"></i> Test Payment - $0.50
-                        </button>
+                        </a>
                     </div>
                     
                     <!-- Test Warning -->
@@ -1160,258 +1160,13 @@
         
 </div>
 
-    <!-- Production Payment Integration -->
-    <script>
-        // Payment Functions
-        function purchaseShopifySkill(amountInCents) {
-            showPaymentModal('Shopify Inventory Automation Skill', amountInCents, 'shopify-skill');
-        }
-        
-        function purchaseTestProduct(amountInCents) {
-            showPaymentModal('Payment System Test', amountInCents, 'test-product');
-        }
-        
-        function showPaymentModal(productName, amountInCents, productId) {
-            const amount = (amountInCents / 100).toFixed(2);
-            const isTest = amountInCents === 50;
-            
-            // Create modal
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(0, 0, 0, 0.8);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 9999;
-                padding: 20px;
-            `;
-
-            const modalContent = document.createElement('div');
-            modalContent.style.cssText = `
-                background: white;
-                padding: 30px;
-                border-radius: 12px;
-                max-width: 400px;
-                width: 100%;
-                text-align: center;
-                color: #333;
-            `;
-
-            const title = document.createElement('h3');
-            title.textContent = `Purchase ${productName}`;
-            title.style.cssText = `
-                font-size: 20px;
-                margin-bottom: 10px;
-                color: #0f172a;
-            `;
-
-            const description = document.createElement('p');
-            description.textContent = `You're about to purchase: ${productName} for $${amount}`;
-            description.style.cssText = `
-                color: #666;
-                margin-bottom: 20px;
-                font-size: 14px;
-            `;
-
-            const priceDisplay = document.createElement('div');
-            priceDisplay.style.cssText = `
-                font-size: 28px;
-                font-weight: bold;
-                color: ${isTest ? '#f59e0b' : '#10b981'};
-                margin: 15px 0;
-            `;
-            priceDisplay.textContent = `$${amount}`;
-
-            const warning = document.createElement('div');
-            warning.style.cssText = `
-                background: ${isTest ? '#fef3c7' : '#d1fae5'};
-                border: 1px solid ${isTest ? '#f59e0b' : '#10b981'};
-                border-radius: 8px;
-                padding: 15px;
-                margin-bottom: 20px;
-                text-align: left;
-            `;
-            
-            if (isTest) {
-                warning.innerHTML = `
-                    <strong>🧪 Test Purchase</strong>
-                    <p style="margin: 8px 0 0; font-size: 13px; color: #92400e;">
-                        • Real credit card will be charged <strong>$${amount}</strong><br>
-                        • Perfect for testing payment flow<br>
-                        • Refund available upon request<br>
-                        • Test license key will be emailed
-                    </p>
-                `;
-            } else {
-                warning.innerHTML = `
-                    <strong>🚀 Production Purchase</strong>
-                    <p style="margin: 8px 0 0; font-size: 13px; color: #065f46;">
-                        • Real credit card will be charged <strong>$${amount}</strong><br>
-                        • Production license key will be emailed<br>
-                        • 24/7 technical support included<br>
-                        • Lifetime updates included
-                    </p>
-                `;
-            }
-
-            const buttonContainer = document.createElement('div');
-            buttonContainer.style.cssText = `
-                display: flex;
-                gap: 10px;
-                justify-content: center;
-                margin-top: 20px;
-            `;
-
-            const cancelButton = document.createElement('button');
-            cancelButton.textContent = 'Cancel';
-            cancelButton.style.cssText = `
-                padding: 12px 24px;
-                border: 1px solid #e2e8f0;
-                background: white;
-                color: #666;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 14px;
-                font-weight: 500;
-            `;
-            cancelButton.onclick = () => {
-                document.body.removeChild(modal);
-            };
-
-            const stripeButton = document.createElement('button');
-            stripeButton.textContent = `Pay $${amount}`;
-            stripeButton.style.cssText = `
-                padding: 12px 24px;
-                background: linear-gradient(135deg, ${isTest ? '#f59e0b' : '#10b981'} 0%, ${isTest ? '#d97706' : '#059669'} 100%);
-                color: white;
-                border: none;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 14px;
-                font-weight: 500;
-            `;
-            stripeButton.onclick = () => {
-                // Create checkout session via API
-                createCheckoutSession(productId, amountInCents, productName);
-                document.body.removeChild(modal);
-            };
-
-            const setupButton = document.createElement('button');
-            setupButton.textContent = 'Need to setup checkout first?';
-            setupButton.style.cssText = `
-                padding: 10px 20px;
-                background: #3b82f6;
-                color: white;
-                border: none;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 13px;
-                font-weight: 500;
-                margin-top: 15px;
-                width: 100%;
-            `;
-            setupButton.onclick = () => {
-                window.open('https://dashboard.stripe.com/payment-links', '_blank');
-            };
-
-            buttonContainer.appendChild(cancelButton);
-            buttonContainer.appendChild(stripeButton);
-
-            modalContent.appendChild(title);
-            modalContent.appendChild(description);
-            modalContent.appendChild(priceDisplay);
-            modalContent.appendChild(warning);
-            modalContent.appendChild(buttonContainer);
-            modalContent.appendChild(setupButton);
-            modal.appendChild(modalContent);
-            document.body.appendChild(modal);
-        }
-        
-        async function createCheckoutSession(productId, amountInCents, productName) {
-            try {
-                // Show loading
-                const loading = document.createElement('div');
-                loading.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background: rgba(0, 0, 0, 0.8);
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    z-index: 10000;
-                    color: white;
-                `;
-                loading.innerHTML = `
-                    <div style="width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid #8b5cf6; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px;"></div>
-                    <div>Creating secure checkout...</div>
-                `;
-                document.body.appendChild(loading);
-                
-                // Add spinner animation
-                const style = document.createElement('style');
-                style.textContent = `
-                    @keyframes spin {
-                        0% { transform: rotate(0deg); }
-                        100% { transform: rotate(360deg); }
-                    }
-                `;
-                document.head.appendChild(style);
-                
-                // Collect email
-                const email = prompt(`Enter your email for ${productName} license delivery:`);
-                if (!email) {
-                    document.body.removeChild(loading);
-                    return;
-                }
-                
-                // Call payment API
-                const response = await fetch('https://payments.nova3mm.com/api/create-checkout', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        productId: productId,
-                        customerEmail: email,
-                        customerName: '',
-                        amount: amountInCents,
-                        productName: productName,
-                        successUrl: `${window.location.origin}/success.html`,
-                        cancelUrl: window.location.href
-                    })
-                });
-                
-                const data = await response.json();
-                document.body.removeChild(loading);
-                
-                if (data.success && data.url) {
-                    // Redirect to Stripe Checkout
-                    window.location.href = data.url;
-                } else {
-                    alert('Failed to create checkout. Please try again or contact support.');
-                }
-                
-            } catch (error) {
-                console.error('Checkout error:', error);
-                alert('Payment system error. Please contact support@nova3mm.com');
-            }
-        }
-
-        // Update mobile CTA button to use Shopify skill
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileCtaButton = document.querySelector('.mobile-cta-button');
-            if (mobileCtaButton) {
-                mobileCtaButton.onclick = () => purchaseShopifySkill(5000);
-            }
-        });
-    </script>
+    <!-- Stripe Payment Links -->
+    <!-- 
+        To setup:
+        1. Go to Stripe dashboard (Live mode)
+        2. Create payment links for:
+           - $50 Shopify skill: https://buy.stripe.com/...
+           - $0.50 test product: https://buy.stripe.com/...
+        3. Update the links above
+    -->
 </body></html>
