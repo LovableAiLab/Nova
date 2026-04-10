@@ -527,9 +527,9 @@
                 <div class="text-center text-slate-400 text-sm mb-4">
                     <i class="fas fa-shield-alt mr-1"></i> Secure Payments
                 </div>
-                <a href="https://checkout.stripe.com/c/pay/cs_test_a1NA9ATwEGJ5zI2Fl2vVBjVqc0UZBxx2jSVRbWb1c8WD7iswikjLH0J6UU#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdkdWxOYHwnPyd1blpxYHZxWjA0UU9idFA1SEBAUUI2UmN1NV9yampoRzNWNlJMQGZtdUhQaU9fPWtBTjAxPWA8d0hwYE1fPX1BaGBVbEduX3N9PUJMXXZoS21RQnVzNjVfNHJsQ2hdczRnNTVvbTxWM2pEdCcpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyZjY2NjY2MnKSdpZHxqcHFRfHVgJz8ndmxrYmlgWmxxYGgnKSdga2RnaWBVaWRmYG1qaWFgd3YnP3F3cGB4JSUl" target="_blank" class="mobile-cta-button" style="text-decoration: none;">
-                    <i class="fas fa-rocket mr-2"></i> Get Started
-                </a>
+                <button class="mobile-cta-button" onclick="showProductionPaymentModal()" style="text-decoration: none; width: 100%; border: none; font: inherit; color: inherit; background: inherit; cursor: pointer;">
+                    <i class="fas fa-rocket mr-2"></i> Get Started 🚀 LIVE
+                </button>
             </div>
         </div>
     </div>
@@ -674,9 +674,9 @@
                                     Get instant access to complete inventory automation. License includes 24/7 support and lifetime updates.
                                 </p>
                             </div>
-                            <a href="https://checkout.stripe.com/c/pay/cs_test_a1NA9ATwEGJ5zI2Fl2vVBjVqc0UZBxx2jSVRbWb1c8WD7iswikjLH0J6UU#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdkdWxOYHwnPyd1blpxYHZxWjA0UU9idFA1SEBAUUI2UmN1NV9yampoRzNWNlJMQGZtdUhQaU9fPWtBTjAxPWA8d0hwYE1fPX1BaGBVbEduX3N9PUJMXXZoS21RQnVzNjVfNHJsQ2hdczRnNTVvbTxWM2pEdCcpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyZjY2NjY2MnKSdpZHxqcHFRfHVgJz8ndmxrYmlgWmxxYGgnKSdga2RnaWBVaWRmYG1qaWFgd3YnP3F3cGB4JSUl" target="_blank" class="nova-payment-button" style="text-decoration: none;">
-                                <i class="fas fa-shopping-cart mr-2"></i> Purchase License ($50)
-                            </a>
+                            <button class="nova-payment-button" onclick="showProductionPaymentModal()" style="text-decoration: none; width: 100%;">
+                                <i class="fas fa-shopping-cart mr-2"></i> Purchase License ($50) 🚀 LIVE
+                            </button>
                         </div>
                         
                         <!-- Payment Options Note -->
@@ -1091,4 +1091,152 @@
         </style>
         
 </div>
+
+    <!-- Production Payment Integration -->
+    <script>
+        function showProductionPaymentModal() {
+            // Create modal
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                padding: 20px;
+            `;
+
+            const modalContent = document.createElement('div');
+            modalContent.style.cssText = `
+                background: white;
+                padding: 30px;
+                border-radius: 12px;
+                max-width: 400px;
+                width: 100%;
+                text-align: center;
+                color: #333;
+            `;
+
+            const title = document.createElement('h3');
+            title.textContent = '🚀 Ready for Production Purchase';
+            title.style.cssText = `
+                font-size: 20px;
+                margin-bottom: 10px;
+                color: #0f172a;
+            `;
+
+            const description = document.createElement('p');
+            description.textContent = 'Your Stripe account is now in LIVE mode. Real $50 payments will be charged.';
+            description.style.cssText = `
+                color: #666;
+                margin-bottom: 20px;
+                font-size: 14px;
+            `;
+
+            const warning = document.createElement('div');
+            warning.style.cssText = `
+                background: #fef3c7;
+                border: 1px solid #f59e0b;
+                border-radius: 8px;
+                padding: 15px;
+                margin-bottom: 20px;
+                text-align: left;
+            `;
+            warning.innerHTML = `
+                <strong>⚠️ Production Mode Active</strong>
+                <p style="margin: 8px 0 0; font-size: 13px; color: #92400e;">
+                    • Real credit cards will be charged $50<br>
+                    • Test cards (4242...) will be declined<br>
+                    • Ensure you have webhooks configured<br>
+                    • Monitor Stripe dashboard for payments
+                </p>
+            `;
+
+            const buttonContainer = document.createElement('div');
+            buttonContainer.style.cssText = `
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+                margin-top: 20px;
+            `;
+
+            const cancelButton = document.createElement('button');
+            cancelButton.textContent = 'Cancel';
+            cancelButton.style.cssText = `
+                padding: 12px 24px;
+                border: 1px solid #e2e8f0;
+                background: white;
+                color: #666;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 500;
+            `;
+            cancelButton.onclick = () => {
+                document.body.removeChild(modal);
+            };
+
+            const stripeButton = document.createElement('button');
+            stripeButton.textContent = 'Proceed to Stripe Checkout';
+            stripeButton.style.cssText = `
+                padding: 12px 24px;
+                background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 500;
+            `;
+            stripeButton.onclick = () => {
+                // Redirect to Stripe production checkout
+                // You need to create a production checkout session in Stripe dashboard
+                // and update this URL
+                const productionCheckoutUrl = 'https://checkout.stripe.com/pay/cs_live_YOUR_PRODUCTION_SESSION_ID';
+                window.location.href = productionCheckoutUrl;
+            };
+
+            const setupButton = document.createElement('button');
+            setupButton.textContent = 'Setup Production Checkout';
+            setupButton.style.cssText = `
+                padding: 12px 24px;
+                background: #10b981;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 500;
+                margin-top: 10px;
+                width: 100%;
+            `;
+            setupButton.onclick = () => {
+                window.open('https://dashboard.stripe.com/payment-links', '_blank');
+            };
+
+            buttonContainer.appendChild(cancelButton);
+            buttonContainer.appendChild(stripeButton);
+
+            modalContent.appendChild(title);
+            modalContent.appendChild(description);
+            modalContent.appendChild(warning);
+            modalContent.appendChild(buttonContainer);
+            modalContent.appendChild(setupButton);
+            modal.appendChild(modalContent);
+            document.body.appendChild(modal);
+        }
+
+        // Update mobile CTA button
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileCtaButton = document.querySelector('.mobile-cta-button');
+            if (mobileCtaButton) {
+                mobileCtaButton.onclick = showProductionPaymentModal;
+            }
+        });
+    </script>
 </body></html>
