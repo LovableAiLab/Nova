@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Nova 3MM - OpenClaw Skills Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #06b6d4;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Fixed Mobile Header */
+        .mobile-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+        }
+        
+        .mobile-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .mobile-logo-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mobile-logo-text h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1;
+        }
+        
+        .mobile-logo-text .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .mobile-menu-button {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+            cursor: pointer;
+            color: white;
+            font-size: 1.25rem;
+            transition: all 0.2s ease;
+        }
+        
+        .mobile-menu-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(99, 102, 241, 0.4);
+        }
+        
+        .mobile-menu-button:active {
+            transform: scale(0.95);
+        }
+        
+        /* Mobile Menu Panel */
+        .mobile-menu-panel {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 320px;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(30px);
+            border-left: 1px solid rgba(99, 102, 241, 0.3);
+            z-index: 9999;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .mobile-menu-panel.active {
+            right: 0;
+        }
+        
+        .mobile-menu-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-menu-close {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.25rem;
+            transition: all 0.2s ease;
+        }
+        
+        .mobile-menu-close:hover {
+            background: rgba(239, 68, 68, 0.3);
+            transform: scale(1.05);
+        }
+        
+        .mobile-menu-content {
+            flex: 1;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+        
+        .mobile-nav-link {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .mobile-nav-link:hover,
+        .mobile-nav-link.active {
+            background: rgba(99, 102, 241, 0.2);
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .mobile-nav-link i {
+            width: 24px;
+            text-align: center;
+        }
+        
+        .mobile-menu-footer {
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-cta-button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mobile-cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+        }
+        
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .main-content {
+            margin-top: 64px;
+            min-height: calc(100vh - 64px);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 20px;
+        }
+        
+        /* Marketplace Hero */
+        .marketplace-hero {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border-radius: 24px;
+            padding: 2rem;
+            margin: 1rem;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+        
+        /* Skill Card */
+        .skill-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+        }
+        
+        .skill-card-premium {
+            border: 2px solid #f59e0b;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(245, 158, 11, 0.1) 100%);
+        }
+        
+        .skill-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .badge-ecommerce {
+            background: rgba(99, 102, 241, 0.2);
+            color: #818cf8;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+        
+        .badge-automation {
+            background: rgba(6, 182, 212, 0.2);
+            color: #22d3ee;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+        
+        .badge-premium {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        
+        /* Feature List */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+        
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            color: #cbd5e1;
+            font-size: 0.875rem;
+        }
+        
+        .feature-list li i {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 0.75rem;
+        }
+        
+        /* Price Tag */
+        .price-tag {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* CTA Button */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            font-weight: 600;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+        }
+        
+        /* Stats - PUBLIC VERSION (no business metrics) */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-top: 0.25rem;
+        }
+        
+        /* Responsive */
+        @media (min-width: 768px) {
+            .mobile-header {
+                display: none;
+            }
+            
+            .main-content {
+                margin-top: 0;
+            }
+            
+            .desktop-nav {
+                display: flex;
+            }
+            
+            .marketplace-hero {
+                margin: 2rem;
+                padding: 3rem;
+            }
+            
+            .skill-card {
+                padding: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .desktop-nav {
+            display: none;
+        }
+        
+        .font-space {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        .animated-bg {
+            background: linear-gradient(-45deg, var(--darker), #1e1b4b, var(--darker), #0c4a6e);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .touch-button {
+            min-height: 44px;
+            min-width: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="animated-bg">
+    <!-- Fixed Mobile Header -->
+    <div class="mobile-header safe-top">
+        <div class="mobile-logo">
+            <div class="mobile-logo-icon">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="mobile-logo-text">
+                <h3>
+                    <span class="gradient-text">NOVA</span>
+                    <span class="text-white">3MM</span>
+                </h3>
+                <p class="text-sm text-slate-400">Skills Marketplace</p>
+            </div>
+        </div>
+        
+        <button id="mobileMenuButton" class="mobile-menu-button touch-button" aria-label="Open menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+    
+    <!-- Mobile Navigation Menu -->
+    <div id="mobileMenu" class="mobile-menu-panel">
+        <div class="mobile-menu-header">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-bold gradient-text">Navigation</h3>
+                <button id="mobileMenuClose" class="mobile-menu-close touch-button" aria-label="Close menu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="mobile-menu-content">
+            <nav class="mobile-nav-links">
+                <a href="#home" class="mobile-nav-link active" onclick="closeMobileMenu()">
+                    <i class="fas fa-home mr-3"></i> Home
+                </a>
+                            <div style="text-align: center; color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">
+                                
+                            </div>
+                <a href="#skills" class="mobile-nav-link" onclick="closeMobileMenu()">
+                    <i class="fas fa-robot mr-3"></i> AI Skills
+                </a>
+                            <div style="text-align: center; color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">
+                                
+                            </div>
+                <a href="#websites" class="mobile-nav-link" onclick="closeMobileMenu()">
+                    <i class="fas fa-globe mr-3"></i> AI Websites
+                </a>
+                            <div style="text-align: center; color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">
+                                
+                            </div>
+                <a href="#pricing" class="mobile-nav-link" onclick="closeMobileMenu()">
+                    <i class="fas fa-tag mr-3"></i> Pricing
+                </a>
+                            <div style="text-align: center; color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">
+                                
+                            </div>
+                <a href="#about" class="mobile-nav-link" onclick="closeMobileMenu()">
+                    <i class="fas fa-info-circle mr-3"></i> About
+                </a>
+                            <div style="text-align: center; color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">
+                                
+                            </div>
+                <a href="#contact" class="mobile-nav-link" onclick="closeMobileMenu()">
+                    <i class="fas fa-envelope mr-3"></i> Contact
+                </a>
+                            <div style="text-align: center; color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">
+                                
+                            </div>
+                <a href="admin-login.html" class="mobile-nav-link" onclick="closeMobileMenu()">
+                    <i class="fas fa-user-shield mr-3"></i> Admin
+                </a>
+                            <div style="text-align: center; color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">
+                                
+                            </div>
+            </nav>
+            
+            <div class="mobile-menu-footer">
+                <div class="text-center text-slate-400 text-sm mb-4">
+                    <i class="fas fa-shield-alt mr-1"></i> Secure Payments
+                </div>
+                <a href="https://checkout.stripe.com/c/pay/cs_live_a1BT4xJBcxmIOMYmDNz7ZEW1YhoDRVUxLQsCn8uHYyBYaKigH80UTbWgVN#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdkdWxOYHwnPyd1blppbHNgWjA0VktfSnM0aHdPcGh2b0ldSm1RUzVrbEdOZDVyaDR%2FckZUVVxicnNSaHxuYk98NWFLRlBVMHJffV8wbVU2an1JZGoxMERxcU5oSnAyVzBwYGBPMWl1aTBANTVUMWozNG5kNCcpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyZjY2NjY2MnKSdpZHxqcHFRfHVgJz8ndmxrYmlgWmxxYGgnKSdga2RnaWBVaWRmYG1qaWFgd3YnP3F3cGB4JSUl" target="_blank" class="mobile-cta-button" style="text-decoration: none; width: 100%; display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 500;">
+                    Get Lifetime Access for all products
+                </a>
+                            <div style="text-align: center; color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">
+                                
+                            </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenuOverlay" class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Marketplace Hero -->
+        <section class="marketplace-hero">
+            <div class="text-center mb-6">
+                <h1 class="text-3xl md:text-4xl font-bold mb-4 font-space">
+                    <span class="gradient-text">OpenClaw Skills</span>
+                    <span class="block text-white">Marketplace</span>
+                </h1>
+                <p class="text-slate-300 text-lg">
+                    Discover, purchase, and deploy production-ready AI skills for OpenClaw
+                </p>
+            </div>
+            
+            <!-- Public Stats (No Business Metrics) -->
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">1.2K+</div>
+                    <div class="stat-label">AI Agents</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5.7K</div>
+                    <div class="stat-label">Human Users</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$245K</div>
+                    <div class="stat-label">Monthly Volume</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Featured Skill: Eliminate Inventory Stress Forever -->
+        <section class="p-4 md:p-8">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 font-space text-center">
+                    <span class="gradient-text">Featured Skill</span>
+                </h2>
+                
+                <div class="skill-card skill-card-premium">
+                    <!-- Skill Header -->
+                    <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
+                        <div>
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center mr-4">
+                                    <i class="fas fa-store text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl md:text-2xl font-bold">Eliminate Inventory Stress Forever</h3>
+                                    <p class="text-slate-400">Stop losing revenue to stockouts and human error</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Badges -->
+                            <div class="mb-4">
+                                <span class="skill-badge badge-ecommerce">
+                                    <i class="fas fa-shopping-cart mr-1"></i> E-commerce
+                                </span>
+                                <span class="skill-badge badge-automation">
+                                    <i class="fas fa-robot mr-1"></i> Automation
+                                </span>
+                                <span class="skill-badge badge-premium">
+                                    <i class="fas fa-crown mr-1"></i> Premium
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <!-- Price -->
+                        <div class="text-center md:text-right mt-4 md:mt-0">
+                            <div class="price-tag">$50</div>
+                            <div class="text-slate-400 text-sm">One-time payment · No monthly subscriptions</div>
+                            <div class="text-green-400 text-sm mt-1">
+                                <i class="fas fa-check-circle"></i> Production Ready
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Description -->
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold mb-3">Description</h4>
+                        <p class="text-slate-300">
+                            Get a lifetime license to the automation engine that runs 24/7 so you don't have to. 
+                            competitor price monitoring, order processing, and profit optimization. 
+                            Supports Shopify Plus, Basic, and Advanced plans.
+                        </p>
+                    </div>
+                    
+                    <!-- Features -->
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold mb-3">Key Features</h4>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Automated inventory synchronization</li>
+                            <li><i class="fas fa-check"></i> Real-time competitor price monitoring</li>
+                            <li><i class="fas fa-check"></i> Automated order processing</li>
+                            <li><i class="fas fa-check"></i> Multi-store management support</li>
+                            <li><i class="fas fa-check"></i> x402 payment integration on Base network</li>
+                            <li><i class="fas fa-check"></i> Vercel deployment ready</li>
+                            <li><i class="fas fa-check"></i> Comprehensive testing suite included</li>
+                            <li><i class="fas fa-check"></i> 24/7 technical support</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Technical Details -->
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold mb-3">Technical Details</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <div class="text-slate-400 text-sm">Version</div>
+                                <div class="text-white font-medium">1.0.0</div>
+                            </div>
+                            <div>
+                                <div class="text-slate-400 text-sm">License</div>
+                                <div class="text-white font-medium">Commercial</div>
+                            </div>
+                            <div>
+                                <div class="text-slate-400 text-sm">OpenClaw Version</div>
+                                <div class="text-white font-medium">≥ 1.0.0</div>
+                            </div>
+                            <div>
+                                <div class="text-slate-400 text-sm">Node.js</div>
+                                <div class="text-white font-medium">≥ 18.0.0</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Payment Button -->
+                    <div class="mt-8 pt-6 border-t border-slate-800">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                            <div>
+                                <h4 class="text-lg font-semibold mb-2">Included in Lifetime Access Package</h4>
+                                <p class="text-slate-400 text-sm">
+                                    This skill is included in our Lifetime Access package along with all current and future products. License includes 24/7 support and lifetime updates.
+                                </p>
+                            </div>
+                            <a href="https://checkout.stripe.com/c/pay/cs_live_a1BT4xJBcxmIOMYmDNz7ZEW1YhoDRVUxLQsCn8uHYyBYaKigH80UTbWgVN#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdkdWxOYHwnPyd1blppbHNgWjA0VktfSnM0aHdPcGh2b0ldSm1RUzVrbEdOZDVyaDR%2FckZUVVxicnNSaHxuYk98NWFLRlBVMHJffV8wbVU2an1JZGoxMERxcU5oSnAyVzBwYGBPMWl1aTBANTVUMWozNG5kNCcpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyZjY2NjY2MnKSdpZHxqcHFRfHVgJz8ndmxrYmlgWmxxYGgnKSdga2RnaWBVaWRmYG1qaWFgd3YnP3F3cGB4JSUl" target="_blank" class="nova-payment-button" style="text-decoration: none; width: 100%; display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 500;">
+                                Get Lifetime Access for all products
+                            </a>
+                            <div style="text-align: center; color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">
+                                
+                            </div>
+                        </div>
+                        
+                        <!-- Payment Options Note -->
+                        <div class="mt-4 text-center text-slate-500 text-sm">
+                            Pay with credit card (Stripe) or 
+                            Machine-Payable via x402
+                        </div>
+                        
+                        <!-- Live Mode Warning -->
+                        <div class="mt-3 p-3 text-center" style="background: rgba(16, 185, 129, 0.1); border-radius: 8px; border: 1px solid #10b981;">
+                            <i class="fas fa-bolt mr-1" style="color: #059669;"></i>
+                            <span style="color: #065f46; font-size: 0.9rem;">
+                                <strong>LIVE PAYMENTS ACTIVE:</strong> Secure credit card processing via Stripe
+                            </span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        
+        <!-- Payment Modal Integration -->
+        <script>
+            // Payment Modal Functions
+            function showPaymentModal() {
+                // Create modal if it doesn't exist
+                if (!document.getElementById('novaPaymentModal')) {
+                    loadPaymentModal();
+                }
+                
+                // Show modal
+                document.getElementById('novaPaymentModal').classList.add('active');
+            }
+            
+            function loadPaymentModal() {
+                // Load payment modal HTML
+                fetch('payment-integration.html')
+                    .then(response => response.text())
+                    .then(html => {
+                        // Extract just the modal HTML from the payment integration file
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(html, 'text/html');
+                        const modal = doc.getElementById('novaPaymentModal');
+                        
+                        if (modal) {
+                            document.body.appendChild(modal.cloneNode(true));
+                            
+                            // Add styles
+                            const styles = doc.querySelector('style');
+                            if (styles) {
+                                document.head.appendChild(styles.cloneNode(true));
+                            }
+                            
+                            // Initialize payment modal
+                            initializePaymentModal();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error loading payment modal:', error);
+                        // Fallback: Show simple alert
+                        alert('Payment system loading...\n\nFor now, please contact support@nova3mm.com to purchase.\n\nStripe integration coming soon!');
+                    });
+            }
+            
+            function initializePaymentModal() {
+                // This function will be called after modal loads
+                console.log('Payment modal initialized');
+            }
+            
+            // Add payment button styles
+            const paymentStyles = `
+                .nova-payment-button {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 24px;
+                    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+                    color: white;
+                    border: none;
+                    border-radius: 12px;
+                    font-weight: 600;
+                    font-size: 16px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    text-decoration: none;
+                }
+                
+                .nova-payment-button:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+                }
+                
+                .nova-payment-button:active {
+                    transform: translateY(0);
+                }
+            `;
+            
+            // Add styles to document
+            const styleSheet = document.createElement('style');
+            styleSheet.textContent = paymentStyles;
+            document.head.appendChild(styleSheet);
+        </script>
+        
+        <!-- Mobile Menu JavaScript -->
+        <script>
+            // Mobile Menu Functions
+            function toggleMobileMenu() {
+                const menu = document.getElementById('mobileMenu');
+                const overlay = document.getElementById('mobileMenuOverlay');
+                const body = document.body;
+                
+                if (menu.classList.contains('active')) {
+                    closeMobileMenu();
+                } else {
+                    openMobileMenu();
+                }
+            }
+            
+            function openMobileMenu() {
+                const menu = document.getElementById('mobileMenu');
+                const overlay = document.getElementById('mobileMenuOverlay');
+                const body = document.body;
+                
+                menu.classList.add('active');
+                overlay.classList.add('active');
+                body.style.overflow = 'hidden'; // Prevent scrolling
+                
+                // Add escape key listener
+                document.addEventListener('keydown', handleEscapeKey);
+            }
+            
+            function closeMobileMenu() {
+                const menu = document.getElementById('mobileMenu');
+                const overlay = document.getElementById('mobileMenuOverlay');
+                const body = document.body;
+                
+                menu.classList.remove('active');
+                overlay.classList.remove('active');
+                body.style.overflow = ''; // Restore scrolling
+                
+                // Remove escape key listener
+                document.removeEventListener('keydown', handleEscapeKey);
+            }
+            
+            function handleEscapeKey(event) {
+                if (event.key === 'Escape') {
+                    closeMobileMenu();
+                }
+            }
+            
+            // Initialize mobile menu
+            document.addEventListener('DOMContentLoaded', function() {
+                // Add click handlers
+                const menuButton = document.getElementById('mobileMenuButton');
+                const closeButton = document.getElementById('mobileMenuClose');
+                const overlay = document.getElementById('mobileMenuOverlay');
+                
+                if (menuButton) {
+                    menuButton.addEventListener('click', toggleMobileMenu);
+                }
+                
+                if (closeButton) {
+                    closeButton.addEventListener('click', closeMobileMenu);
+                }
+                
+                if (overlay) {
+                    overlay.addEventListener('click', closeMobileMenu);
+                }
+                
+                // Make mobile nav links close menu when clicked
+                const navLinks = document.querySelectorAll('.mobile-nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', closeMobileMenu);
+                });
+                
+                console.log('Mobile menu initialized');
+            });
+            
+            // Touch optimization for mobile
+            document.addEventListener('touchstart', function() {}, { passive: true });
+        </script>
+        
+        <!-- Footer -->
+
+<!-- Lifetime Access Package -->
+<div class="nova-card" style="background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(139, 92, 246, 0.15) 100%); border: 1px solid rgba(139, 92, 246, 0.3); border-left: 4px solid #8b5cf6; margin: 3rem 0;">
+    <div class="nova-card-header">
+        <h3 style="color: #f8fafc; margin: 0; font-size: 1.5rem; font-weight: 600;">
+            Lifetime Access to All Products
+        </h3>
+        <div style="color: #94a3b8; font-size: 0.95rem; margin-top: 5px;">
+            One payment. All current and future AI skills. Forever.
+        </div>
+    </div>
+    
+    <div class="nova-card-body">
+        <div style="color: #d1d5db; line-height: 1.6; margin-bottom: 1.5rem;">
+            Get unlimited access to our entire catalog of AI skills, websites, and tools. Pay once, use forever. Includes all future releases and 24/7 priority support.
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 1.5rem;">
+            <div style="display: flex; align-items: flex-start;">
+                <div style="color: #10b981; margin-right: 10px; flex-shrink: 0;">✓</div>
+                <div style="color: #d1d5db; font-size: 0.95rem;">All current AI skills (including Shopify Inventory Automation)</div>
+            </div>
+            <div style="display: flex; align-items: flex-start;">
+                <div style="color: #10b981; margin-right: 10px; flex-shrink: 0;">✓</div>
+                <div style="color: #d1d5db; font-size: 0.95rem;">All future skills and updates (lifetime access)</div>
+            </div>
+            <div style="display: flex; align-items: flex-start;">
+                <div style="color: #10b981; margin-right: 10px; flex-shrink: 0;">✓</div>
+                <div style="color: #d1d5db; font-size: 0.95rem;">AI website templates and deployment tools</div>
+            </div>
+            <div style="display: flex; align-items: flex-start;">
+                <div style="color: #10b981; margin-right: 10px; flex-shrink: 0;">✓</div>
+                <div style="color: #d1d5db; font-size: 0.95rem;">Priority 24/7 support and dedicated onboarding</div>
+            </div>
+            <div style="display: flex; align-items: flex-start;">
+                <div style="color: #10b981; margin-right: 10px; flex-shrink: 0;">✓</div>
+                <div style="color: #d1d5db; font-size: 0.95rem;">Member dashboard with centralized license management</div>
+            </div>
+        </div>
+        
+        <div style="background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 1.25rem; margin-bottom: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <div>
+                    <div style="font-size: 2rem; font-weight: 700; color: #f8fafc;">$1,000.00</div>
+                    <div style="color: #94a3b8; font-size: 0.9rem;">One-time payment · Lifetime access</div>
+                </div>
+                <div style="text-align: right;">
+                    <div style="color: #8b5cf6; font-weight: 500; font-size: 0.9rem;">Premium Package</div>
+                    <div style="color: #94a3b8; font-size: 0.85rem;">Best value for serious users</div>
+                </div>
+            </div>
+        </div>
+        
+        <a href="https://checkout.stripe.com/c/pay/cs_live_a1gIlmmfd2sJEKEtL6W8PKCLFPAOUhGgRONwDTvxMyR7E9LKrlo62maJRR#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdkdWxOYHwnPyd1blppbHNgWjA0VktfSnM0aHdPcGh2b0ldSm1RUzVrbEdOZDVyaDR%2FckZUVVxicnNSaHxuYk98NWFLRlBVMHJffV8wbVU2an1JZGoxMERxcU5oSnAyVzBwYGBPMWl1aTBANTVUMWozNG5kNCcpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyZjY2NjY2MnKSdpZHxqcHFRfHVgJz8ndmxrYmlgWmxxYGgnKSdga2RnaWBVaWRmYG1qaWFgd3YnP3F3cGB4JSUl" target="_blank" class="nova-payment-button" style="text-decoration: none; width: 100%; display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 14px 28px; border-radius: 10px; font-weight: 600; font-size: 1.05rem; margin-bottom: 1rem; transition: all 0.3s ease;">
+            Get Lifetime Access for All Products
+        </a>
+        
+        <div style="text-align: center; color: #94a3b8; font-size: 0.9rem; margin-bottom: 1.5rem; font-style: italic;">
+            Includes member dashboard access for centralized license management
+        </div>
+        
+        <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 1.5rem;">
+            <div style="color: #d1d5db; font-size: 0.95rem; margin-bottom: 10px; font-weight: 500;">Payment Methods</div>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <div style="color: #94a3b8; font-size: 0.9rem;">
+                    Credit Card (via Stripe)
+                </div>
+                <div style="color: #94a3b8; font-size: 0.9rem;">•</div>
+                <div style="color: #94a3b8; font-size: 0.9rem;">
+                    Machine-Payable via x402
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Lifetime Access Package -->
+<!-- Professional Footer -->
+<footer class="nova-footer" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 3rem 0; margin-top: 4rem;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+            <!-- Brand Column -->
+            <div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #f8fafc; margin-bottom: 1rem;">
+                    NOVA 3MM
+                </div>
+                <div style="color: #94a3b8; line-height: 1.6; margin-bottom: 1.5rem;">
+                    Discover, purchase, and deploy production-ready AI skills for OpenClaw. Built for humans and autonomous agents.
+                </div>
+                <div style="display: flex; gap: 15px;">
+                    <a href="https://github.com/LovableAiLab/Nova" target="_blank" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://discord.gg/clawd" target="_blank" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="https://twitter.com/openclaw" target="_blank" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Navigation Column -->
+            <div>
+                <div style="font-size: 1rem; font-weight: 600; color: #f8fafc; margin-bottom: 1rem;">
+                    Navigation
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <a href="#home" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;">Home</a>
+                    <a href="#skills" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;">AI Skills</a>
+                    <a href="#websites" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;">AI Websites</a>
+                    <a href="#pricing" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;">Pricing</a>
+                    <a href="#about" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;">About</a>
+                    <a href="#contact" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;">Contact</a>
+                    <a href="admin-login.html" style="color: #10b981; text-decoration: none; transition: color 0.3s; font-weight: 500;">Admin</a>
+                </div>
+            </div>
+            
+            <!-- Legal Column -->
+            <div>
+                <div style="font-size: 1rem; font-weight: 600; color: #f8fafc; margin-bottom: 1rem;">
+                    Legal
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <a href="terms.html" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;">Terms of Service</a>
+                    <a href="privacy.html" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;">Privacy Policy</a>
+                    <a href="refund.html" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;">Refund Policy</a>
+                    <a href="license.html" style="color: #94a3b8; text-decoration: none; transition: color 0.3s;">License Agreement</a>
+                </div>
+            </div>
+            
+            <!-- Payment Methods Column -->
+            <div>
+                <div style="font-size: 1rem; font-weight: 600; color: #f8fafc; margin-bottom: 1rem;">
+                    Payment Methods
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 1.5rem;">
+                    <div style="background: rgba(255, 255, 255, 0.05); border-radius: 6px; padding: 8px; text-align: center;">
+                        <div style="color: #94a3b8; font-size: 0.8rem; font-weight: 500;">Stripe</div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.05); border-radius: 6px; padding: 8px; text-align: center;">
+                        <div style="color: #94a3b8; font-size: 0.8rem; font-weight: 500;">USDC</div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.05); border-radius: 6px; padding: 8px; text-align: center;">
+                        <div style="color: #94a3b8; font-size: 0.8rem; font-weight: 500;">Base</div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.05); border-radius: 6px; padding: 8px; text-align: center;">
+                        <div style="color: #94a3b8; font-size: 0.8rem; font-weight: 500;">x402</div>
+                    </div>
+                </div>
+                <div style="color: #94a3b8; font-size: 0.85rem; line-height: 1.5;">
+                    <i class="fas fa-shield-alt mr-1"></i> Secure payments · 256-bit encryption
+                </div>
+            </div>
+        </div>
+        
+        <!-- Copyright Row -->
+        <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div style="color: #94a3b8; font-size: 0.9rem;">
+                © 2026 Nova 3MM. All rights reserved.
+            </div>
+            <div style="display: flex; gap: 1.5rem;">
+                <a href="status.html" style="color: #94a3b8; font-size: 0.9rem; text-decoration: none;">Status</a>
+                <a href="changelog.html" style="color: #94a3b8; font-size: 0.9rem; text-decoration: none;">Changelog</a>
+                <a href="roadmap.html" style="color: #94a3b8; font-size: 0.9rem; text-decoration: none;">Roadmap</a>
+                <a href="mailto:support@nova3mm.com" style="color: #94a3b8; font-size: 0.9rem; text-decoration: none;">support@nova3mm.com</a>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End Professional Footer -->
+

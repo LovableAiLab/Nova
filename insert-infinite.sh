@@ -1,0 +1,175 @@
+#!/bin/bash
+
+echo "🎯 INSERTING INFINITE INTELLIGENCE PASS..."
+echo "=========================================="
+
+cd /tmp/nova-clean
+
+# Create the Infinite Intelligence Pass HTML
+INFINITE_PASS='<!-- Infinite Intelligence Pass -->
+<div class="nova-card" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.98) 100%); border: 2px solid rgba(139, 92, 246, 0.4); border-radius: 16px; margin: 4rem 0; position: relative; overflow: hidden;">
+    <!-- Premium Badge -->
+    <div style="position: absolute; top: 20px; right: 20px; background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px;">
+        PREMIUM LIFETIME ACCESS
+    </div>
+    
+    <!-- Limited Availability Badge -->
+    <div style="position: absolute; top: 20px; left: 20px; background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.4); color: #fca5a5; padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">
+        ⚡ ONLY 15 LICENSES REMAINING
+    </div>
+    
+    <div class="nova-card-header" style="padding: 3rem 2rem 2rem;">
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+            <div style="font-size: 0.9rem; color: #8b5cf6; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem;">
+                THE FINAL SUBSCRIPTION YOU WILL EVER NEED
+            </div>
+            <h2 style="color: #f8fafc; margin: 0; font-size: 2.5rem; font-weight: 700; line-height: 1.2;">
+                Infinite Intelligence Pass
+            </h2>
+            <div style="color: #94a3b8; font-size: 1.1rem; margin-top: 0.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Own Every AI Skill We Build. Forever.
+            </div>
+            <div style="color: #64748b; font-size: 0.95rem; margin-top: 1rem; font-style: italic;">
+                Secure your stake in the Machine Economy
+            </div>
+        </div>
+    </div>
+    
+    <div class="nova-card-body" style="padding: 0 2rem 2rem;">
+        <!-- The Value Stack (ROI Focus) -->
+        <div style="margin-bottom: 3rem;">
+            <h3 style="color: #f8fafc; font-size: 1.3rem; font-weight: 600; margin-bottom: 1.5rem; text-align: center;">
+                The Value Stack: $6,000+ Real-World Value
+            </h3>
+            <div style="background: rgba(255, 255, 255, 0.03); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1);">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: rgba(139, 92, 246, 0.1);">
+                            <th style="padding: 1rem; text-align: left; color: #d1d5db; font-weight: 600; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Component</th>
+                            <th style="padding: 1rem; text-align: left; color: #d1d5db; font-weight: 600; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Market Value</th>
+                            <th style="padding: 1rem; text-align: left; color: #d1d5db; font-weight: 600; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                            <td style="padding: 1rem; color: #f8fafc; font-weight: 500;">Current AI Skill Library (Shopify, ERP, Logistics)</td>
+                            <td style="padding: 1rem; color: #94a3b8;">$1,200/yr</td>
+                            <td style="padding: 1rem;"><span style="background: rgba(34, 197, 94, 0.2); color: #4ade80; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">INCLUDED</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                            <td style="padding: 1rem; color: #f8fafc; font-weight: 500;">Future Release Pipeline (Next 10+ Tools)</td>
+                            <td style="padding: 1rem; color: #94a3b8;">$2,500+</td>
+                            <td style="padding: 1rem;"><span style="background: rgba(34, 197, 94, 0.2); color: #4ade80; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">INCLUDED</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                            <td style="padding: 1rem; color: #f8fafc; font-weight: 500;">Premium AI Website Templates (Conversion-Optimized)</td>
+                            <td style="padding: 1rem; color: #94a3b8;">$800</td>
+                            <td style="padding: 1rem;"><span style="background: rgba(34, 197, 94, 0.2); color: #4ade80; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">INCLUDED</span></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 1rem; color: #f8fafc; font-weight: 500;">White-Glove Onboarding & 24/7 Priority Support</td>
+                            <td style="padding: 1rem; color: #94a3b8;">$1,500/yr</td>
+                            <td style="padding: 1rem;"><span style="background: rgba(34, 197, 94, 0.2); color: #4ade80; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">INCLUDED</span></td>
+                        </tr>
+                    </tbody>
+                    <tfoot style="background: rgba(139, 92, 246, 0.1);">
+                        <tr>
+                            <td style="padding: 1rem; color: #f8fafc; font-weight: 700; font-size: 1.1rem;">TOTAL REAL-WORLD VALUE</td>
+                            <td style="padding: 1rem; color: #f8fafc; font-weight: 700; font-size: 1.1rem;">$6,000+</td>
+                            <td style="padding: 1rem;"><span style="background: rgba(139, 92, 246, 0.3); color: #a78bfa; padding: 6px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">LIFETIME</span></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        
+        <!-- The "Machine Economy" Payment Layer -->
+        <div style="margin-bottom: 3rem;">
+            <h3 style="color: #f8fafc; font-size: 1.3rem; font-weight: 600; margin-bottom: 1.5rem; text-align: center;">
+                The "Machine Economy" Payment Layer
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <!-- Option A: Traditional -->
+                <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 12px; padding: 1.5rem;">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="background: rgba(59, 130, 246, 0.2); color: #60a5fa; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-weight: 600;">
+                            A
+                        </div>
+                        <div>
+                            <div style="color: #f8fafc; font-weight: 600; font-size: 1.1rem;">Traditional</div>
+                            <div style="color: #94a3b8; font-size: 0.9rem;">Credit Card via Stripe</div>
+                        </div>
+                    </div>
+                    <div style="color: #d1d5db; line-height: 1.6; margin-bottom: 1rem;">
+                        Best for: <strong>Founders and Business Owners</strong> who prefer traditional payment methods with full purchase protection.
+                    </div>
+                </div>
+                
+                <!-- Option B: Autonomous -->
+                <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 12px; padding: 1.5rem;">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="background: rgba(16, 185, 129, 0.2); color: #34d399; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-weight: 600;">
+                            B
+                        </div>
+                        <div>
+                            <div style="color: #f8fafc; font-weight: 600; font-size: 1.1rem;">Autonomous (x402)</div>
+                            <div style="color: #94a3b8; font-size: 0.9rem;">USDC via x402 Protocol</div>
+                        </div>
+                    </div>
+                    <div style="color: #d1d5db; line-height: 1.6; margin-bottom: 1rem;">
+                        Best for: <strong>AI Agents and Programmatic Treasury Management</strong>. Pay directly from your autonomous systems.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Why This Is the "Best Value" -->
+        <div style="margin-bottom: 3rem;">
+            <h3 style="color: #f8fafc; font-size: 1.3rem; font-weight: 600; margin-bottom: 1.5rem; text-align: center;">
+                Why This Is the "Best Value"
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div style="background: rgba(255, 255, 255, 0.03); border-radius: 10px; padding: 1.5rem;">
+                    <div style="color: #10b981; font-size: 1.5rem; margin-bottom: 10px;">💸</div>
+                    <div style="color: #f8fafc; font-weight: 600; margin-bottom: 8px;">Zero Recurring Costs</div>
+                    <div style="color: #94a3b8; font-size: 0.9rem; line-height: 1.5;">
+                        Kill your "SaaS fatigue." No monthly bills, ever. One payment secures lifetime access.
+                    </div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.03); border-radius: 10px; padding: 1.5rem;">
+                    <div style="color: #6366f1; font-size: 1.5rem; margin-bottom: 10px;">🎛️</div>
+                    <div style="color: #f8fafc; font-weight: 600; margin-bottom: 8px;">Centralized Command</div>
+                    <div style="color: #94a3b8; font-size: 0.9rem; line-height: 1.5;">
+                        Manage every license, tool, and deployment from a single, high-performance dashboard.
+                    </div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.03); border-radius: 10px; padding: 1.5rem;">
+                    <div style="color: #8b5cf6; font-size: 1.5rem; margin-bottom: 10px;">🤝</div>
+                    <div style="color: #f8fafc; font-weight: 600; margin-bottom: 8px;">Dedicated Partner</div>
+                    <div style="color: #94a3b8; font-size: 0.9rem; line-height: 1.5;">
+                        You aren't just a customer; you get Priority Onboarding to ensure your first AI skill is live in under 24 hours.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- High-Conversion Pricing Block -->
+        <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.9) 100%); border: 2px solid rgba(139, 92, 246, 0.5); border-radius: 16px; padding: 2.5rem; text-align: center; position: relative;">
+            <!-- Limited Badge -->
+            <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; padding: 8px 20px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; white-space: nowrap;">
+                ⚡ ONLY 15 LICENSES REMAINING
+            </div>
+            
+            <div style="margin-bottom: 1.5rem;">
+                <div style="color: #8b5cf6; font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem;">
+                    The Premium Lifetime License
+                </div>
+                <div style="font-size: 3.5rem; font-weight: 800; color: #f8fafc; line-height: 1; margin-bottom: 0.5rem;">
+                    $1,000.00
+                </div>
+                <div style="color: #94a3b8; font-size: 1rem; margin-bottom: 1.5rem;">
+                    One-time payment. Infinite upgrades.
+                </div>
+            </div>
+            
+            <a href="https://checkout.stripe.com/c/pay/cs_live_a1gIlmmfd2sJEKEtL6W8PKCLFPAOUhGgRONwDTvxMyR7E9LKrlo62maJRR#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdkdWxOYHwnPyd1blppbHNgWjA0VktfSnM0aHdPcGh2b0ldSm1RUzVrbEdOZDVyaDR%2FckZUVVxicnNSaHxuYk98NWFLRlBVMHJffV8wbVU2an1JZGoxMERxcU5oSnAyVzBwYGBPMWl1aTBANTVUMWozNG5kNCcpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyZjY2NjY2MnKSdpZHxqcHFRfHVgJz8ndmxrYmlgWmxxYGgnKSdga2RnaWBVaWRmYG1qaWFgd3YnP3F3cGB4JSUl" target="_blank" class="nova-payment-button" style="text-decoration: none;
