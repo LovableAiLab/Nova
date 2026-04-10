@@ -273,69 +273,12 @@
             <a href="https://nova-5mm.pages.dev" class="btn btn-primary">
                 <i class="fas fa-home"></i> Return to Marketplace
             </a>
-            <button onclick="openContactForm()" class="btn btn-secondary">
+            <a href="https://nova-5mm.pages.dev/contact.html?order_id=cs_test_a1NA9ATwEGJ5zI2Fl2vVBjVqc0UZBxx2jSVRbWb1c8WD7iswikjLH0J6UU" class="btn btn-secondary" id="contactLink">
                 <i class="fas fa-headset"></i> Contact Support
-            </button>
+            </a>
         </div>
         
-        <!-- Contact Form Modal -->
-        <div id="contactModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center;">
-            <div class="modal-content" style="background: #1e293b; padding: 30px; border-radius: 16px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h3 style="color: #3b82f6; margin: 0;"><i class="fas fa-headset"></i> Contact Support</h3>
-                    <button onclick="closeContactForm()" style="background: none; border: none; color: #94a3b8; font-size: 24px; cursor: pointer;">&times;</button>
-                </div>
-                
-                <form id="supportForm" onsubmit="submitSupportForm(event)">
-                    <div style="margin-bottom: 15px;">
-                        <label style="display: block; color: #cbd5e1; margin-bottom: 5px;">Your Name</label>
-                        <input type="text" name="name" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: white; font-size: 16px;">
-                    </div>
-                    
-                    <div style="margin-bottom: 15px;">
-                        <label style="display: block; color: #cbd5e1; margin-bottom: 5px;">Email Address</label>
-                        <input type="email" name="email" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: white; font-size: 16px;">
-                    </div>
-                    
-                    <div style="margin-bottom: 15px;">
-                        <label style="display: block; color: #cbd5e1; margin-bottom: 5px;">Order ID</label>
-                        <input type="text" name="orderId" id="contactOrderId" readonly style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #475569; background: #334155; color: #94a3b8; font-size: 16px;">
-                    </div>
-                    
-                    <div style="margin-bottom: 20px;">
-                        <label style="display: block; color: #cbd5e1; margin-bottom: 5px;">How can we help?</label>
-                        <select name="issueType" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: white; font-size: 16px;">
-                            <option value="">Select an issue type</option>
-                            <option value="license">License key not received</option>
-                            <option value="download">Download link not working</option>
-                            <option value="setup">Setup/installation help</option>
-                            <option value="bug">Bug or technical issue</option>
-                            <option value="refund">Refund request</option>
-                            <option value="other">Other issue</option>
-                        </select>
-                    </div>
-                    
-                    <div style="margin-bottom: 20px;">
-                        <label style="display: block; color: #cbd5e1; margin-bottom: 5px;">Message</label>
-                        <textarea name="message" rows="5" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: white; font-size: 16px; resize: vertical;"></textarea>
-                    </div>
-                    
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        <button type="submit" style="flex: 2; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 14px; border-radius: 8px; border: none; font-weight: bold; font-size: 16px; cursor: pointer;">
-                            <i class="fas fa-paper-plane"></i> Send Message
-                        </button>
-                        <button type="button" onclick="closeContactForm()" style="flex: 1; background: rgba(255,255,255,0.1); color: white; padding: 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); font-weight: bold; font-size: 16px; cursor: pointer;">
-                            Cancel
-                        </button>
-                        <button type="button" onclick="window.location.href='https://nova-5mm.pages.dev'" style="flex: 1; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 14px; border-radius: 8px; border: none; font-weight: bold; font-size: 16px; cursor: pointer;">
-                            <i class="fas fa-store"></i> Marketplace
-                        </button>
-                    </div>
-                </form>
-                
-                <div id="formMessage" style="margin-top: 20px; padding: 15px; border-radius: 8px; display: none;"></div>
-            </div>
-        </div>
+
         
         <div class="footer">
             <p><i class="fas fa-shield-alt"></i> Your payment is secure and protected by Stripe.</p>
@@ -350,7 +293,11 @@
         
         if (sessionId) {
             document.getElementById('order-id').textContent = sessionId.substring(0, 20) + '...';
-            document.getElementById('contactOrderId').value = sessionId;
+            // Update contact link with order ID
+            const contactLink = document.getElementById('contactLink');
+            if (contactLink) {
+                contactLink.href = `https://nova-5mm.pages.dev/contact.html?order_id=${sessionId}`;
+            }
         }
         
         // Set current date
@@ -371,119 +318,7 @@
             }, 100);
         }, 2000);
         
-        // Contact Form Functions
-        function openContactForm() {
-            document.getElementById('contactModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeContactForm() {
-            document.getElementById('contactModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-        
-        // Close modal when clicking outside
-        document.getElementById('contactModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeContactForm();
-            }
-        });
-        
-        // Submit support form
-        async function submitSupportForm(event) {
-            event.preventDefault();
-            
-            const form = event.target;
-            const formData = new FormData(form);
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            
-            // Show loading state
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
-            
-            try {
-                // In a real implementation, this would send to your backend
-                // For now, we'll simulate success and store in localStorage for admin dashboard
-                const supportRequest = {
-                    id: 'SR-' + Date.now(),
-                    name: formData.get('name'),
-                    email: formData.get('email'),
-                    orderId: formData.get('orderId'),
-                    issueType: formData.get('issueType'),
-                    message: formData.get('message'),
-                    timestamp: new Date().toISOString(),
-                    status: 'new'
-                };
-                
-                // Store in localStorage (simulated admin dashboard storage)
-                const existingRequests = JSON.parse(localStorage.getItem('novaSupportRequests') || '[]');
-                existingRequests.push(supportRequest);
-                localStorage.setItem('novaSupportRequests', JSON.stringify(existingRequests));
-                
-                // Show success message
-                showFormMessage('✅ Message sent successfully! Redirecting to marketplace...', 'success');
-                
-                // Reset form
-                form.reset();
-                document.getElementById('contactOrderId').value = sessionId || '';
-                
-                // Close modal after 2 seconds and redirect to marketplace
-                setTimeout(() => {
-                    closeContactForm();
-                    // Redirect to marketplace after another 1 second
-                    setTimeout(() => {
-                        window.location.href = 'https://nova-5mm.pages.dev';
-                    }, 1000);
-                }, 2000);
-                
-            } catch (error) {
-                showFormMessage('❌ Error sending message. Please try again or email support directly.', 'error');
-                console.error('Form submission error:', error);
-            } finally {
-                // Restore button
-                submitBtn.innerHTML = originalBtnText;
-                submitBtn.disabled = false;
-            }
-        }
-        
-        function showFormMessage(text, type) {
-            const messageDiv = document.getElementById('formMessage');
-            messageDiv.innerHTML = text;
-            messageDiv.style.display = 'block';
-            messageDiv.style.background = type === 'success' ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)';
-            messageDiv.style.border = type === 'success' ? '1px solid rgba(16, 185, 129, 0.5)' : '1px solid rgba(239, 68, 68, 0.5)';
-            messageDiv.style.color = type === 'success' ? '#10b981' : '#ef4444';
-            messageDiv.style.padding = '15px';
-            messageDiv.style.borderRadius = '8px';
-            messageDiv.style.marginTop = '20px';
-            
-            // Auto-hide after appropriate time
-            const hideTime = type === 'success' ? 3000 : 5000;
-            setTimeout(() => {
-                messageDiv.style.display = 'none';
-            }, hideTime);
-        }
-        
-        // Add modal styles
-        const style = document.createElement('style');
-        style.textContent = `
-            .modal-content {
-                animation: modalFadeIn 0.3s ease-out;
-            }
-            
-            @keyframes modalFadeIn {
-                from { opacity: 0; transform: translateY(-20px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-            
-            input:focus, select:focus, textarea:focus {
-                outline: none;
-                border-color: #3b82f6 !important;
-                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-            }
-        `;
-        document.head.appendChild(style);
+
     </script>
 </body>
 </html>
