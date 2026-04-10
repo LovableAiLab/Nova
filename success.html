@@ -320,12 +320,15 @@
                         <textarea name="message" rows="5" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: white; font-size: 16px; resize: vertical;"></textarea>
                     </div>
                     
-                    <div style="display: flex; gap: 10px;">
-                        <button type="submit" style="flex: 1; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 14px; border-radius: 8px; border: none; font-weight: bold; font-size: 16px; cursor: pointer;">
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button type="submit" style="flex: 2; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 14px; border-radius: 8px; border: none; font-weight: bold; font-size: 16px; cursor: pointer;">
                             <i class="fas fa-paper-plane"></i> Send Message
                         </button>
                         <button type="button" onclick="closeContactForm()" style="flex: 1; background: rgba(255,255,255,0.1); color: white; padding: 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); font-weight: bold; font-size: 16px; cursor: pointer;">
                             Cancel
+                        </button>
+                        <button type="button" onclick="window.location.href='https://nova-5mm.pages.dev'" style="flex: 1; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 14px; border-radius: 8px; border: none; font-weight: bold; font-size: 16px; cursor: pointer;">
+                            <i class="fas fa-store"></i> Marketplace
                         </button>
                     </div>
                 </form>
@@ -419,16 +422,20 @@
                 localStorage.setItem('novaSupportRequests', JSON.stringify(existingRequests));
                 
                 // Show success message
-                showFormMessage('✅ Message sent successfully! Our support team will respond within 24 hours.', 'success');
+                showFormMessage('✅ Message sent successfully! Redirecting to marketplace...', 'success');
                 
                 // Reset form
                 form.reset();
                 document.getElementById('contactOrderId').value = sessionId || '';
                 
-                // Close modal after 3 seconds
+                // Close modal after 2 seconds and redirect to marketplace
                 setTimeout(() => {
                     closeContactForm();
-                }, 3000);
+                    // Redirect to marketplace after another 1 second
+                    setTimeout(() => {
+                        window.location.href = 'https://nova-5mm.pages.dev';
+                    }, 1000);
+                }, 2000);
                 
             } catch (error) {
                 showFormMessage('❌ Error sending message. Please try again or email support directly.', 'error');
@@ -442,16 +449,20 @@
         
         function showFormMessage(text, type) {
             const messageDiv = document.getElementById('formMessage');
-            messageDiv.textContent = text;
+            messageDiv.innerHTML = text;
             messageDiv.style.display = 'block';
             messageDiv.style.background = type === 'success' ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)';
             messageDiv.style.border = type === 'success' ? '1px solid rgba(16, 185, 129, 0.5)' : '1px solid rgba(239, 68, 68, 0.5)';
             messageDiv.style.color = type === 'success' ? '#10b981' : '#ef4444';
+            messageDiv.style.padding = '15px';
+            messageDiv.style.borderRadius = '8px';
+            messageDiv.style.marginTop = '20px';
             
-            // Auto-hide after 5 seconds
+            // Auto-hide after appropriate time
+            const hideTime = type === 'success' ? 3000 : 5000;
             setTimeout(() => {
                 messageDiv.style.display = 'none';
-            }, 5000);
+            }, hideTime);
         }
         
         // Add modal styles
