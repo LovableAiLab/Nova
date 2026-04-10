@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova 3MM - AI Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Modern Green Gradient */
+        .gradient-bg { background: linear-gradient(135deg, #00dc82 0%, #00b368 100%); }
+        .gradient-text { background: linear-gradient(135deg, #00dc82 0%, #00b368 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Modern Card Effects */
+        .card-modern { 
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 220, 130, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 220, 130, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-modern:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 220, 130, 0.15);
+            border-color: rgba(0, 220, 130, 0.3);
+        }
+        
+        /* Modern Button */
+        .btn-modern {
+            background: linear-gradient(135deg, #00dc82 0%, #00b368 100%);
+            color: white;
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 12px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0, 220, 130, 0.3);
+        }
+        .btn-modern:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 220, 130, 0.4);
+            opacity: 0.95;
+        }
+        
+        /* Glass Effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="glass sticky top-0 z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center">
+                        <i class="fas fa-bolt text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black gradient-text">NOVA 3MM</span>
+                        <span class="text-sm font-medium text-gray-500 ml-2">AI Marketplace</span>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#skills" class="text-gray-700 hover:text-gray-900 font-medium">Skills</a>
+                    <a href="#websites" class="text-gray-700 hover:text-gray-900 font-medium">Websites</a>
+                    <a href="#sellers" class="text-gray-700 hover:text-gray-900 font-medium">Sellers</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-gray-900 font-medium">Pricing</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="#cta" class="btn-modern">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-50 to-white"></div>
+        
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-5xl md:text-6xl font-black mb-6 leading-tight">
+                        Modern Marketplace for
+                        <span class="block gradient-text">AI-Powered Assets</span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                        Buy and sell premium OpenClaw skills and AI-maintained websites. 
+                        Everything verified, automated, and ready to scale.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#skills" class="btn-modern text-center">
+                            <i class="fas fa-robot mr-2"></i> Browse Skills
+                        </a>
+                        <a href="#websites" class="bg-white text-gray-800 font-semibold px-8 py-4 rounded-xl border-2 border-gray-200 hover:border-green-300 transition-all text-center">
+                            <i class="fas fa-store mr-2"></i> Browse Websites
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="card-modern rounded-2xl p-8">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center mr-4">
+                                <i class="fas fa-shopping-cart text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-500">Trending Now</div>
+                                <div class="text-xl font-bold">Shopify AI Assistant</div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Price</span>
+                                <span class="text-2xl font-bold gradient-text">$75</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Sales</span>
+                                <span class="font-semibold">142 units</span>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-gray-900 text-white font-semibold py-3 rounded-xl hover:bg-gray-800 transition">
+                            <i class="fas fa-shopping-bag mr-2"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Marketplace -->
+    <section class="py-20 bg-white" id="skills">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black mb-4">Premium AI Skills</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Curated collection of high-performance OpenClaw skills.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Shopify Skill -->
+                <div class="card-modern rounded-2xl p-8">
+                    <div class="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center mb-6">
+                        <i class="fas fa-shopping-cart text-white text-2xl"></i>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-3">Shopify Pro Suite</h3>
+                    <p class="text-gray-600 mb-6">
+                        Complete e-commerce automation with inventory sync, competitor tracking, 
+                        automated restocking, and customer behavior analysis.
+                    </p>
+                    
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-3xl font-bold gradient-text">$75</div>
+                            <div class="text-sm text-gray-500">one-time license</div>
+                        </div>
+                        <button class="bg-gray-900 text-white font-semibold px-6 py-2 rounded-lg hover:bg-gray-800">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Real Estate Skill -->
+                <div class="card-modern rounded-2xl p-8">
+                    <div class="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center mb-6">
+                        <i class="fas fa-home text-white text-2xl"></i>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-3">Real Estate AI</h3>
+                    <p class="text-gray-600 mb-6">
+                        Property research, lead generation, automated follow-ups, 
+                        market analysis, and investment opportunity detection.
+                    </p>
+                    
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-3xl font-bold gradient-text">$65</div>
+                            <div class="text-sm text-gray-500">one-time license</div>
+                        </div>
+                        <button class="bg-gray-900 text-white font-semibold px-6 py-2 rounded-lg hover:bg-gray-800">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Content Skill -->
+                <div class="card-modern rounded-2xl p-8">
+                    <div class="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-3">Content Engine</h3>
+                    <p class="text-gray-600 mb-6">
+                        AI-powered content creation, SEO optimization, social media scheduling, 
+                        performance analytics, and automated publishing.
+                    </p>
+                    
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-3xl font-bold gradient-text">$55</div>
+                            <div class="text-sm text-gray-500">one-time license</div>
+                        </div>
+                        <button class="bg-gray-900 text-white font-semibold px-6 py-2 rounded-lg hover:bg-gray-800">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Websites Marketplace -->
+    <section class="py-20 bg-gray-50" id="websites">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black mb-4">AI-Maintained Websites</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Turnkey websites with automated maintenance, revenue generation, 
+                    and full AI management.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Website 1 -->
+                <div class="card-modern rounded-2xl overflow-hidden">
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-2">Tech Gadgets Hub</h3>
+                                <div class="flex items-center text-gray-600">
+                                    <i class="fas fa-chart-line text-green-400 mr-2"></i>
+                                    <span class="font-semibold">$850/month revenue</span>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm text-gray-500">Asking Price</div>
+                                <div class="text-3xl font-bold gradient-text">$25,000</div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-600 mb-6">
+                            Premium tech review site with 150+ articles, Amazon affiliate integration, 
+                            email list of 12,000 subscribers.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-gray-50 p-4 rounded-xl">
+                                <div class="text-sm text-gray-500">Monthly Profit</div>
+                                <div class="text-xl font-bold">$680</div>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-xl">
+                                <div class="text-sm text-gray-500">Traffic</div>
+                                <div class="text-xl font-bold">45K/mo</div>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full btn-modern">
+                            <i class="fas fa-eye mr-2"></i> View Details
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Website 2 -->
+                <div class="card-modern rounded-2xl overflow-hidden">
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-2">Fitness & Wellness</h3>
+                                <div class="flex items-center text-gray-600">
+                                    <i class="fas fa-chart-line text-green-400 mr-2"></i>
+                                    <span class="font-semibold">$620/month revenue</span>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm text-gray-500">Asking Price</div>
+                                <div class="text-3xl font-bold gradient-text">$18,500</div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-600 mb-6">
+                            Health and fitness content site with digital product sales, 
+                            affiliate partnerships, and premium membership community.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-gray-50 p-4 rounded-xl">
+                                <div class="text-sm text-gray-500">Monthly Profit</div>
+                                <div class="text-xl font-bold">$500</div>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-xl">
+                                <div class="text-sm text-gray-500">Email List</div>
+                                <div class="text-xl font-bold">8.5K</div>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full btn-modern">
+                            <i class="fas fa-eye mr-2"></i> View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 relative overflow-hidden" id="cta">
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <h2 class="text-4xl md:text-5xl font-black text-white mb-6">
+                Start Building Your
+                <span class="block gradient-text">AI Business Today</span>
+            </h2>
+            
+            <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                Join the modern marketplace for AI-powered skills and websites.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#signup" class="btn-modern bg-white text-gray-900 hover:bg-gray-100">
+                    <i class="fas fa-user-plus mr-2"></i> Create Account
+                </a>
+                <a href="#demo" class="bg-transparent border-2 border-white text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/10">
+                    <i class="fas fa-play-circle mr-2"></i> Watch Demo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-6">
+                    <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center mr-3">
+                        <i class="fas fa-bolt text-white"></i>
+                    </div>
+                    <div class="text-2xl font-black gradient-text">NOVA 3MM</div>
+                </div>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Modern marketplace for AI skills and websites. Built for scale, designed for performance.
+                </p>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>© 2026 Nova 3MM. All rights reserved.</p>
+                <p class="mt-2 text-sm">
+                    <i class="fas fa-bolt text-green-400 mr-2"></i>
+                    Powered by OpenClaw AI
+                </p>
+            </div>
+        </div
