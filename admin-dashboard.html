@@ -248,6 +248,39 @@
             justify-content: center;
         }
 
+        .btn-primary, .btn-secondary {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--dark);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--dark-light);
+        }
+
         /* Stats Grid */
         .stats-grid {
             display: grid;
@@ -1019,9 +1052,449 @@
             document.querySelector('.page-title h2').textContent = pageTitles[page] || 'Dashboard';
             document.querySelector('.page-title p').textContent = `Manage ${pageTitles[page]?.toLowerCase() || 'dashboard'} for your marketplace.`;
             
-            // In production, this would load the actual page content
-            // For now, show a message
-            alert(`Navigating to ${pageTitles[page] || page} page. This feature is under development.`);
+            // Clear main content
+            const mainContent = document.getElementById('mainContent');
+            const existingPageContent = document.querySelector('.page-specific-content');
+            if (existingPageContent) {
+                existingPageContent.remove();
+            }
+            
+            // Handle different pages
+            if (page === 'support') {
+                // Load support requests content
+                loadSupportPage();
+            } else if (page === 'settings') {
+                // Redirect to settings page
+                window.location.href = 'admin-settings.html';
+                return;
+            } else if (page === 'dashboard') {
+                // Show dashboard content (default)
+                showDashboardContent();
+            } else {
+                // Show coming soon for other pages
+                showComingSoon(pageTitles[page] || page);
+            }
+        }
+        
+        function loadSupportPage() {
+            const mainContent = document.getElementById('mainContent');
+            
+            // Create support page content
+            const supportContent = document.createElement('div');
+            supportContent.className = 'page-specific-content';
+            supportContent.innerHTML = `
+                <div class="support-header">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="text-xl font-bold">Support Requests</h3>
+                            <p class="text-slate-400">Manage customer support inquiries and tickets</p>
+                        </div>
+                        <button class="btn-primary" onclick="window.location.href='admin-support.html'">
+                            <i class="fas fa-external-link-alt mr-2"></i> Open Full Support Dashboard
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="support-stats">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-icon" style="background: rgba(239, 68, 68, 0.2);">
+                                    <i class="fas fa-exclamation-circle" style="color: #ef4444;"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value" id="newSupportCount">0</div>
+                            <div class="stat-label">New Requests</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-icon" style="background: rgba(59, 130, 246, 0.2);">
+                                    <i class="fas fa-clock" style="color: #3b82f6;"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value" id="pendingSupportCount">0</div>
+                            <div class="stat-label">Pending</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-icon" style="background: rgba(16, 185, 129, 0.2);">
+                                    <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value" id="resolvedSupportCount">0</div>
+                            <div class="stat-label">Resolved</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-icon" style="background: rgba(139, 92, 246, 0.2);">
+                                    <i class="fas fa-headset" style="color: #8b5cf6;"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value" id="totalSupportCount">0</div>
+                            <div class="stat-label">Total Requests</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="support-table-container">
+                    <div class="table-header">
+                        <h4>Recent Support Requests</h4>
+                        <div class="table-actions">
+                            <select id="supportFilter" class="filter-select">
+                                <option value="all">All Requests</option>
+                                <option value="new">New</option>
+                                <option value="pending">Pending</option>
+                                <option value="resolved">Resolved</option>
+                            </select>
+                            <button class="btn-secondary" onclick="refreshSupportData()">
+                                <i class="fas fa-sync-alt mr-2"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Customer</th>
+                                    <th>Issue Type</th>
+                                    <th>Message</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="supportTableBody">
+                                <!-- Support requests will be loaded here -->
+                                <tr>
+                                    <td colspan="7" class="text-center py-8 text-slate-400">
+                                        <i class="fas fa-inbox fa-2x mb-4"></i>
+                                        <p>No support requests yet</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <style>
+                    .support-header {
+                        background: var(--dark-light);
+                        border-radius: 12px;
+                        padding: 1.5rem;
+                        margin-bottom: 1.5rem;
+                        border: 1px solid var(--border);
+                    }
+                    
+                    .support-stats {
+                        margin-bottom: 1.5rem;
+                    }
+                    
+                    .support-table-container {
+                        background: var(--dark-light);
+                        border-radius: 12px;
+                        padding: 1.5rem;
+                        border: 1px solid var(--border);
+                    }
+                    
+                    .table-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 1rem;
+                    }
+                    
+                    .table-header h4 {
+                        font-size: 1.1rem;
+                        font-weight: 600;
+                    }
+                    
+                    .table-actions {
+                        display: flex;
+                        gap: 0.5rem;
+                        align-items: center;
+                    }
+                    
+                    .filter-select {
+                        padding: 0.5rem 1rem;
+                        border-radius: 8px;
+                        border: 1px solid var(--border);
+                        background: var(--dark);
+                        color: var(--text);
+                        font-size: 0.9rem;
+                    }
+                    
+                    .btn-primary, .btn-secondary {
+                        padding: 0.5rem 1rem;
+                        border-radius: 8px;
+                        border: none;
+                        font-weight: 500;
+                        cursor: pointer;
+                        display: inline-flex;
+                        align-items: center;
+                        transition: all 0.3s;
+                    }
+                    
+                    .btn-primary {
+                        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+                        color: white;
+                    }
+                    
+                    .btn-primary:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+                    }
+                    
+                    .btn-secondary {
+                        background: var(--dark);
+                        color: var(--text);
+                        border: 1px solid var(--border);
+                    }
+                    
+                    .btn-secondary:hover {
+                        background: var(--dark-light);
+                    }
+                    
+                    .data-table {
+                        width: 100%;
+                        border-collapse: collapse;
+                    }
+                    
+                    .data-table th {
+                        text-align: left;
+                        padding: 0.75rem 1rem;
+                        border-bottom: 1px solid var(--border);
+                        color: var(--text-light);
+                        font-weight: 500;
+                        font-size: 0.9rem;
+                    }
+                    
+                    .data-table td {
+                        padding: 0.75rem 1rem;
+                        border-bottom: 1px solid var(--border);
+                    }
+                    
+                    .data-table tr:hover {
+                        background: rgba(255, 255, 255, 0.05);
+                    }
+                    
+                    .status-badge {
+                        display: inline-block;
+                        padding: 0.25rem 0.75rem;
+                        border-radius: 9999px;
+                        font-size: 0.75rem;
+                        font-weight: 600;
+                    }
+                    
+                    .status-new {
+                        background: rgba(239, 68, 68, 0.2);
+                        color: #ef4444;
+                    }
+                    
+                    .status-pending {
+                        background: rgba(245, 158, 11, 0.2);
+                        color: #f59e0b;
+                    }
+                    
+                    .status-resolved {
+                        background: rgba(16, 185, 129, 0.2);
+                        color: #10b981;
+                    }
+                    
+                    .table-responsive {
+                        overflow-x: auto;
+                    }
+                </style>
+            `;
+            
+            // Insert after the top bar
+            const topBar = document.querySelector('.top-bar');
+            mainContent.insertBefore(supportContent, topBar.nextSibling);
+            
+            // Load support data
+            loadSupportData();
+            
+            // Setup filter
+            document.getElementById('supportFilter').addEventListener('change', function() {
+                filterSupportRequests(this.value);
+            });
+        }
+        
+        function loadSupportData() {
+            const supportRequests = window.AdminData?.getSupportRequests() || [];
+            
+            // Update counts
+            const newCount = supportRequests.filter(r => r.status === 'new').length;
+            const pendingCount = supportRequests.filter(r => r.status === 'pending').length;
+            const resolvedCount = supportRequests.filter(r => r.status === 'resolved').length;
+            
+            document.getElementById('newSupportCount').textContent = newCount;
+            document.getElementById('pendingSupportCount').textContent = pendingCount;
+            document.getElementById('resolvedSupportCount').textContent = resolvedCount;
+            document.getElementById('totalSupportCount').textContent = supportRequests.length;
+            
+            // Update table
+            updateSupportTable(supportRequests);
+        }
+        
+        function updateSupportTable(requests) {
+            const tbody = document.getElementById('supportTableBody');
+            
+            if (requests.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="text-center py-8 text-slate-400">
+                            <i class="fas fa-inbox fa-2x mb-4"></i>
+                            <p>No support requests yet</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tbody.innerHTML = '';
+            
+            requests.slice(0, 10).forEach(request => {
+                const statusClass = `status-${request.status}`;
+                const statusText = request.status.charAt(0).toUpperCase() + request.status.slice(1);
+                const date = new Date(request.timestamp).toLocaleDateString();
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="font-mono text-sm">${request.id.substring(0, 8)}...</td>
+                    <td>
+                        <div class="font-medium">${request.name}</div>
+                        <div class="text-sm text-slate-400">${request.email}</div>
+                    </td>
+                    <td>${request.issueType}</td>
+                    <td class="max-w-xs truncate">${request.message.substring(0, 50)}...</td>
+                    <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                    <td class="text-sm text-slate-400">${date}</td>
+                    <td>
+                        <button class="btn-secondary text-xs" onclick="viewSupportRequest('${request.id}')">
+                            <i class="fas fa-eye mr-1"></i> View
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+        
+        function filterSupportRequests(filter) {
+            let requests = window.AdminData?.getSupportRequests() || [];
+            
+            if (filter !== 'all') {
+                requests = requests.filter(r => r.status === filter);
+            }
+            
+            updateSupportTable(requests);
+        }
+        
+        function refreshSupportData() {
+            loadSupportData();
+        }
+        
+        function viewSupportRequest(id) {
+            window.location.href = `admin-support.html?request=${id}`;
+        }
+        
+        function showComingSoon(pageName) {
+            const mainContent = document.getElementById('mainContent');
+            const existingPageContent = document.querySelector('.page-specific-content');
+            if (existingPageContent) {
+                existingPageContent.remove();
+            }
+            
+            const comingSoonContent = document.createElement('div');
+            comingSoonContent.className = 'page-specific-content';
+            comingSoonContent.innerHTML = `
+                <div class="coming-soon-container">
+                    <div class="coming-soon-icon">
+                        <i class="fas fa-tools fa-3x"></i>
+                    </div>
+                    <h3>${pageName} - Coming Soon</h3>
+                    <p class="text-slate-400">This feature is currently under development and will be available soon.</p>
+                    <div class="coming-soon-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Advanced analytics and reporting</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Complete order management system</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Customer relationship management</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Product inventory management</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-400 mt-4">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        Need this feature urgently? Contact development team.
+                    </p>
+                </div>
+                
+                <style>
+                    .coming-soon-container {
+                        background: var(--dark-light);
+                        border-radius: 16px;
+                        padding: 3rem;
+                        text-align: center;
+                        border: 1px solid var(--border);
+                        margin-top: 2rem;
+                    }
+                    
+                    .coming-soon-icon {
+                        width: 80px;
+                        height: 80px;
+                        border-radius: 50%;
+                        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin: 0 auto 1.5rem;
+                        color: white;
+                    }
+                    
+                    .coming-soon-container h3 {
+                        font-size: 1.5rem;
+                        margin-bottom: 0.5rem;
+                    }
+                    
+                    .coming-soon-features {
+                        max-width: 400px;
+                        margin: 2rem auto;
+                        text-align: left;
+                    }
+                    
+                    .feature-item {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.75rem;
+                        margin-bottom: 0.75rem;
+                        color: var(--text-light);
+                    }
+                    
+                    .feature-item i {
+                        color: var(--secondary);
+                    }
+                </style>
+            `;
+            
+            // Insert after the top bar
+            const topBar = document.querySelector('.top-bar');
+            mainContent.insertBefore(comingSoonContent, topBar.nextSibling);
+        }
+        
+        function showDashboardContent() {
+            const existingPageContent = document.querySelector('.page-specific-content');
+            if (existingPageContent) {
+                existingPageContent.remove();
+            }
         }
 
         function handleQuickAction(action) {
