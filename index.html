@@ -97,6 +97,151 @@
             justify-content: center;
             border: none;
             box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+            cursor: pointer;
+            color: white;
+            font-size: 1.25rem;
+            transition: all 0.2s ease;
+        }
+        
+        .mobile-menu-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(99, 102, 241, 0.4);
+        }
+        
+        .mobile-menu-button:active {
+            transform: scale(0.95);
+        }
+        
+        /* Mobile Menu Panel */
+        .mobile-menu-panel {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 320px;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(30px);
+            border-left: 1px solid rgba(99, 102, 241, 0.3);
+            z-index: 9999;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .mobile-menu-panel.active {
+            right: 0;
+        }
+        
+        .mobile-menu-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-menu-close {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.25rem;
+            transition: all 0.2s ease;
+        }
+        
+        .mobile-menu-close:hover {
+            background: rgba(239, 68, 68, 0.3);
+            transform: scale(1.05);
+        }
+        
+        .mobile-menu-content {
+            flex: 1;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+        
+        .mobile-nav-link {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .mobile-nav-link:hover,
+        .mobile-nav-link.active {
+            background: rgba(99, 102, 241, 0.2);
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .mobile-nav-link i {
+            width: 24px;
+            text-align: center;
+        }
+        
+        .mobile-menu-footer {
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-cta-button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mobile-cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+        }
+        
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
         
         .main-content {
@@ -342,6 +487,53 @@
         </button>
     </div>
     
+    <!-- Mobile Navigation Menu -->
+    <div id="mobileMenu" class="mobile-menu-panel">
+        <div class="mobile-menu-header">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-bold gradient-text">Navigation</h3>
+                <button id="mobileMenuClose" class="mobile-menu-close touch-button" aria-label="Close menu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="mobile-menu-content">
+            <nav class="mobile-nav-links">
+                <a href="#home" class="mobile-nav-link active" onclick="closeMobileMenu()">
+                    <i class="fas fa-home mr-3"></i> Home
+                </a>
+                <a href="#skills" class="mobile-nav-link" onclick="closeMobileMenu()">
+                    <i class="fas fa-robot mr-3"></i> AI Skills
+                </a>
+                <a href="#websites" class="mobile-nav-link" onclick="closeMobileMenu()">
+                    <i class="fas fa-globe mr-3"></i> AI Websites
+                </a>
+                <a href="#pricing" class="mobile-nav-link" onclick="closeMobileMenu()">
+                    <i class="fas fa-tag mr-3"></i> Pricing
+                </a>
+                <a href="#about" class="mobile-nav-link" onclick="closeMobileMenu()">
+                    <i class="fas fa-info-circle mr-3"></i> About
+                </a>
+                <a href="#contact" class="mobile-nav-link" onclick="closeMobileMenu()">
+                    <i class="fas fa-envelope mr-3"></i> Contact
+                </a>
+            </nav>
+            
+            <div class="mobile-menu-footer">
+                <div class="text-center text-slate-400 text-sm mb-4">
+                    <i class="fas fa-shield-alt mr-1"></i> Secure Payments
+                </div>
+                <button onclick="showPaymentModal(); closeMobileMenu()" class="mobile-cta-button">
+                    <i class="fas fa-rocket mr-2"></i> Get Started
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenuOverlay" class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+    
     <!-- Main Content -->
     <div class="main-content">
         <!-- Marketplace Hero -->
@@ -576,6 +768,321 @@
             styleSheet.textContent = paymentStyles;
             document.head.appendChild(styleSheet);
         </script>
+        
+        <!-- Mobile Menu JavaScript -->
+        <script>
+            // Mobile Menu Functions
+            function toggleMobileMenu() {
+                const menu = document.getElementById('mobileMenu');
+                const overlay = document.getElementById('mobileMenuOverlay');
+                const body = document.body;
+                
+                if (menu.classList.contains('active')) {
+                    closeMobileMenu();
+                } else {
+                    openMobileMenu();
+                }
+            }
+            
+            function openMobileMenu() {
+                const menu = document.getElementById('mobileMenu');
+                const overlay = document.getElementById('mobileMenuOverlay');
+                const body = document.body;
+                
+                menu.classList.add('active');
+                overlay.classList.add('active');
+                body.style.overflow = 'hidden'; // Prevent scrolling
+                
+                // Add escape key listener
+                document.addEventListener('keydown', handleEscapeKey);
+            }
+            
+            function closeMobileMenu() {
+                const menu = document.getElementById('mobileMenu');
+                const overlay = document.getElementById('mobileMenuOverlay');
+                const body = document.body;
+                
+                menu.classList.remove('active');
+                overlay.classList.remove('active');
+                body.style.overflow = ''; // Restore scrolling
+                
+                // Remove escape key listener
+                document.removeEventListener('keydown', handleEscapeKey);
+            }
+            
+            function handleEscapeKey(event) {
+                if (event.key === 'Escape') {
+                    closeMobileMenu();
+                }
+            }
+            
+            // Initialize mobile menu
+            document.addEventListener('DOMContentLoaded', function() {
+                // Add click handlers
+                const menuButton = document.getElementById('mobileMenuButton');
+                const closeButton = document.getElementById('mobileMenuClose');
+                const overlay = document.getElementById('mobileMenuOverlay');
+                
+                if (menuButton) {
+                    menuButton.addEventListener('click', toggleMobileMenu);
+                }
+                
+                if (closeButton) {
+                    closeButton.addEventListener('click', closeMobileMenu);
+                }
+                
+                if (overlay) {
+                    overlay.addEventListener('click', closeMobileMenu);
+                }
+                
+                // Make mobile nav links close menu when clicked
+                const navLinks = document.querySelectorAll('.mobile-nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', closeMobileMenu);
+                });
+                
+                console.log('Mobile menu initialized');
+            });
+            
+            // Touch optimization for mobile
+            document.addEventListener('touchstart', function() {}, { passive: true });
+        </script>
+        
+        <!-- Footer -->
+        <footer class="nova-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="footer-logo-text">
+                            <span class="footer-logo-title gradient-text">Nova 3MM</span>
+                            <span class="footer-logo-subtitle">AI Marketplace</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        The premier marketplace for OpenClaw skills and AI-maintained websites. 
+                        Empowering AI agents and humans with cutting-edge automation tools.
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-column-title">Products</h4>
+                        <a href="#skills" class="footer-link">AI Skills</a>
+                        <a href="#websites" class="footer-link">AI Websites</a>
+                        <a href="#pricing" class="footer-link">Pricing</a>
+                        <a href="#features" class="footer-link">Features</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4 class="footer-column-title">Company</h4>
+                        <a href="#about" class="footer-link">About Us</a>
+                        <a href="#contact" class="footer-link">Contact</a>
+                        <a href="#blog" class="footer-link">Blog</a>
+                        <a href="#careers" class="footer-link">Careers</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4 class="footer-column-title">Legal</h4>
+                        <a href="#privacy" class="footer-link">Privacy Policy</a>
+                        <a href="#terms" class="footer-link">Terms of Service</a>
+                        <a href="#cookies" class="footer-link">Cookie Policy</a>
+                        <a href="#licensing" class="footer-link">Licensing</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4 class="footer-column-title">Connect</h4>
+                        <a href="https://twitter.com/nova3mm" class="footer-link">
+                            <i class="fab fa-twitter mr-2"></i> Twitter
+                        </a>
+                        <a href="https://github.com/nova3mm" class="footer-link">
+                            <i class="fab fa-github mr-2"></i> GitHub
+                        </a>
+                        <a href="https://discord.gg/nova3mm" class="footer-link">
+                            <i class="fab fa-discord mr-2"></i> Discord
+                        </a>
+                        <a href="mailto:support@nova3mm.com" class="footer-link">
+                            <i class="fas fa-envelope mr-2"></i> Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2026 Nova 3MM Marketplace. All rights reserved.
+                </div>
+                <div class="footer-payments">
+                    <span class="payment-method">
+                        <i class="fab fa-cc-stripe"></i> Stripe
+                    </span>
+                    <span class="payment-method">
+                        <i class="fab fa-ethereum"></i> Ethereum
+                    </span>
+                    <span class="payment-method">
+                        <i class="fas fa-robot"></i> x402
+                    </span>
+                    <span class="payment-method">
+                        <i class="fab fa-usdc"></i> USDC
+                    </span>
+                </div>
+            </div>
+        </footer>
+        
+        <!-- Footer Styles -->
+        <style>
+            .nova-footer {
+                background: rgba(15, 23, 42, 0.95);
+                border-top: 1px solid rgba(99, 102, 241, 0.2);
+                padding: 3rem 1rem 1.5rem;
+                margin-top: 4rem;
+            }
+            
+            .footer-content {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            @media (min-width: 768px) {
+                .footer-content {
+                    grid-template-columns: 1fr 2fr;
+                }
+            }
+            
+            .footer-section {
+                max-width: 400px;
+            }
+            
+            .footer-logo {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .footer-logo-icon {
+                width: 48px;
+                height: 48px;
+                border-radius: 12px;
+                background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                color: white;
+            }
+            
+            .footer-logo-text {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .footer-logo-title {
+                font-size: 1.5rem;
+                font-weight: 800;
+                font-family: 'Space Grotesk', sans-serif;
+            }
+            
+            .footer-logo-subtitle {
+                font-size: 0.875rem;
+                color: #94a3b8;
+            }
+            
+            .footer-description {
+                color: #94a3b8;
+                line-height: 1.6;
+                font-size: 0.95rem;
+            }
+            
+            .footer-links {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+            
+            @media (min-width: 640px) {
+                .footer-links {
+                    grid-template-columns: repeat(4, 1fr);
+                }
+            }
+            
+            .footer-column {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .footer-column-title {
+                font-size: 1rem;
+                font-weight: 700;
+                color: white;
+                margin-bottom: 0.5rem;
+            }
+            
+            .footer-link {
+                color: #94a3b8;
+                text-decoration: none;
+                font-size: 0.875rem;
+                transition: color 0.2s ease;
+                display: flex;
+                align-items: center;
+            }
+            
+            .footer-link:hover {
+                color: var(--primary);
+            }
+            
+            .footer-bottom {
+                max-width: 1200px;
+                margin: 3rem auto 0;
+                padding-top: 1.5rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                align-items: center;
+                justify-content: space-between;
+            }
+            
+            @media (min-width: 768px) {
+                .footer-bottom {
+                    flex-direction: row;
+                }
+            }
+            
+            .footer-copyright {
+                color: #64748b;
+                font-size: 0.875rem;
+                text-align: center;
+            }
+            
+            .footer-payments {
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .payment-method {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.5rem 1rem;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 8px;
+                color: #94a3b8;
+                font-size: 0.875rem;
+            }
+            
+            .payment-method i {
+                font-size: 1rem;
+            }
+        </style>
         
 </div>
 </body></html>
