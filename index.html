@@ -470,5 +470,112 @@
                         </div>
                     </div>
                     
+                    <!-- Payment Button -->
+                    <div class="mt-8 pt-6 border-t border-slate-800">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                            <div>
+                                <h4 class="text-lg font-semibold mb-2">Ready to Automate Your Shopify Store?</h4>
+                                <p class="text-slate-400 text-sm">
+                                    Get instant access to complete inventory automation. License includes 24/7 support and lifetime updates.
+                                </p>
+                            </div>
+                            <button onclick="showPaymentModal()" class="nova-payment-button">
+                                <i class="fas fa-shopping-cart mr-2"></i> Purchase License ($50)
+                            </button>
+                        </div>
+                        
+                        <!-- Payment Options Note -->
+                        <div class="mt-4 text-center text-slate-500 text-sm">
+                            <i class="fas fa-credit-card mr-1"></i> Pay with credit card (Stripe) or 
+                            <i class="fas fa-robot ml-2 mr-1"></i> USDC via x402 for AI agents
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        
+        <!-- Payment Modal Integration -->
+        <script>
+            // Payment Modal Functions
+            function showPaymentModal() {
+                // Create modal if it doesn't exist
+                if (!document.getElementById('novaPaymentModal')) {
+                    loadPaymentModal();
+                }
+                
+                // Show modal
+                document.getElementById('novaPaymentModal').classList.add('active');
+            }
+            
+            function loadPaymentModal() {
+                // Load payment modal HTML
+                fetch('payment-integration.html')
+                    .then(response => response.text())
+                    .then(html => {
+                        // Extract just the modal HTML from the payment integration file
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(html, 'text/html');
+                        const modal = doc.getElementById('novaPaymentModal');
+                        
+                        if (modal) {
+                            document.body.appendChild(modal.cloneNode(true));
+                            
+                            // Add styles
+                            const styles = doc.querySelector('style');
+                            if (styles) {
+                                document.head.appendChild(styles.cloneNode(true));
+                            }
+                            
+                            // Initialize payment modal
+                            initializePaymentModal();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error loading payment modal:', error);
+                        // Fallback: Show simple alert
+                        alert('Payment system loading...\n\nFor now, please contact support@nova3mm.com to purchase.\n\nStripe integration coming soon!');
+                    });
+            }
+            
+            function initializePaymentModal() {
+                // This function will be called after modal loads
+                console.log('Payment modal initialized');
+            }
+            
+            // Add payment button styles
+            const paymentStyles = `
+                .nova-payment-button {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 24px;
+                    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+                    color: white;
+                    border: none;
+                    border-radius: 12px;
+                    font-weight: 600;
+                    font-size: 16px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    text-decoration: none;
+                }
+                
+                .nova-payment-button:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+                }
+                
+                .nova-payment-button:active {
+                    transform: translateY(0);
+                }
+            `;
+            
+            // Add styles to document
+            const styleSheet = document.createElement('style');
+            styleSheet.textContent = paymentStyles;
+            document.head.appendChild(styleSheet);
+        </script>
+        
 </div>
 </body></html>
