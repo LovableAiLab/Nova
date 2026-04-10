@@ -1,0 +1,133 @@
+{
+  "tripwire_product": {
+    "name": "Shopify Inventory Auditor + Professional Audit",
+    "description": "Complete OpenClaw skill package + personalized inventory leak audit",
+    "price": 100, // $1.00 in cents
+    "currency": "usd",
+    "recurring": false,
+    "payment_link": "https://buy.stripe.com/test_00g3fV7jU7mF2wU5kk",
+    "custom_fields": [
+      {
+        "key": "shopify_url",
+        "label": "Shopify Store URL",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "monthly_revenue",
+        "label": "Monthly Revenue Range",
+        "type": "dropdown",
+        "options": ["Under $10K", "$10K-$50K", "$50K-$100K", "$100K-$500K", "Over $500K"],
+        "required": false
+      }
+    ],
+    "after_payment": {
+      "confirmation_email": true,
+      "redirect_url": "https://nova.openclaw.ai/thank-you",
+      "webhook_url": "https://nova.openclaw.ai/api/webhooks/stripe"
+    }
+  },
+  
+  "upsell_products": {
+    "tier1": {
+      "name": "Inventory Guardian - Managed Service",
+      "description": "24/7 inventory monitoring, automated restocking, competitor tracking",
+      "price": 4900, // $49/month
+      "currency": "usd",
+      "recurring": true,
+      "interval": "month",
+      "trial_days": 14,
+      "payment_link": "https://buy.stripe.com/test_00g3fV7jU7mF2wU5kk"
+    },
+    "tier3": {
+      "name": "Migration Agency Consultation",
+      "description": "Complete store rebuild on Lovable + Vite with integrated agents",
+      "price": 0, // Free consultation
+      "currency": "usd",
+      "recurring": false,
+      "calendly_link": "https://calendly.com/nova-migration/audit",
+      "type": "consultation"
+    }
+  },
+  
+  "automation_triggers": {
+    "on_purchase": {
+      "send_email": true,
+      "email_template": "tripwire_welcome",
+      "attach_files": ["shopify-inventory-skill.tar.gz", "SHA256.txt"],
+      "delay_minutes": 0
+    },
+    "24_hours_later": {
+      "send_email": true,
+      "email_template": "audit_results",
+      "attach_files": ["personalized_audit.pdf"],
+      "delay_hours": 24,
+      "include_upsell": "tier1"
+    },
+    "72_hours_later": {
+      "send_email": true,
+      "email_template": "migration_consultation",
+      "delay_hours": 72,
+      "include_upsell": "tier3"
+    },
+    "7_days_later": {
+      "send_email": true,
+      "email_template": "tier1_reminder",
+      "delay_days": 7,
+      "include_upsell": "tier1"
+    }
+  },
+  
+  "email_templates": {
+    "tripwire_welcome": {
+      "subject": "Your Shopify Inventory Auditor is Ready!",
+      "body": "Hi {{customer_name}},\n\nThank you for purchasing the Shopify Inventory Auditor!\n\n📦 **Your download links:**\n1. Skill Package: {{download_link}}\n2. SHA-256 Checksum: {{checksum}}\n\n🔍 **Next Steps:**\n1. Install the skill using the 5-minute quickstart guide\n2. Your personalized inventory audit will arrive within 24 hours\n3. Need help? Book Priority Setup for $49: {{setup_link}}\n\nWe're analyzing your store ({{shopify_url}}) right now to identify exact revenue leaks.\n\nBest,\nThe NOVA Team",
+      "attachments": ["skill_package", "checksum_file"]
+    },
+    "audit_results": {
+      "subject": "Your Inventory Audit Results: {{lost_revenue}} in recoverable revenue",
+      "body": "Hi {{customer_name}},\n\nYour inventory audit is complete. Here's what we found:\n\n📊 **Audit Summary:**\n- Stock-out rate: {{stockout_rate}}%\n- Lost monthly revenue: {{lost_revenue}}\n- Pricing inefficiency: {{pricing_inefficiency}}%\n- Time wasted: {{hours_wasted}} hours/month\n\n🎯 **Recovery Plan:**\n1. Immediate fix: {{immediate_actions}}\n2. 30-day plan: {{thirty_day_plan}}\n3. Long-term optimization: {{long_term_plan}}\n\n🚀 **Recommended Upgrade:**\nOur Inventory Guardian service ($49/month) automates all these fixes with 24/7 monitoring:\n{{tier1_features}}\n\n👉 [Start 14-Day Free Trial]({{tier1_link}})\n\nNeed a complete store overhaul? Book a Migration Agency consultation:\n👉 [Free Consultation]({{tier3_link}})\n\nBest,\nThe NOVA Team",
+      "attachments": ["audit_pdf"]
+    }
+  },
+  
+  "zapier_make_integration": {
+    "trigger": "stripe.payment_succeeded",
+    "actions": [
+      {
+        "service": "google_sheets",
+        "action": "append_row",
+        "data": ["{{timestamp}}", "{{customer_email}}", "{{shopify_url}}", "{{amount}}", "tripwire"]
+      },
+      {
+        "service": "email",
+        "action": "send_welcome",
+        "template": "tripwire_welcome",
+        "delay": 0
+      },
+      {
+        "service": "delay",
+        "action": "wait_24_hours"
+      },
+      {
+        "service": "email",
+        "action": "send_audit",
+        "template": "audit_results",
+        "data": "{{audit_data}}"
+      }
+    ]
+  },
+  
+  "vercel_deployment": {
+    "project_name": "nova-tripwire",
+    "framework": "static",
+    "output_directory": "landing",
+    "env_vars": {
+      "STRIPE_SECRET_KEY": "sk_live_...",
+      "STRIPE_WEBHOOK_SECRET": "whsec_...",
+      "SENDGRID_API_KEY": "SG...",
+      "CALENDLY_TOKEN": "..."
+    },
+    "domains": ["tripwire.nova.openclaw.ai", "audit.nova.openclaw.ai"]
+  }
+}

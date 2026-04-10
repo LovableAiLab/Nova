@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Move 3MM Local Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; }
+        .test { margin: 10px 0; padding: 10px; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <h1>Move 3MM Marketplace - Local Test</h1>
+    
+    <div class="test">
+        <h3>Test 1: HTML Structure</h3>
+        <p id="test1">Checking index.html...</p>
+    </div>
+    
+    <div class="test">
+        <h3>Test 2: CSS Loading</h3>
+        <p id="test2">Checking Tailwind CSS...</p>
+    </div>
+    
+    <div class="test">
+        <h3>Test 3: JavaScript</h3>
+        <p id="test3">Checking JavaScript functionality...</p>
+    </div>
+    
+    <div class="test">
+        <h3>Test 4: Responsive Design</h3>
+        <p id="test4">Checking responsive elements...</p>
+    </div>
+    
+    <div class="test">
+        <h3>Deployment Instructions</h3>
+        <p>To deploy to Cloudflare Pages:</p>
+        <ol>
+            <li>Run: <code>./deploy-to-cloudflare.sh</code></li>
+            <li>Or manually upload to Cloudflare Pages dashboard</li>
+            <li>Site will be available at: <code>https://nova-5mm.pages.dev</code></li>
+        </ol>
+    </div>
+
+    <script>
+        // Run tests
+        document.addEventListener('DOMContentLoaded', function() {
+            // Test 1: HTML structure
+            fetch('index.html')
+                .then(response => response.text())
+                .then(html => {
+                    const test1 = document.getElementById('test1');
+                    if (html.includes('Move 3MM') && html.includes('OpenClaw')) {
+                        test1.innerHTML = '<span class="success">✅ HTML structure is correct</span>';
+                    } else {
+                        test1.innerHTML = '<span class="error">❌ HTML structure issues</span>';
+                    }
+                });
+            
+            // Test 2: CSS loading
+            const test2 = document.getElementById('test2');
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://cdn.tailwindcss.com';
+            link.onload = () => {
+                test2.innerHTML = '<span class="success">✅ Tailwind CSS loaded successfully</span>';
+            };
+            link.onerror = () => {
+                test2.innerHTML = '<span class="error">❌ Failed to load Tailwind CSS</span>';
+            };
+            document.head.appendChild(link);
+            
+            // Test 3: JavaScript
+            const test3 = document.getElementById('test3');
+            try {
+                // Check if smooth scrolling function exists in index.html
+                fetch('index.html')
+                    .then(response => response.text())
+                    .then(html => {
+                        if (html.includes('smooth') && html.includes('scrollTo')) {
+                            test3.innerHTML = '<span class="success">✅ JavaScript functions detected</span>';
+                        } else {
+                            test3.innerHTML = '<span class="error">❌ JavaScript functions missing</span>';
+                        }
+                    });
+            } catch (e) {
+                test3.innerHTML = '<span class="error">❌ JavaScript test failed: ' + e.message + '</span>';
+            }
+            
+            // Test 4: Responsive
+            const test4 = document.getElementById('test4');
+            fetch('index.html')
+                .then(response => response.text())
+                .then(html => {
+                    if (html.includes('viewport') && html.includes('responsive')) {
+                        test4.innerHTML = '<span class="success">✅ Responsive meta tags found</span>';
+                    } else {
+                        test4.innerHTML = '<span class="error">❌ Responsive design elements missing</span>';
+                    }
+                });
+        });
+    </script>
+</body>
+</html>

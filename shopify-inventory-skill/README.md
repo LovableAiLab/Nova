@@ -24,19 +24,46 @@ A complete lightweight OpenClaw skill package for automated Shopify inventory ma
 - Return and refund processing
 - ABC/XYZ inventory analysis
 
-## 📦 Installation
+## 🚀 5-Minute Quickstart Guide
 
-### Via ClawHub (Recommended)
+### ⚡ Priority Setup Service
+**Struggling with the CLI?** We'll install and configure this for you for **$49**.
+
+👉 [Priority Setup Booking](https://calendly.com/nova-setup/priority-install)
+
+Our team will:
+- Install and configure the skill on your OpenClaw instance
+- Connect your Shopify store with proper API permissions
+- Set up competitor monitoring for your niche
+- Configure automated order processing
+- Provide 30-minute training session
+
+**Time saved:** 2-3 hours of setup time
+**Risk eliminated:** Configuration errors, API issues, security missteps
+
+### 📦 Installation Options
+
+#### Option 1: Via ClawHub (Recommended)
 ```bash
 clawhub install shopify-inventory-automation
 ```
 
-### Manual Installation
+#### Option 2: Manual Installation
 ```bash
-git clone https://github.com/openclaw/shopify-inventory-automation.git
-cd shopify-inventory-automation
-npm install
+# Download the skill package
+curl -L https://nova.openclaw.ai/shopify-inventory-skill.tar.gz -o shopify-inventory-skill.tar.gz
+
+# Verify SHA-256 checksum (ensures package integrity)
+echo "a28ed98f58115be73c986b766501f2998e1dd19ac5c73691781c9c26f9c96d05 shopify-inventory-skill.tar.gz" | sha256sum -c
+
+# Install via OpenClaw
+openclaw skill install shopify-inventory-skill.tar.gz
 ```
+
+#### Option 3: Managed Service (Recommended)
+Upgrade to **Nova Dashboard** ($29/month) to move from manual CLI management to a hosted, 24/7 autonomous agent system.
+
+[Learn about Managed OpenClaw →](./UPGRADE.md)
 
 ## ⚙️ Configuration
 

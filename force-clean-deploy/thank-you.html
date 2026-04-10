@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You! Your Audit is Being Prepared</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .pulse { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen flex flex-col items-center justify-center p-6">
+        <div class="max-w-2xl w-full text-center">
+            <!-- Success Icon -->
+            <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-8">
+                <i class="fas fa-check-circle text-green-500 text-5xl"></i>
+            </div>
+            
+            <!-- Header -->
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                Thank You! Your Audit is Being Prepared
+            </h1>
+            
+            <p class="text-xl text-gray-600 mb-8">
+                We're analyzing your Shopify store right now. Your personalized inventory audit will arrive in your inbox within 24 hours.
+            </p>
+            
+            <!-- Next Steps -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                <h2 class="text-2xl font-bold mb-6">What Happens Next</h2>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 text-blue-800 rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                            <span class="font-bold">1</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-1">Immediate Email</h3>
+                            <p class="text-gray-600">Check your inbox for the Shopify Inventory Skill download link and installation instructions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-purple-100 text-purple-800 rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                            <span class="font-bold">2</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-1">Store Analysis</h3>
+                            <p class="text-gray-600">Our system is analyzing your Shopify store to identify exact revenue leaks and optimization opportunities.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-green-100 text-green-800 rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                            <span class="font-bold">3</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-1">Personalized Audit</h3>
+                            <p class="text-gray-600">Within 24 hours, you'll receive a detailed audit showing exactly how much revenue you can recover.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Download Section -->
+            <div class="bg-gray-50 rounded-2xl p-8 mb-8">
+                <h2 class="text-2xl font-bold mb-4">Need Immediate Access?</h2>
+                <p class="text-gray-600 mb-6">You can download the skill package now while we prepare your audit:</p>
+                
+                <div class="space-y-4">
+                    <a href="download.html" id="download-link" class="block bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-4 px-6 rounded-lg hover:opacity-90 transition pulse">
+                        <i class="fas fa-download mr-2"></i> Download Shopify Inventory Skill
+                    </a>
+                    
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-shield-alt mr-1"></i> SHA-256: a28ed98f58115be73c986b766501f2998e1dd19ac5c73691781c9c26f9c96d05
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Support Section -->
+            <div class="border-t border-gray-200 pt-8">
+                <h3 class="text-lg font-bold mb-4">Need Help?</h3>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://t.me/NOVA_Support" class="inline-flex items-center justify-center bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition">
+                        <i class="fab fa-telegram mr-2"></i> Telegram Support
+                    </a>
+                    <a href="https://calendly.com/nova-setup/priority-install" class="inline-flex items-center justify-center bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition">
+                        <i class="fas fa-calendar-check mr-2"></i> Book Priority Setup ($49)
+                    </a>
+                </div>
+                <p class="text-sm text-gray-500 mt-4">Response time: < 4 hours for critical issues</p>
+            </div>
+            
+            <!-- Return Home -->
+            <div class="mt-12">
+                <a href="/" class="text-blue-600 hover:text-blue-800 font-medium">
+                    <i class="fas fa-arrow-left mr-2"></i> Return to Homepage
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Download link is now in download.html page
+        
+        // Track conversion
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'conversion', {
+                'send_to': 'AW-123456789/AbC-D_efGhIjKlMnOpQrSt',
+                'value': 1.00,
+                'currency': 'USD',
+                'transaction_id': new URLSearchParams(window.location.search).get('session_id')
+            });
+        }
+    </script>
+</body>
+</html>

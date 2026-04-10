@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Shopify Inventory Skill</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center p-6">
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-lg p-8 text-center">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-download text-green-500 text-2xl"></i>
+        </div>
+        
+        <h1 class="text-2xl font-bold text-gray-900 mb-4">Download Shopify Inventory Skill</h1>
+        
+        <div class="mb-6">
+            <p class="text-gray-600 mb-4">Your download will start automatically. If it doesn't, use the link below.</p>
+            
+            <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                <div class="text-sm text-gray-500 mb-2">SHA-256 Checksum:</div>
+                <div class="font-mono text-sm break-all bg-gray-100 p-2 rounded">
+                    a28ed98f58115be73c986b766501f2998e1dd19ac5c73691781c9c26f9c96d05
+                </div>
+            </div>
+            
+            <a href="https://github.com/LovableAiLab/Nova/raw/main/shopify-inventory-skill.tar.gz" 
+               id="download-link"
+               class="block w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-3 px-6 rounded-lg hover:opacity-90 transition mb-4">
+                <i class="fas fa-download mr-2"></i> Download Now (38KB)
+            </a>
+            
+            <p class="text-sm text-gray-500">
+                <i class="fas fa-shield-alt mr-1"></i> Verified package • Safe to install
+            </p>
+        </div>
+        
+        <div class="border-t border-gray-200 pt-6">
+            <h3 class="font-bold mb-3">Installation Instructions</h3>
+            <div class="text-left bg-gray-50 p-4 rounded-lg font-mono text-sm">
+                <p class="mb-2"># 1. Verify checksum:</p>
+                <p class="text-gray-600 mb-2">echo "a28ed98f58115be73c986b766501f2998e1dd19ac5c73691781c9c26f9c96d05 shopify-inventory-skill.tar.gz" | sha256sum -c</p>
+                
+                <p class="mb-2"># 2. Install via OpenClaw:</p>
+                <p class="text-gray-600">openclaw skill install shopify-inventory-skill.tar.gz</p>
+            </div>
+        </div>
+        
+        <div class="mt-8">
+            <a href="tripwire-landing.html" class="text-blue-600 hover:text-blue-800 font-medium">
+                <i class="fas fa-arrow-left mr-2"></i> Return to Landing Page
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-start download after 1 second
+        setTimeout(function() {
+            document.getElementById('download-link').click();
+        }, 1000);
+        
+        // Track download
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'download', {
+                'event_category': 'skill',
+                'event_label': 'shopify-inventory-skill'
+            });
+        }
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</body>
+</html>
