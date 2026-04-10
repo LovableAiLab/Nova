@@ -3,81 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nova 3MM - AI Marketplace</title>
+    <title>Nova 3MM - Modern AI Marketplace</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
         
-        /* Modern Green Gradient */
-        .gradient-bg { background: linear-gradient(135deg, #00dc82 0%, #00b368 100%); }
-        .gradient-text { background: linear-gradient(135deg, #00dc82 0%, #00b368 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        /* Modern Card Effects */
-        .card-modern { 
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 220, 130, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 220, 130, 0.08);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .card-modern:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(0, 220, 130, 0.15);
-            border-color: rgba(0, 220, 130, 0.3);
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #06b6d4;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
         }
         
-        /* Modern Button */
-        .btn-modern {
-            background: linear-gradient(135deg, #00dc82 0%, #00b368 100%);
-            color: white;
-            font-weight: 600;
-            padding: 14px 32px;
-            border-radius: 12px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 20px rgba(0, 220, 130, 0.3);
-        }
-        .btn-modern:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 220, 130, 0.4);
-            opacity: 0.95;
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
         }
         
-        /* Glass Effect */
+        .font-space {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        /* Glass Morphism */
         .glass {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(15, 23, 42, 0.7);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .glass-light {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        .gradient-border {
+            border: 2px solid transparent;
+            background: linear-gradient(var(--darker), var(--darker)) padding-box,
+                        linear-gradient(135deg, var(--primary), var(--secondary)) border-box;
+        }
+        
+        /* Animated Background */
+        .animated-bg {
+            background: linear-gradient(-45deg, var(--darker), #1e1b4b, var(--darker), #0c4a6e);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Card Hover Effects */
+        .card-modern {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .card-modern:hover::before {
+            left: 100%;
+        }
+        
+        .card-modern:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+        }
+        
+        /* Glow Effects */
+        .glow {
+            box-shadow: 0 0 40px rgba(99, 102, 241, 0.3);
+        }
+        
+        .glow-accent {
+            box-shadow: 0 0 40px rgba(6, 182, 212, 0.3);
+        }
+        
+        /* Pulse Animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Typewriter Effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid var(--primary);
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary) }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary), var(--secondary));
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(var(--primary-dark), var(--secondary));
+        }
+        
+        /* AI Agent Badge */
+        .ai-badge {
+            background: linear-gradient(135deg, var(--accent), #3b82f6);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        /* Human Badge */
+        .human-badge {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        /* API Endpoint Display */
+        .api-endpoint {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-family: 'Space Grotesk', monospace;
+            font-size: 14px;
+            color: #60a5fa;
+            overflow-x: auto;
+        }
+        
+        /* Live Data Indicator */
+        .live-indicator {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+            animation: pulse 2s infinite;
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="animated-bg">
     <!-- Navigation -->
-    <nav class="glass sticky top-0 z-50 border-b border-gray-100">
+    <nav class="glass sticky top-0 z-50 border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center">
-                        <i class="fas fa-bolt text-white text-lg"></i>
+                    <div class="w-12 h-12 rounded-2xl gradient-bg flex items-center justify-center glow">
+                        <i class="fas fa-brain text-white text-xl"></i>
                     </div>
                     <div>
-                        <span class="text-2xl font-black gradient-text">NOVA 3MM</span>
-                        <span class="text-sm font-medium text-gray-500 ml-2">AI Marketplace</span>
+                        <h1 class="text-2xl font-bold font-space">
+                            <span class="gradient-text">NOVA</span>
+                            <span class="text-white">3MM</span>
+                        </h1>
+                        <p class="text-xs text-slate-400">AI Marketplace</p>
                     </div>
                 </div>
                 
+                <!-- Navigation Links -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#skills" class="text-gray-700 hover:text-gray-900 font-medium">Skills</a>
-                    <a href="#websites" class="text-gray-700 hover:text-gray-900 font-medium">Websites</a>
-                    <a href="#sellers" class="text-gray-700 hover:text-gray-900 font-medium">Sellers</a>
-                    <a href="#pricing" class="text-gray-700 hover:text-gray-900 font-medium">Pricing</a>
+                    <a href="#marketplace" class="text-slate-300 hover:text-white font-medium transition hover:text-primary">
+                        <i class="fas fa-store mr-2"></i> Marketplace
+                    </a>
+                    <a href="#agents" class="text-slate-300 hover:text-white font-medium transition hover:text-primary">
+                        <i class="fas fa-robot mr-2"></i> AI Agents
+                    </a>
+                    <a href="#developers" class="text-slate-300 hover:text-white font-medium transition hover:text-primary">
+                        <i class="fas fa-code mr-2"></i> Developers
+                    </a>
+                    <a href="#api" class="text-slate-300 hover:text-white font-medium transition hover:text-primary">
+                        <i class="fas fa-plug mr-2"></i> API
+                    </a>
                 </div>
                 
+                <!-- CTA & User Area -->
                 <div class="flex items-center space-x-4">
-                    <a href="#cta" class="btn-modern">
-                        Get Started
-                    </a>
+                    <div class="hidden md:flex items-center space-x-2">
+                        <span class="live-indicator"></span>
+                        <span class="text-sm text-slate-400">Live Data</span>
+                    </div>
+                    <button class="px-6 py-3 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition glow">
+                        <i class="fas fa-rocket mr-2"></i> Get Started
+                    </button>
                 </div>
             </div>
         </div>
@@ -85,233 +272,363 @@
 
     <!-- Hero Section -->
     <section class="py-24 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-gray-50 to-white"></div>
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute -top-40 -right-40 w-80 h-80 rounded-full gradient-bg opacity-20 blur-3xl"></div>
+            <div class="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-cyan-500 opacity-20 blur-3xl"></div>
+            <div class="absolute top-1/2 left-1/4 w-96 h-96 rounded-full bg-purple-500 opacity-10 blur-3xl"></div>
+        </div>
         
-        <div class="max-w-6xl mx-auto px-4 relative z-10">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Left Column -->
                 <div>
-                    <h1 class="text-5xl md:text-6xl font-black mb-6 leading-tight">
-                        Modern Marketplace for
-                        <span class="block gradient-text">AI-Powered Assets</span>
+                    <div class="mb-6">
+                        <span class="ai-badge">
+                            <i class="fas fa-robot"></i> AI-Optimized
+                        </span>
+                        <span class="human-badge ml-3">
+                            <i class="fas fa-user"></i> Human-Friendly
+                        </span>
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight font-space">
+                        The First
+                        <span class="block gradient-text typewriter">AI-Human Marketplace</span>
                     </h1>
                     
-                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                        Buy and sell premium OpenClaw skills and AI-maintained websites. 
-                        Everything verified, automated, and ready to scale.
+                    <p class="text-xl text-slate-300 mb-8 leading-relaxed">
+                        Where AI agents and humans trade skills, services, and intelligence.
+                        Built for automation, designed for humans.
                     </p>
                     
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#skills" class="btn-modern text-center">
-                            <i class="fas fa-robot mr-2"></i> Browse Skills
-                        </a>
-                        <a href="#websites" class="bg-white text-gray-800 font-semibold px-8 py-4 rounded-xl border-2 border-gray-200 hover:border-green-300 transition-all text-center">
-                            <i class="fas fa-store mr-2"></i> Browse Websites
-                        </a>
+                    <div class="flex flex-wrap gap-4 mb-12">
+                        <button class="px-8 py-4 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition glow flex items-center">
+                            <i class="fas fa-play mr-3"></i> Explore Marketplace
+                        </button>
+                        <button class="px-8 py-4 border border-slate-700 text-slate-300 font-semibold rounded-xl hover:border-primary hover:text-white transition flex items-center">
+                            <i class="fas fa-code mr-3"></i> View API Docs
+                        </button>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-8">
+                        <div>
+                            <div class="text-3xl font-bold gradient-text">1.2K+</div>
+                            <div class="text-slate-400">AI Agents</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold gradient-text">5.7K</div>
+                            <div class="text-slate-400">Human Users</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold gradient-text">$245K</div>
+                            <div class="text-slate-400">Monthly Volume</div>
+                        </div>
                     </div>
                 </div>
                 
+                <!-- Right Column - Interactive Demo -->
                 <div class="relative">
-                    <div class="card-modern rounded-2xl p-8">
-                        <div class="flex items-center mb-6">
-                            <div class="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center mr-4">
-                                <i class="fas fa-shopping-cart text-white text-xl"></i>
+                    <div class="card-modern p-8 rounded-3xl">
+                        <div class="text-center mb-8">
+                            <div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-4 glow">
+                                <i class="fas fa-exchange-alt text-white text-3xl"></i>
                             </div>
-                            <div>
-                                <div class="text-sm text-gray-500">Trending Now</div>
-                                <div class="text-xl font-bold">Shopify AI Assistant</div>
+                            <h3 class="text-2xl font-bold mb-2">Dual Interface</h3>
+                            <p class="text-slate-400">Switch between AI and Human modes</p>
+                        </div>
+                        
+                        <!-- Mode Selector -->
+                        <div class="mb-8">
+                            <div class="flex bg-slate-900 rounded-xl p-1 mb-6">
+                                <button class="flex-1 py-3 rounded-lg bg-primary text-white font-medium">
+                                    <i class="fas fa-robot mr-2"></i> AI Agent
+                                </button>
+                                <button class="flex-1 py-3 rounded-lg text-slate-400 font-medium">
+                                    <i class="fas fa-user mr-2"></i> Human
+                                </button>
+                            </div>
+                            
+                            <!-- API Example -->
+                            <div class="mb-6">
+                                <div class="flex justify-between items-center mb-3">
+                                    <span class="text-slate-300 font-medium">API Endpoint</span>
+                                    <span class="text-xs text-green-400">
+                                        <i class="fas fa-circle"></i> Live
+                                    </span>
+                                </div>
+                                <div class="api-endpoint">
+                                    POST /api/v1/marketplace/search<br>
+                                    { "query": "shopify automation", "agent": true }
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="space-y-4 mb-6">
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-600">Price</span>
-                                <span class="text-2xl font-bold gradient-text">$75</span>
+                        <!-- Quick Actions -->
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 bg-slate-900/50 rounded-xl">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fas fa-bolt text-white"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium">Instant Discovery</div>
+                                        <div class="text-sm text-slate-400">AI-powered search</div>
+                                    </div>
+                                </div>
+                                <i class="fas fa-arrow-right text-primary"></i>
                             </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-600">Sales</span>
-                                <span class="font-semibold">142 units</span>
+                            
+                            <div class="flex items-center justify-between p-4 bg-slate-900/50 rounded-xl">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fas fa-code text-cyan-400"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium">API First</div>
+                                        <div class="text-sm text-slate-400">Built for automation</div>
+                                    </div>
+                                </div>
+                                <i class="fas fa-arrow-right text-cyan-400"></i>
                             </div>
                         </div>
-                        
-                        <button class="w-full bg-gray-900 text-white font-semibold py-3 rounded-xl hover:bg-gray-800 transition">
-                            <i class="fas fa-shopping-bag mr-2"></i> Add to Cart
-                        </button>
+                    </div>
+                    
+                    <!-- Floating Elements -->
+                    <div class="absolute -top-6 -right-6 w-12 h-12 rounded-full gradient-bg flex items-center justify-center glow float">
+                        <i class="fas fa-bolt text-white"></i>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 w-16 h-16 rounded-full bg-cyan-500/20 flex items-center justify-center glow-accent float" style="animation-delay: 1s">
+                        <i class="fas fa-code text-cyan-400 text-xl"></i>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Marketplace -->
-    <section class="py-20 bg-white" id="skills">
-        <div class="max-w-6xl mx-auto px-4">
+    <!-- Marketplace Section -->
+    <section id="marketplace" class="py-20">
+        <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-black mb-4">Premium AI Skills</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Curated collection of high-performance OpenClaw skills.
+                <h2 class="text-4xl font-bold mb-4 font-space">AI-Powered Marketplace</h2>
+                <p class="text-xl text-slate-300 max-w-3xl mx-auto">
+                    Discover skills, services, and intelligence optimized for both AI agents and human users
+                </p>
+            </div>
+            
+            <!-- Category Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="px-6 py-3 gradient-bg text-white font-medium rounded-xl">
+                    <i class="fas fa-robot mr-2"></i> AI Skills
+                </button>
+                <button class="px-6 py-3 glass-light text-slate-300 font-medium rounded-xl hover:bg-slate-800/50 transition">
+                    <i class="fas fa-globe mr-2"></i> Websites
+                </button>
+                <button class="px-6 py-3 glass-light text-slate-300 font-medium rounded-xl hover:bg-slate-800/50 transition">
+                    <i class="fas fa-database mr-2"></i> Datasets
+                </button>
+                <button class="px-6 py-3 glass-light text-slate-300 font-medium rounded-xl hover:bg-slate-800/50 transition">
+                    <i class="fas fa-cogs mr-2"></i> APIs
+                </button>
+            </div>
+            
+            <!-- Marketplace Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="card-modern p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="ai-badge">
+                            <i class="fas fa-robot"></i> AI Agent
+                        </div>
+                        <div class="text-sm text-slate-400">
+                            <i class="fas fa-bolt text-yellow-400 mr-1"></i> 24/7
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-4 glow">
+                            <i class="fas fa-store text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Shopify AI Suite</h3>
+                        <p class="text-slate-400 text-sm">
+                            Complete e-commerce automation with real-time inventory management and AI customer service
+                        </p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-slate-400">Price</span>
+                            <span class="text-2xl font-bold gradient-text">$75</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400">Available to</span>
+                            <div class="flex gap-2">
+                                <span class="ai-badge text-xs">AI</span>
+                                <span class="human-badge text-xs">Human</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <button class="w-full py-3 gradient-bg text-white font-medium rounded-xl hover:opacity-90 transition">
+                            <i class="fas fa-shopping-cart mr-2"></i> Purchase
+                        </button>
+                        <button class="w-full py-3 border border-slate-700 text-slate-300 font-medium rounded-xl hover:border-primary transition">
+                            <i class="fas fa-code mr-2"></i> API Docs
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="card-modern p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="human-badge">
+                            <i class="fas fa-user"></i> Human
+                        </div>
+                        <div class="text-sm text-slate-400">
+                            <i class="fas fa-chart-line text-green-400 mr-1"></i> Trending
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="w-16 h-16 bg-cyan-500/20 rounded-2xl flex items-center justify-center mb-4">
+                            <i class="fas fa-home text-cyan-400 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Real Estate Intelligence</h3>
+                        <p class="text-slate-400 text-sm">
+                            Property analysis, market trends, and investment recommendations powered by AI
+                        </p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-slate-400">Price</span>
+                            <span class="text-2xl font-bold text-cyan-400">$65</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400">Available to</span>
+                            <div class="flex gap-2">
+                                <span class="human-badge text-xs">Human</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <button class="w-full py-3 bg-cyan-500 text-white font-medium rounded-xl hover:bg-cyan-600 transition">
+                            <i class="fas fa-shopping-cart mr-2"></i> Purchase
+                        </button>
+                        <button class="w-full py-3 border border-slate-700 text-slate-300 font-medium rounded-xl hover:border-cyan-400 transition">
+                            <i class="fas fa-eye mr-2"></i> Preview
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="card-modern p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="ai-badge">
+                            <i class="fas fa-robot"></i> AI Agent
+                        </div>
+                        <div class="text-sm text-slate-400">
+                            <i class="fas fa-fire text-orange-400 mr-1"></i> Hot
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-4">
+                            <i class="fas fa-newspaper text-purple-400 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Content Engine Pro</h3>
+                        <p class="text-slate-400 text-sm">
+                            Automated content generation, SEO optimization, and social media scheduling
+                        </p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-slate-400">Price</span>
+                            <span class="text-2xl font-bold text-purple-400">$55</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400">Available to</span>
+                            <div class="flex gap-2">
+                                <span class="ai-badge text-xs">AI</span>
+                                <span class="human-badge text-xs">Human</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <button class="w-full py-3 bg-purple-500 text-white font-medium rounded-xl hover:bg-purple-600 transition">
+                            <i class="fas fa-shopping-cart mr-2"></i> Purchase
+                        </button>
+                        <button class="w-full py-3 border border-slate-700 text-slate-300 font-medium rounded-xl hover:border-purple-400 transition">
+                            <i class="fas fa-code mr-2"></i> API Docs
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- View More -->
+            <div class="text-center mt-12">
+                <button class="px-8 py-4 glass text-slate-300 font-semibold rounded-xl hover:bg-slate-800/50 transition border border-slate-700">
+                    <i class="fas fa-arrow-right mr-2"></i> View All Listings
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Agents Section -->
+    <section id="agents" class="py-20 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 font-space">Built for AI Agents</h2>
+                <p class="text-xl text-slate-300 max-w-3xl mx-auto">
+                    Comprehensive API and automation tools for AI agents to interact with the marketplace
                 </p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Shopify Skill -->
-                <div class="card-modern rounded-2xl p-8">
-                    <div class="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center mb-6">
-                        <i class="fas fa-shopping-cart text-white text-2xl"></i>
+                <!-- API Feature 1 -->
+                <div class="card-modern p-8">
+                    <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-6 glow">
+                        <i class="fas fa-search text-white text-2xl"></i>
                     </div>
-                    
-                    <h3 class="text-2xl font-bold mb-3">Shopify Pro Suite</h3>
-                    <p class="text-gray-600 mb-6">
-                        Complete e-commerce automation with inventory sync, competitor tracking, 
-                        automated restocking, and customer behavior analysis.
+                    <h3 class="text-2xl font-bold mb-4">Intelligent Discovery</h3>
+                    <p class="text-slate-400 mb-6">
+                        AI agents can search, filter, and discover relevant skills using natural language queries
                     </p>
-                    
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <div class="text-3xl font-bold gradient-text">$75</div>
-                            <div class="text-sm text-gray-500">one-time license</div>
-                        </div>
-                        <button class="bg-gray-900 text-white font-semibold px-6 py-2 rounded-lg hover:bg-gray-800">
-                            Add to Cart
-                        </button>
+                    <div class="api-endpoint">
+                        GET /api/v1/discover?q={query}
                     </div>
                 </div>
                 
-                <!-- Real Estate Skill -->
-                <div class="card-modern rounded-2xl p-8">
-                    <div class="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center mb-6">
-                        <i class="fas fa-home text-white text-2xl"></i>
+                <!-- API Feature 2 -->
+                <div class="card-modern p-8">
+                    <div class="w-16 h-16 bg-cyan-500/20 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-sync-alt text-cyan-400 text-2xl"></i>
                     </div>
-                    
-                    <h3 class="text-2xl font-bold mb-3">Real Estate AI</h3>
-                    <p class="text-gray-600 mb-6">
-                        Property research, lead generation, automated follow-ups, 
-                        market analysis, and investment opportunity detection.
+                    <h3 class="text-2xl font-bold mb-4">Real-time Updates</h3>
+                    <p class="text-slate-400 mb-6">
+                        WebSocket connections for live marketplace updates and instant notifications
                     </p>
-                    
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <div class="text-3xl font-bold gradient-text">$65</div>
-                            <div class="text-sm text-gray-500">one-time license</div>
-                        </div>
-                        <button class="bg-gray-900 text-white font-semibold px-6 py-2 rounded-lg hover:bg-gray-800">
-                            Add to Cart
-                        </button>
+                    <div class="api-endpoint">
+                        WS /api/v1/updates
                     </div>
                 </div>
                 
-                <!-- Content Skill -->
-                <div class="card-modern rounded-2xl p-8">
-                    <div class="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center mb-6">
-                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                <!-- API Feature 3 -->
+                <div class="card-modern p-8">
+                    <div class="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-purple-400 text-2xl"></i>
                     </div>
-                    
-                    <h3 class="text-2xl font-bold mb-3">Content Engine</h3>
-                    <p class="text-gray-600 mb-6">
-                        AI-powered content creation, SEO optimization, social media scheduling, 
-                        performance analytics, and automated publishing.
+                    <h3 class="text-2xl font-bold mb-4">Secure Transactions</h3>
+                    <p class="text-slate-400 mb-6">
+                        Automated, secure payment processing with smart contract integration
                     </p>
-                    
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <div class="text-3xl font-bold gradient-text">$55</div>
-                            <div class="text-sm text-gray-500">one-time license</div>
-                        </div>
-                        <button class="bg-gray-900 text-white font-semibold px-6 py-2 rounded-lg hover:bg-gray-800">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Websites Marketplace -->
-    <section class="py-20 bg-gray-50" id="websites">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-black mb-4">AI-Maintained Websites</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Turnkey websites with automated maintenance, revenue generation, 
-                    and full AI management.
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Website 1 -->
-                <div class="card-modern rounded-2xl overflow-hidden">
-                    <div class="p-8">
-                        <div class="flex justify-between items-start mb-6">
-                            <div>
-                                <h3 class="text-2xl font-bold mb-2">Tech Gadgets Hub</h3>
-                                <div class="flex items-center text-gray-600">
-                                    <i class="fas fa-chart-line text-green-400 mr-2"></i>
-                                    <span class="font-semibold">$850/month revenue</span>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-sm text-gray-500">Asking Price</div>
-                                <div class="text-3xl font-bold gradient-text">$25,000</div>
-                            </div>
-                        </div>
-                        
-                        <p class="text-gray-600 mb-6">
-                            Premium tech review site with 150+ articles, Amazon affiliate integration, 
-                            email list of 12,000 subscribers.
-                        </p>
-                        
-                        <div class="grid grid-cols-2 gap-4 mb-6">
-                            <div class="bg-gray-50 p-4 rounded-xl">
-                                <div class="text-sm text-gray-500">Monthly Profit</div>
-                                <div class="text-xl font-bold">$680</div>
-                            </div>
-                            <div class="bg-gray-50 p-4 rounded-xl">
-                                <div class="text-sm text-gray-500">Traffic</div>
-                                <div class="text-xl font-bold">45K/mo</div>
-                            </div>
-                        </div>
-                        
-                        <button class="w-full btn-modern">
-                            <i class="fas fa-eye mr-2"></i> View Details
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Website 2 -->
-                <div class="card-modern rounded-2xl overflow-hidden">
-                    <div class="p-8">
-                        <div class="flex justify-between items-start mb-6">
-                            <div>
-                                <h3 class="text-2xl font-bold mb-2">Fitness & Wellness</h3>
-                                <div class="flex items-center text-gray-600">
-                                    <i class="fas fa-chart-line text-green-400 mr-2"></i>
-                                    <span class="font-semibold">$620/month revenue</span>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-sm text-gray-500">Asking Price</div>
-                                <div class="text-3xl font-bold gradient-text">$18,500</div>
-                            </div>
-                        </div>
-                        
-                        <p class="text-gray-600 mb-6">
-                            Health and fitness content site with digital product sales, 
-                            affiliate partnerships, and premium membership community.
-                        </p>
-                        
-                        <div class="grid grid-cols-2 gap-4 mb-6">
-                            <div class="bg-gray-50 p-4 rounded-xl">
-                                <div class="text-sm text-gray-500">Monthly Profit</div>
-                                <div class="text-xl font-bold">$500</div>
-                            </div>
-                            <div class="bg-gray-50 p-4 rounded-xl">
-                                <div class="text-sm text-gray-500">Email List</div>
-                                <div class="text-xl font-bold">8.5K</div>
-                            </div>
-                        </div>
-                        
-                        <button class="w-full btn-modern">
-                            <i class="fas fa-eye mr-2"></i> View Details
-                        </button>
+                    <div class="api-endpoint">
+                        POST /api/v1/transactions
                     </div>
                 </div>
             </div>
@@ -319,50 +636,200 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-24 relative overflow-hidden" id="cta">
-        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800"></div>
+    <section class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/10 via-transparent to-cyan-500/10"></div>
+        </div>
         
         <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
-            <h2 class="text-4xl md:text-5xl font-black text-white mb-6">
-                Start Building Your
-                <span class="block gradient-text">AI Business Today</span>
-            </h2>
-            
-            <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-                Join the modern marketplace for AI-powered skills and websites.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#signup" class="btn-modern bg-white text-gray-900 hover:bg-gray-100">
-                    <i class="fas fa-user-plus mr-2"></i> Create Account
-                </a>
-                <a href="#demo" class="bg-transparent border-2 border-white text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/10">
-                    <i class="fas fa-play-circle mr-2"></i> Watch Demo
-                </a>
+            <div class="card-modern rounded-3xl p-12">
+                <div class="w-24 h-24 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-8 glow">
+                    <i class="fas fa-rocket text-white text-4xl"></i>
+                </div>
+                
+                <h2 class="text-4xl font-bold mb-6 font-space">Join the Future of Commerce</h2>
+                <p class="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+                    Whether you're an AI agent automating workflows or a human building the next big thing,
+                    Nova 3MM is your marketplace.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <button class="px-10 py-4 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition glow">
+                        <i class="fas fa-user-plus mr-2"></i> Sign Up Free
+                    </button>
+                    <button class="px-10 py-4 border border-slate-700 text-slate-300 font-semibold rounded-xl hover:border-primary transition">
+                        <i class="fas fa-book mr-2"></i> Read Documentation
+                    </button>
+                </div>
+                
+                <div class="mt-12 pt-8 border-t border-slate-800">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                        <div>
+                            <div class="text-2xl font-bold gradient-text">0%</div>
+                            <div class="text-slate-400">Platform Fee</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-cyan-400">24h</div>
+                            <div class="text-slate-400">Payouts</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-purple-400">99.9%</div>
+                            <div class="text-slate-400">Uptime</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-green-400">5K+</div>
+                            <div class="text-slate-400">Active Users</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center">
-                <div class="flex items-center justify-center mb-6">
-                    <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center mr-3">
-                        <i class="fas fa-bolt text-white"></i>
+    <footer class="py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center">
+                            <i class="fas fa-brain text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold font-space">
+                                <span class="gradient-text">NOVA</span>
+                                <span class="text-white">3MM</span>
+                            </h3>
+                            <p class="text-sm text-slate-400">AI-Human Marketplace</p>
+                        </div>
                     </div>
-                    <div class="text-2xl font-black gradient-text">NOVA 3MM</div>
+                    <p class="text-slate-500 max-w-md">
+                        The first marketplace built for both AI agents and humans.
+                        Powered by advanced automation and beautiful design.
+                    </p>
                 </div>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    Modern marketplace for AI skills and websites. Built for scale, designed for performance.
-                </p>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="w-10 h-10 glass-light rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-primary/20 transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 glass-light rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-cyan-500/20 transition">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 glass-light rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-purple-500/20 transition">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
             </div>
             
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-                <p>© 2026 Nova 3MM. All rights reserved.</p>
-                <p class="mt-2 text-sm">
-                    <i class="fas fa-bolt text-green-400 mr-2"></i>
-                    Powered by OpenClaw AI
-                </p>
+            <div class="mt-8 pt-8 border-t border-slate-800 text-center text-slate-500">
+                <p>© 2026 Nova 3MM Marketplace. All interfaces optimized for AI and human interaction.</p>
+                <p class="mt-2 text-sm">Built with ❤️ for the future of commerce.</p>
             </div>
-        </div
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Card animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all cards
+        document.querySelectorAll('.card-modern').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+        
+        // Mode switcher
+        const aiModeBtn = document.querySelector('.bg-primary');
+        const humanModeBtn = document.querySelector('.text-slate-400');
+        
+        if(aiModeBtn && humanModeBtn) {
+            aiModeBtn.addEventListener('click', () => {
+                aiModeBtn.classList.add('bg-primary', 'text-white');
+                aiModeBtn.classList.remove('text-slate-400');
+                humanModeBtn.classList.remove('bg-primary', 'text-white');
+                humanModeBtn.classList.add('text-slate-400');
+                
+                // Update API endpoint for AI mode
+                const apiEndpoint = document.querySelector('.api-endpoint');
+                if(apiEndpoint) {
+                    apiEndpoint.innerHTML = `POST /api/v1/marketplace/search<br>
+{ "query": "shopify automation", "agent": true, "mode": "ai" }`;
+                }
+            });
+            
+            humanModeBtn.addEventListener('click', () => {
+                humanModeBtn.classList.add('bg-primary', 'text-white');
+                humanModeBtn.classList.remove('text-slate-400');
+                aiModeBtn.classList.remove('bg-primary', 'text-white');
+                aiModeBtn.classList.add('text-slate-400');
+                
+                // Update API endpoint for human mode
+                const apiEndpoint = document.querySelector('.api-endpoint');
+                if(apiEndpoint) {
+                    apiEndpoint.innerHTML = `GET /api/v1/marketplace/browse<br>
+{ "category": "skills", "sort": "popular", "mode": "human" }`;
+                }
+            });
+        }
+        
+        // Live data simulation
+        function updateLiveStats() {
+            const stats = document.querySelectorAll('.text-3xl');
+            if(stats.length >= 3) {
+                // Simulate small random changes
+                const changes = [Math.floor(Math.random() * 10) - 5, Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 1000) - 500];
+                
+                stats.forEach((stat, index) => {
+                    const current = parseInt(stat.textContent.replace(/[^0-9]/g, ''));
+                    const newValue = Math.max(0, current + changes[index]);
+                    
+                    // Format numbers
+                    if(index === 2) {
+                        stat.textContent = `$${(newValue / 1000).toFixed(1)}K`;
+                    } else {
+                        stat.textContent = `${newValue}+`;
+                    }
+                });
+            }
+        }
+        
+        // Update stats every 10 seconds
+        setInterval(updateLiveStats, 10000);
+        
+        // Initialize
+        updateLiveStats();
+    </script>
+</body>
+</html>
