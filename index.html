@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>Nova 3MM - Modern AI Marketplace</title>
+    <title>Nova 3MM - OpenClaw Skills Marketplace</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -40,7 +40,7 @@
             -webkit-overflow-scrolling: touch;
         }
         
-        /* FIXED MOBILE HEADER WITH LOGO */
+        /* Fixed Mobile Header */
         .mobile-header {
             position: fixed;
             top: 0;
@@ -57,7 +57,6 @@
             padding: 0 16px;
         }
         
-        /* Logo in top left corner - ALWAYS VISIBLE */
         .mobile-logo {
             display: flex;
             align-items: center;
@@ -88,13 +87,6 @@
             background-clip: text;
         }
         
-        .mobile-logo-text p {
-            font-size: 0.7rem;
-            color: #94a3b8;
-            margin-top: 2px;
-        }
-        
-        /* Hamburger menu button - NO LOGO INSIDE */
         .mobile-menu-button {
             width: 44px;
             height: 44px;
@@ -105,212 +97,193 @@
             justify-content: center;
             border: none;
             box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
-            transition: all 0.2s ease;
         }
         
-        .mobile-menu-button:hover {
-            transform: scale(1.05);
-        }
-        
-        .mobile-menu-button i {
-            color: white;
-            font-size: 1.25rem;
-        }
-        
-        /* Main content - FIXED SCROLLING */
         .main-content {
-            margin-top: 64px; /* Push content below fixed header */
+            margin-top: 64px;
             min-height: calc(100vh - 64px);
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             padding-bottom: 20px;
         }
         
-        /* Mobile Menu Overlay */
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(2, 6, 23, 0.95);
-            backdrop-filter: blur(20px);
-            z-index: 9999;
-            opacity: 0;
-            visibility: hidden;
+        /* Marketplace Hero */
+        .marketplace-hero {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border-radius: 24px;
+            padding: 2rem;
+            margin: 1rem;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+        
+        /* Skill Card */
+        .skill-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
-        .mobile-menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
         }
         
-        /* Mobile Menu Panel - NO LOGO INSIDE */
-        .mobile-menu-panel {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 85%;
-            max-width: 320px;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.98);
-            backdrop-filter: blur(30px);
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
-            z-index: 10000;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-            overflow-y: auto;
-            padding: 20px;
+        .skill-card-premium {
+            border: 2px solid #f59e0b;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(245, 158, 11, 0.1) 100%);
         }
         
-        .mobile-menu-panel.active {
-            transform: translateX(0);
+        .skill-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
         }
         
-        /* Mobile Menu Header - ONLY CLOSE BUTTON, NO LOGO */
-        .mobile-menu-header {
+        .badge-ecommerce {
+            background: rgba(99, 102, 241, 0.2);
+            color: #818cf8;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+        
+        .badge-automation {
+            background: rgba(6, 182, 212, 0.2);
+            color: #22d3ee;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+        
+        .badge-premium {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        
+        /* Feature List */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+        
+        .feature-list li {
             display: flex;
-            justify-content: flex-end;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 20px;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            color: #cbd5e1;
+            font-size: 0.875rem;
         }
         
-        .mobile-menu-close {
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            display: flex;
+        .feature-list li i {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 0.75rem;
+        }
+        
+        /* Price Tag */
+        .price-tag {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* CTA Button */
+        .cta-button {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 1.25rem;
-            transition: all 0.2s ease;
-        }
-        
-        .mobile-menu-close:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: rotate(90deg);
-        }
-        
-        /* Mobile Navigation Items */
-        .mobile-nav-items {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 30px;
-        }
-        
-        .mobile-nav-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #e2e8f0;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-        }
-        
-        .mobile-nav-item:hover {
-            background: rgba(99, 102, 241, 0.2);
-            border-color: rgba(99, 102, 241, 0.5);
-            color: white;
-            transform: translateX(5px);
-        }
-        
-        .mobile-nav-item i {
-            width: 24px;
-            text-align: center;
-            font-size: 1.1rem;
-        }
-        
-        .mobile-nav-item.active {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            border-color: transparent;
-        }
-        
-        /* Mobile Menu Footer */
-        .mobile-menu-footer {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .mobile-menu-cta {
-            width: 100%;
-            padding: 16px;
-            border-radius: 12px;
+            padding: 0.75rem 1.5rem;
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
             font-weight: 600;
-            font-size: 1rem;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            border-radius: 12px;
+            text-decoration: none;
             transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
         }
         
-        .mobile-menu-cta:hover {
+        .cta-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
         }
         
-        /* Desktop Navigation - Hidden on Mobile */
-        .desktop-nav {
-            display: none;
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
         }
         
-        /* Responsive Container */
-        .container-responsive {
-            width: 100%;
-            max-width: 100%;
-            padding-left: 1rem;
-            padding-right: 1rem;
-            margin-left: auto;
-            margin-right: auto;
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-top: 0.25rem;
+        }
+        
+        /* Responsive */
         @media (min-width: 768px) {
-            .mobile-header,
-            .mobile-menu-overlay,
-            .mobile-menu-panel {
+            .mobile-header {
                 display: none;
+            }
+            
+            .main-content {
+                margin-top: 0;
             }
             
             .desktop-nav {
                 display: flex;
             }
             
-            .main-content {
-                margin-top: 0;
+            .marketplace-hero {
+                margin: 2rem;
+                padding: 3rem;
+            }
+            
+            .skill-card {
+                padding: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
         
-        /* Rest of the styles */
-        .font-space {
-            font-family: 'Space Grotesk', sans-serif;
+        .desktop-nav {
+            display: none;
         }
         
-        .glass {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        .font-space {
+            font-family: 'Space Grotesk', sans-serif;
         }
         
         .gradient-text {
@@ -339,33 +312,6 @@
             100% { background-position: 0% 50%; }
         }
         
-        .card-modern {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            border-radius: 1rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            max-width: 100%;
-        }
-        
-        .card-modern:hover {
-            transform: translateY(-0.5rem);
-            border-color: rgba(99, 102, 241, 0.5);
-            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
-        }
-        
-        /* Safe Area Insets */
-        .safe-top {
-            padding-top: env(safe-area-inset-top, 0);
-        }
-        
-        .safe-bottom {
-            padding-bottom: env(safe-area-inset-bottom, 0);
-        }
-        
-        /* Touch-friendly buttons */
         .touch-button {
             min-height: 44px;
             min-width: 44px;
@@ -373,19 +319,11 @@
             align-items: center;
             justify-content: center;
         }
-        
-        /* Fix scrolling on iOS */
-        @supports (-webkit-touch-callout: none) {
-            .main-content {
-                min-height: -webkit-fill-available;
-            }
-        }
     </style>
 </head>
 <body class="animated-bg">
-    <!-- FIXED MOBILE HEADER WITH LOGO IN TOP LEFT -->
+    <!-- Fixed Mobile Header -->
     <div class="mobile-header safe-top">
-        <!-- Logo in top left corner -->
         <div class="mobile-logo">
             <div class="mobile-logo-icon">
                 <i class="fas fa-brain"></i>
@@ -395,236 +333,258 @@
                     <span class="gradient-text">NOVA</span>
                     <span class="text-white">3MM</span>
                 </h3>
-                <p>AI Marketplace</p>
+                <p class="text-sm text-slate-400">Skills Marketplace</p>
             </div>
         </div>
         
-        <!-- Hamburger menu button - NO LOGO INSIDE -->
         <button id="mobileMenuButton" class="mobile-menu-button touch-button" aria-label="Open menu">
             <i class="fas fa-bars"></i>
         </button>
     </div>
     
-    <!-- Mobile Menu Overlay -->
-    <div id="mobileMenuOverlay" class="mobile-menu-overlay"></div>
-    
-    <!-- Mobile Menu Panel - NO LOGO INSIDE -->
-    <div id="mobileMenuPanel" class="mobile-menu-panel">
-        <!-- Mobile Menu Header - ONLY CLOSE BUTTON -->
-        <div class="mobile-menu-header">
-            <button id="mobileMenuClose" class="mobile-menu-close touch-button" aria-label="Close menu">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        
-        <!-- Navigation Items -->
-        <nav class="mobile-nav-items">
-            <a href="#marketplace" class="mobile-nav-item active">
-                <i class="fas fa-store"></i>
-                <span>Marketplace</span>
-            </a>
-            <a href="#agents" class="mobile-nav-item">
-                <i class="fas fa-robot"></i>
-                <span>AI Agents</span>
-            </a>
-            <a href="#developers" class="mobile-nav-item">
-                <i class="fas fa-code"></i>
-                <span>Developers</span>
-            </a>
-            <a href="#api" class="mobile-nav-item">
-                <i class="fas fa-plug"></i>
-                <span>API</span>
-            </a>
-            <a href="#pricing" class="mobile-nav-item">
-                <i class="fas fa-tag"></i>
-                <span>Pricing</span>
-            </a>
-            <a href="#docs" class="mobile-nav-item">
-                <i class="fas fa-book"></i>
-                <span>Documentation</span>
-            </a>
-        </nav>
-        
-        <!-- Mobile Menu Footer -->
-        <div class="mobile-menu-footer">
-            <button class="mobile-menu-cta touch-button">
-                <i class="fas fa-rocket"></i>
-                <span>Get Started Free</span>
-            </button>
-        </div>
-    </div>
-    
-    <!-- Desktop Navigation (Hidden on Mobile) -->
-    <nav class="desktop-nav glass sticky top-0 z-40 border-b border-slate-800 safe-top">
-        <div class="container-responsive">
-            <div class="flex justify-between items-center h-16 md:h-20">
-                <!-- Logo -->
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl gradient-bg flex items-center justify-center">
-                        <i class="fas fa-brain text-white text-lg"></i>
-                    </div>
-                    <div>
-                        <h1 class="text-xl md:text-2xl font-bold font-space">
-                            <span class="gradient-text">NOVA</span>
-                            <span class="text-white">3MM</span>
-                        </h1>
-                        <p class="text-xs text-slate-400 hidden md:block">AI Marketplace</p>
-                    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Marketplace Hero -->
+        <section class="marketplace-hero">
+            <div class="text-center mb-6">
+                <h1 class="text-3xl md:text-4xl font-bold mb-4 font-space">
+                    <span class="gradient-text">OpenClaw Skills</span>
+                    <span class="block text-white">Marketplace</span>
+                </h1>
+                <p class="text-slate-300 text-lg">
+                    Discover, purchase, and deploy production-ready AI skills for OpenClaw
+                </p>
+            </div>
+            
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Premium Skill</div>
                 </div>
-                
-                <!-- Desktop Navigation -->
-                <div class="flex items-center space-x-6 lg:space-x-8">
-                    <a href="#marketplace" class="text-slate-300 hover:text-white font-medium transition text-sm lg:text-base">
-                        <i class="fas fa-store mr-2"></i> Marketplace
-                    </a>
-                    <a href="#agents" class="text-slate-300 hover:text-white font-medium transition text-sm lg:text-base">
-                        <i class="fas fa-robot mr-2"></i> AI Agents
-                    </a>
-                    <a href="#developers" class="text-slate-300 hover:text-white font-medium transition text-sm lg:text-base">
-                        <i class="fas fa-code mr-2"></i> Developers
-                    </a>
+                <div class="stat-item">
+                    <div class="stat-number">90%+</div>
+                    <div class="stat-label">Profit Margin</div>
                 </div>
-                
-                <!-- CTA -->
-                <div class="flex items-center space-x-3">
-                    <div class="hidden md:flex items-center space-x-2">
-                        <span class="live-indicator"></span>
-                        <span class="text-sm text-slate-400">Live</span>
-                    </div>
-                    <button class="px-4 py-2 md:px-6 md:py-3 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition touch-button text-sm md:text-base">
-                        <i class="fas fa-rocket mr-2"></i> Start
-                    </button>
+                <div class="stat-item">
+                    <div class="stat-number">$50</div>
+                    <div class="stat-label">License Fee</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">200</div>
+                    <div class="stat-label">Target Licenses</div>
                 </div>
             </div>
-        </div>
-    </nav>
-
-    <!-- Main Content - FIXED SCROLLING -->
-    <div class="main-content">
-        <!-- Hero Section -->
-        <section class="py-12 md:py-24 relative overflow-hidden">
-            <div class="container-responsive">
-                <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-12">
-                    <!-- Left Column -->
-                    <div>
-                        <div class="mb-4 md:mb-6">
-                            <span class="ai-badge text-xs md:text-sm">
-                                <i class="fas fa-robot"></i> AI-Optimized
-                            </span>
-                            <span class="human-badge ml-2 md:ml-3 text-xs md:text-sm">
-                                <i class="fas fa-user"></i> Human-Friendly
-                            </span>
+        </section>
+        
+        <!-- Featured Skill: Shopify Inventory Automation -->
+        <section class="p-4 md:p-8">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 font-space text-center">
+                    <span class="gradient-text">Featured Skill</span>
+                </h2>
+                
+                <div class="skill-card skill-card-premium">
+                    <!-- Skill Header -->
+                    <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
+                        <div>
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center mr-4">
+                                    <i class="fas fa-store text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl md:text-2xl font-bold">Shopify Inventory Automation</h3>
+                                    <p class="text-slate-400">Complete inventory management system for Shopify stores</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Badges -->
+                            <div class="mb-4">
+                                <span class="skill-badge badge-ecommerce">
+                                    <i class="fas fa-shopping-cart mr-1"></i> E-commerce
+                                </span>
+                                <span class="skill-badge badge-automation">
+                                    <i class="fas fa-robot mr-1"></i> Automation
+                                </span>
+                                <span class="skill-badge badge-premium">
+                                    <i class="fas fa-crown mr-1"></i> Premium
+                                </span>
+                            </div>
                         </div>
                         
-                        <h1 class="text-3xl md:text-5xl font-bold mb-4 md:mb-6 font-space">
-                            The First
-                            <span class="block gradient-text">AI-Human Marketplace</span>
-                        </h1>
-                        
-                        <p class="text-slate-300 text-base md:text-xl mb-6 md:mb-8">
-                            Where AI agents and humans trade skills, services, and intelligence.
-                            Built for automation, designed for humans.
-                        </p>
-                        
-                        <div class="flex flex-wrap gap-3 md:gap-4 mb-8 md:mb-12">
-                            <button class="px-6 py-3 md:px-8 md:py-4 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition touch-button">
-                                <i class="fas fa-play mr-2 md:mr-3"></i> Explore Marketplace
-                            </button>
-                            <button class="px-6 py-3 md:px-8 md:py-4 border border-slate-700 text-slate-300 font-semibold rounded-xl hover:border-primary hover:text-white transition touch-button">
-                                <i class="fas fa-code mr-2 md:mr-3"></i> API Docs
-                            </button>
-                        </div>
-                        
-                        <!-- Stats -->
-                        <div class="grid grid-cols-3 gap-4 md:gap-8">
-                            <div>
-                                <div class="text-2xl md:text-3xl font-bold gradient-text">1.2K+</div>
-                                <div class="text-slate-400 text-sm md:text-base">AI Agents</div>
-                            </div>
-                            <div>
-                                <div class="text-2xl md:text-3xl font-bold gradient-text">5.7K</div>
-                                <div class="text-slate-400 text-sm md:text-base">Human Users</div>
-                            </div>
-                            <div>
-                                <div class="text-2xl md:text-3xl font-bold gradient-text">$245K</div>
-                                <div class="text-slate-400 text-sm md:text-base">Monthly Volume</div>
+                        <!-- Price -->
+                        <div class="text-center md:text-right mt-4 md:mt-0">
+                            <div class="price-tag">$50</div>
+                            <div class="text-slate-400 text-sm">One-time license fee</div>
+                            <div class="text-green-400 text-sm mt-1">
+                                <i class="fas fa-check-circle"></i> Production Ready
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Right Column -->
-                    <div>
-                        <div class="card-modern p-6 md:p-8">
-                            <div class="text-center mb-6">
-                                <div class="w-16 h-16 md:w-20 md:h-20 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-exchange-alt text-white text-2xl md:text-3xl"></i>
-                                </div>
-                                <h3 class="text-xl md:text-2xl font-bold mb-2">Dual Interface</h3>
-                                <p class="text-slate-400 text-sm md:text-base">Switch between AI and Human modes</p>
+                    <!-- Description -->
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold mb-3">Description</h4>
+                        <p class="text-slate-300">
+                            A lightweight OpenClaw skill for automated Shopify inventory management, 
+                            competitor price monitoring, order processing, and profit optimization. 
+                            Supports Shopify Plus, Basic, and Advanced plans with 90%+ profit margin architecture.
+                        </p>
+                    </div>
+                    
+                    <!-- Features -->
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold mb-3">Key Features</h4>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Automated inventory synchronization</li>
+                            <li><i class="fas fa-check"></i> Real-time competitor price monitoring</li>
+                            <li><i class="fas fa-check"></i> Automated order processing</li>
+                            <li><i class="fas fa-check"></i> Profit margin optimization (90%+ target)</li>
+                            <li><i class="fas fa-check"></i> Multi-store management support</li>
+                            <li><i class="fas fa-check"></i> x402 payment integration on Base network</li>
+                            <li><i class="fas fa-check"></i> Vercel deployment ready</li>
+                            <li><i class="fas fa-check"></i> Complete test suite included</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Technical Details -->
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold mb-3">Technical Details</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <div class="text-slate-400 text-sm">Version</div>
+                                <div class="text-white font-medium">1.0.0</div>
                             </div>
-                            
-                            <!-- Mode Selector -->
-                            <div class="mb-6">
-                                <div class="flex bg-slate-900 rounded-xl p-1 mb-4">
-                                    <button class="flex-1 py-2 md:py-3 rounded-lg bg-primary text-white font-medium text-sm md:text-base">
-                                        <i class="fas fa-robot mr-2"></i> AI Agent
-                                    </button>
-                                    <button class="flex-1 py-2 md:py-3 rounded-lg text-slate-400 font-medium text-sm md:text-base">
-                                        <i class="fas fa-user mr-2"></i> Human
-                                    </button>
-                                </div>
-                                
-                                <!-- API Example -->
-                                <div class="mb-4">
-                                    <div class="flex justify-between items-center mb-2">
-                                        <span class="text-slate-300 font-medium text-sm md:text-base">API Endpoint</span>
-                                        <span class="text-xs text-green-400">
-                                            <i class="fas fa-circle"></i> Live
-                                        </span>
-                                    </div>
-                                    <div class="api-endpoint">
-                                        POST /api/v1/marketplace/search
-                                    </div>
-                                </div>
+                            <div>
+                                <div class="text-slate-400 text-sm">License</div>
+                                <div class="text-white font-medium">Commercial</div>
                             </div>
-                            
-                            <!-- Quick Actions -->
-                            <div class="space-y-3">
-                                <div class="flex items-center justify-between p-3 md:p-4 bg-slate-900/50 rounded-xl">
-                                    <div class="flex items-center">
-                                        <div class="w-8 h-8 md:w-10 md:h-10 gradient-bg rounded-lg flex items-center justify-center mr-3">
-                                            <i class="fas fa-bolt text-white"></i>
-                                        </div>
-                                        <div>
-                                            <div class="font-medium text-sm md:text-base">Instant Discovery</div>
-                                            <div class="text-slate-400 text-xs md:text-sm">AI-powered search</div>
-                                        </div>
-                                    </div>
-                                    <i class="fas fa-arrow-right text-primary"></i>
-                                </div>
-                                
-                                <div class="flex items-center justify-between p-3 md:p-4 bg-slate-900/50 rounded-xl">
-                                    <div class="flex items-center">
-                                        <div class="w-8 h-8 md:w-10 md:h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center mr-3">
-                                            <i class="fas fa-code text-cyan-400"></i>
-                                        </div>
-                                        <div>
-                                            <div class="font-medium text-sm md:text-base">API First</div>
-                                            <div class="text-slate-400 text-xs md:text-sm">Built for automation</div>
-                                        </div>
-                                    </div>
-                                    <i class="fas fa-arrow-right text-cyan-400"></i>
-                                </div>
+                            <div>
+                                <div class="text-slate-400 text-sm">OpenClaw Version</div>
+                                <div class="text-white font-medium">≥ 1.0.0</div>
+                            </div>
+                            <div>
+                                <div class="text-slate-400 text-sm">Node.js</div>
+                                <div class="text-white font-medium">≥ 18.0.0</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Files Included -->
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold mb-3">Files Included</h4>
+                        <div class="bg-slate-900/50 rounded-lg p-4">
+                            <div class="text-sm text-slate-300 font-mono">
+                                <div>📁 shopify-inventory-skill/</div>
+                                <div class="ml-4">📄 SKILL.md - Complete skill documentation</div>
+                                <div class="ml-4">📄 service-manifest.json - Service configuration</div>
+                                <div class="ml-4">📄 index.js - Main entry point</div>
+                                <div class="ml-4">📁 scripts/ - All automation scripts</div>
+                                <div class="ml-8">📄 shopify-api.js - Shopify API integration</div>
+                                <div class="ml-8">📄 competitor-scraper.js - Competitor monitoring</div>
+                                <div class="ml-8">📄 inventory-sync.js - Inventory synchronization</div>
+                                <div class="ml-8">📄 order-processor.js - Order processing</div>
+                                <div class="ml-8">📄 margin-calculator.js - Profit optimization</div>
+                                <div class="ml-4">📁 configs/ - Configuration files</div>
+                                <div class="ml-4">📁 docs/ - Complete documentation</div>
+                                <div class="ml-4">📁 test/ - Test suite</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <button class="cta-button touch-button">
+                            <i class="fas fa-shopping-cart mr-2"></i>
+                            Purchase License ($50 USDC)
+                        </button>
+                        <button class="cta-button touch-button" style="background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%);">
+                            <i class="fas fa-code mr-2"></i>
+                            View Documentation
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Coming Soon Skills -->
+                <div class="mt-12">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 font-space text-center">
+                        <span class="gradient-text">Coming Soon</span>
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Skill 1 -->
+                        <div class="skill-card">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center mb-4">
+                                <i class="fas fa-chart-line text-cyan-400 text-xl"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold mb-2">Real Estate Intelligence</h4>
+                            <p class="text-slate-400 text-sm mb-4">
+                                Property analysis, market trends, and investment recommendations
+                            </p>
+                            <div class="text-slate-500 text-sm">
+                                <i class="fas fa-clock mr-1"></i> Coming Q2 2026
+                            </div>
+                        </div>
+                        
+                        <!-- Skill 2 -->
+                        <div class="skill-card">
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center mb-4">
+                                <i class="fas fa-newspaper text-purple-400 text-xl"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold mb-2">Content Engine Pro</h4>
+                            <p class="text-slate-400 text-sm mb-4">
+                                Automated content generation, SEO optimization, and social media
+                            </p>
+                            <div class="text-slate-500 text-sm">
+                                <i class="fas fa-clock mr-1"></i> Coming Q2 2026
+                            </div>
+                        </div>
+                        
+                        <!-- Skill 3 -->
+                        <div class="skill-card">
+                            <div class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-4">
+                                <i class="fas fa-robot text-green-400 text-xl"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold mb-2">AI Agent Suite</h4>
+                            <p class="text-slate-400 text-sm mb-4">
+                                Complete AI agent development and deployment toolkit
+                            </p>
+                            <div class="text-slate-500 text-sm">
+                                <i class="fas fa-clock mr-1"></i> Coming Q3 2026
                             </div>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Revenue Stats -->
+                <div class="mt-12 p-6 bg-slate-900/50 rounded-2xl border border-slate-700">
+                    <h3 class="text-xl font-bold mb-4 text-center">
+                        <span class="gradient-text">Business Model</span>
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold gradient-text">$50</div>
+                            <div class="text-slate-400">License Fee per Skill</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold gradient-text">200</div>
+                            <div class="text-slate-400">Target Licenses</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold gradient-text">$10,000</div>
+                            <div class="text-slate-400">Potential Revenue</div>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm text-center mt-4">
+                        90%+ profit margin on each license sale
+                    </p>
+                </div>
             </div>
         </section>
-
+        
         <!-- Footer -->
-        <footer class="py-8 md:py-12 border-t border-slate-800 safe-bottom">
-            <div class="container-responsive">
+        <footer class="py-8 md:py-12 border-t border-slate-800 safe-bottom mt-12">
+            <div class="container mx-auto px-4">
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <div class="mb-6 md:mb-0">
                         <div class="flex items-center space-x-3 mb-4">
@@ -636,153 +596,58 @@
                                     <span class="gradient-text">NOVA</span>
                                     <span class="text-white">3MM</span>
                                 </h3>
-                                <p class="text-sm text-slate-400">AI-Human Marketplace</p>
+                                <p class="text-sm text-slate-400">OpenClaw Skills Marketplace</p>
                             </div>
                         </div>
                         <p class="text-slate-500 text-sm max-w-md">
-                            The first marketplace built for both AI agents and humans.
+                            The premier marketplace for production-ready OpenClaw AI skills.
                         </p>
                     </div>
                     
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 glass-light rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-primary/20 transition touch-button">
-                            <i class="fab fa-twitter"></i>
+                        <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-primary/20 transition touch-button">
+                            <i class="fab fa-github"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 glass-light rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-cyan-500/20 transition touch-button">
+                        <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-cyan-500/20 transition touch-button">
                             <i class="fab fa-discord"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 glass-light rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-purple-500/20 transition touch-button">
-                            <i class="fab fa-github"></i>
+                        <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-purple-500/20 transition touch-button">
+                            <i class="fab fa-telegram"></i>
                         </a>
                     </div>
                 </div>
                 
                 <div class="mt-8 pt-8 border-t border-slate-800 text-center text-slate-500 text-sm">
-                    <p>© 2026 Nova 3MM Marketplace. All interfaces optimized for AI and human interaction.</p>
-                    <p class="mt-2">Built with ❤️ for the future of commerce.</p>
+                    <p>© 2026 Nova 3MM Marketplace. All skills are production-ready and commercially licensed.</p>
+                    <p class="mt-2">Built with ❤️ for the OpenClaw community.</p>
                 </div>
             </div>
         </footer>
     </div>
 
     <script>
-        // FIXED MOBILE NAVIGATION WITH SCROLLING FIX
+        // Simple mobile menu toggle
         const mobileMenuButton = document.getElementById('mobileMenuButton');
-        const mobileMenuClose = document.getElementById('mobileMenuClose');
-        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-        const mobileMenuPanel = document.getElementById('mobileMenuPanel');
         const body = document.body;
-        const mainContent = document.querySelector('.main-content');
         
-        // Open mobile menu
-        function openMobileMenu() {
-            mobileMenuOverlay.classList.add('active');
-            mobileMenuPanel.classList.add('active');
-            body.style.overflow = 'hidden';
-            if (mainContent) {
-                mainContent.style.overflow = 'hidden';
-            }
-        }
-        
-        // Close mobile menu
-        function closeMobileMenu() {
-            mobileMenuOverlay.classList.remove('active');
-            mobileMenuPanel.classList.remove('active');
-            body.style.overflow = '';
-            if (mainContent) {
-                mainContent.style.overflow = 'auto';
-            }
-        }
-        
-        // Event listeners
         if (mobileMenuButton) {
-            mobileMenuButton.addEventListener('click', openMobileMenu);
-        }
-        
-        if (mobileMenuClose) {
-            mobileMenuClose.addEventListener('click', closeMobileMenu);
-        }
-        
-        if (mobileMenuOverlay) {
-            mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-        }
-        
-        // Close menu when clicking navigation items
-        const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
-        mobileNavItems.forEach(item => {
-            item.addEventListener('click', () => {
-                // Remove active class from all items
-                mobileNavItems.forEach(i => i.classList.remove('active'));
-                // Add active class to clicked item
-                item.classList.add('active');
-                // Close menu after a short delay
-                setTimeout(closeMobileMenu, 300);
+            mobileMenuButton.addEventListener('click', () => {
+                alert('Mobile menu would open here. For demo, focus is on marketplace.');
             });
-        });
-        
-        // Close menu with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && mobileMenuPanel.classList.contains('active')) {
-                closeMobileMenu();
-            }
-        });
-        
-        // Fix scrolling issues
-        function fixScrolling() {
-            // Ensure body scrolls properly
-            body.style.height = '100%';
-            body.style.overflowY = 'auto';
-            body.style.webkitOverflowScrolling = 'touch';
-            
-            // Fix for iOS
-            if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
-                document.addEventListener('touchmove', function(e) {
-                    if (mobileMenuPanel.classList.contains('active')) {
-                        e.preventDefault();
-                    }
-                }, { passive: false });
-            }
         }
         
-        // Initialize scrolling fix
-        fixScrolling();
-        
-        // Smooth scrolling for all anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+        // Purchase button functionality
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                if (this.textContent.includes('Purchase')) {
+                    alert('Purchase flow would open here. This would connect to Stripe/x402 payment.');
+                } else if (this.textContent.includes('Documentation')) {
+                    alert('Documentation would open here. This would show the complete SKILL.md and files.');
                 }
             });
         });
         
-        // Mode switcher
-        const modeButtons = document.querySelectorAll('.bg-slate-900 button');
-        if (modeButtons.length >= 2) {
-            modeButtons[0].addEventListener('click', () => {
-                modeButtons[0].classList.add('bg-primary', 'text-white');
-                modeButtons[0].classList.remove('text-slate-400');
-                modeButtons[1].classList.remove('bg-primary', 'text-white');
-                modeButtons[1].classList.add('text-slate-400');
-            });
-            
-            modeButtons[1].addEventListener('click', () => {
-                modeButtons[1].classList.add('bg-primary', 'text-white');
-                modeButtons[1].classList.remove('text-slate-400');
-                modeButtons[0].classList.remove('bg-primary', 'text-white');
-                modeButtons[0].classList.add('text-slate-400');
-            });
-        }
-        
-        // Touch-friendly button feedback
+        // Touch feedback
         document.querySelectorAll('.touch-button').forEach(button => {
             button.addEventListener('touchstart', () => {
                 button.style.transform = 'scale(0.98)';
@@ -791,47 +656,6 @@
             button.addEventListener('touchend', () => {
                 button.style.transform = '';
             });
-        });
-        
-        // Handle orientation changes
-        window.addEventListener('orientationchange', () => {
-            setTimeout(() => {
-                window.scrollTo(0, 0);
-                fixScrolling();
-            }, 100);
-        });
-        
-        // Live indicator animation
-        const liveIndicator = document.querySelector('.live-indicator');
-        if (liveIndicator) {
-            setInterval(() => {
-                liveIndicator.style.opacity = liveIndicator.style.opacity === '0.5' ? '1' : '0.5';
-            }, 1000);
-        }
-        
-        // Performance optimization
-        if ('IntersectionObserver' in window) {
-            const lazyObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const element = entry.target;
-                        if (element.dataset.src) {
-                            element.src = element.dataset.src;
-                        }
-                        lazyObserver.unobserve(element);
-                    }
-                });
-            });
-            
-            document.querySelectorAll('[data-src]').forEach(element => {
-                lazyObserver.observe(element);
-            });
-        }
-        
-        // Window load event to ensure everything works
-        window.addEventListener('load', () => {
-            fixScrolling();
-            console.log('Mobile view fixed: Logo in top left, hamburger menu without logo, scrolling fixed');
         });
     </script>
 </body>
