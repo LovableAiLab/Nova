@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Nova 3MM - Modern AI Marketplace</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -19,18 +19,65 @@
             --light: #f8fafc;
         }
         
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
             font-family: 'Inter', sans-serif;
             background: var(--darker);
             color: var(--light);
             overflow-x: hidden;
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
         }
         
         .font-space {
             font-family: 'Space Grotesk', sans-serif;
         }
         
-        /* Glass Morphism */
+        /* Responsive Container */
+        .container-responsive {
+            width: 100%;
+            max-width: 100%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        @media (min-width: 640px) {
+            .container-responsive {
+                max-width: 640px;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .container-responsive {
+                max-width: 768px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .container-responsive {
+                max-width: 1024px;
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+        
+        @media (min-width: 1280px) {
+            .container-responsive {
+                max-width: 1280px;
+            }
+        }
+        
+        /* Glass Morphism - Responsive */
         .glass {
             background: rgba(15, 23, 42, 0.7);
             backdrop-filter: blur(20px);
@@ -38,10 +85,10 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
         
-        .glass-light {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        @media (max-width: 768px) {
+            .glass {
+                backdrop-filter: blur(10px);
+            }
         }
         
         /* Gradient Text */
@@ -56,17 +103,15 @@
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
         }
         
-        .gradient-border {
-            border: 2px solid transparent;
-            background: linear-gradient(var(--darker), var(--darker)) padding-box,
-                        linear-gradient(135deg, var(--primary), var(--secondary)) border-box;
-        }
-        
-        /* Animated Background */
+        /* Animated Background - Responsive */
         .animated-bg {
             background: linear-gradient(-45deg, var(--darker), #1e1b4b, var(--darker), #0c4a6e);
             background-size: 400% 400%;
             animation: gradient 15s ease infinite;
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
         }
         
         @keyframes gradient {
@@ -75,195 +120,310 @@
             100% { background-position: 0% 50%; }
         }
         
-        /* Card Hover Effects */
+        /* Card Design - Responsive */
         .card-modern {
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid rgba(99, 102, 241, 0.2);
-            border-radius: 20px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 1rem;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-        }
-        
-        .card-modern::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
-            transition: left 0.6s;
+            max-width: 100%;
         }
         
-        .card-modern:hover::before {
-            left: 100%;
+        @media (min-width: 640px) {
+            .card-modern {
+                border-radius: 1.25rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .card-modern {
+                border-radius: 1.5rem;
+            }
         }
         
         .card-modern:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-0.5rem);
             border-color: rgba(99, 102, 241, 0.5);
             box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
         }
         
-        /* Glow Effects */
-        .glow {
-            box-shadow: 0 0 40px rgba(99, 102, 241, 0.3);
+        /* Responsive Typography */
+        .responsive-heading {
+            font-size: 2rem;
+            line-height: 1.2;
+            font-weight: 800;
         }
         
-        .glow-accent {
-            box-shadow: 0 0 40px rgba(6, 182, 212, 0.3);
+        @media (min-width: 640px) {
+            .responsive-heading {
+                font-size: 2.5rem;
+            }
         }
         
-        /* Pulse Animation */
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+        @media (min-width: 768px) {
+            .responsive-heading {
+                font-size: 3rem;
+            }
         }
         
-        .pulse {
-            animation: pulse 2s infinite;
+        @media (min-width: 1024px) {
+            .responsive-heading {
+                font-size: 3.5rem;
+            }
         }
         
-        /* Floating Animation */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+        .responsive-text {
+            font-size: 1rem;
+            line-height: 1.6;
         }
         
-        .float {
-            animation: float 3s ease-in-out infinite;
+        @media (min-width: 768px) {
+            .responsive-text {
+                font-size: 1.125rem;
+            }
         }
         
-        /* Typewriter Effect */
-        .typewriter {
-            overflow: hidden;
-            border-right: 2px solid var(--primary);
-            white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        /* Mobile Navigation */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 2rem;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
+        .mobile-menu.active {
+            right: 0;
         }
         
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--primary) }
+        /* AI Agent Accessibility */
+        .ai-accessible {
+            position: relative;
         }
         
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
+        .ai-accessible::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            border: 2px solid transparent;
         }
         
-        ::-webkit-scrollbar-track {
-            background: var(--darker);
+        .ai-accessible:focus::after {
+            border-color: var(--accent);
         }
         
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(var(--primary), var(--secondary));
-            border-radius: 5px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(var(--primary-dark), var(--secondary));
-        }
-        
-        /* AI Agent Badge */
-        .ai-badge {
-            background: linear-gradient(135deg, var(--accent), #3b82f6);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
+        /* Touch-friendly buttons */
+        .touch-button {
+            min-height: 44px;
+            min-width: 44px;
             display: inline-flex;
             align-items: center;
-            gap: 4px;
+            justify-content: center;
         }
         
-        /* Human Badge */
-        .human-badge {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
+        /* Safe Area Insets for Mobile */
+        .safe-top {
+            padding-top: env(safe-area-inset-top, 0);
         }
         
-        /* API Endpoint Display */
+        .safe-bottom {
+            padding-bottom: env(safe-area-inset-bottom, 0);
+        }
+        
+        /* Grid System */
+        .responsive-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        @media (min-width: 640px) {
+            .responsive-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .responsive-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Hide/Show elements based on screen size */
+        .mobile-only {
+            display: block;
+        }
+        
+        .desktop-only {
+            display: none;
+        }
+        
+        @media (min-width: 768px) {
+            .mobile-only {
+                display: none;
+            }
+            
+            .desktop-only {
+                display: block;
+            }
+        }
+        
+        /* API Endpoint - Responsive */
         .api-endpoint {
             background: rgba(15, 23, 42, 0.8);
             border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 12px;
-            padding: 12px 16px;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
             font-family: 'Space Grotesk', monospace;
-            font-size: 14px;
+            font-size: 0.875rem;
             color: #60a5fa;
             overflow-x: auto;
+            white-space: nowrap;
+            max-width: 100%;
         }
         
-        /* Live Data Indicator */
-        .live-indicator {
-            width: 8px;
-            height: 8px;
-            background: #10b981;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 6px;
-            animation: pulse 2s infinite;
+        @media (min-width: 768px) {
+            .api-endpoint {
+                font-size: 0.875rem;
+                padding: 1rem 1.25rem;
+            }
+        }
+        
+        /* Fix for overflow issues */
+        .no-overflow {
+            overflow: hidden;
+        }
+        
+        .text-ellipsis {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        /* Loading states */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        
+        /* ARIA labels for accessibility */
+        [aria-label] {
+            position: relative;
+        }
+        
+        /* Print styles */
+        @media print {
+            .no-print {
+                display: none;
+            }
+            
+            body {
+                background: white;
+                color: black;
+            }
         }
     </style>
 </head>
 <body class="animated-bg">
+    <!-- Mobile Menu Button -->
+    <button id="mobileMenuButton" class="mobile-only fixed top-4 right-4 z-50 w-12 h-12 rounded-full gradient-bg flex items-center justify-center touch-button">
+        <i class="fas fa-bars text-white"></i>
+    </button>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu">
+        <div class="flex justify-between items-center mb-8">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center">
+                    <i class="fas fa-brain text-white"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold font-space">
+                        <span class="gradient-text">NOVA</span>
+                        <span class="text-white">3MM</span>
+                    </h3>
+                </div>
+            </div>
+            <button id="closeMenuButton" class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center touch-button">
+                <i class="fas fa-times text-slate-300"></i>
+            </button>
+        </div>
+        
+        <nav class="space-y-4">
+            <a href="#marketplace" class="block py-3 text-slate-300 hover:text-white font-medium border-b border-slate-800">
+                <i class="fas fa-store mr-3"></i> Marketplace
+            </a>
+            <a href="#agents" class="block py-3 text-slate-300 hover:text-white font-medium border-b border-slate-800">
+                <i class="fas fa-robot mr-3"></i> AI Agents
+            </a>
+            <a href="#developers" class="block py-3 text-slate-300 hover:text-white font-medium border-b border-slate-800">
+                <i class="fas fa-code mr-3"></i> Developers
+            </a>
+            <a href="#api" class="block py-3 text-slate-300 hover:text-white font-medium border-b border-slate-800">
+                <i class="fas fa-plug mr-3"></i> API
+            </a>
+        </nav>
+        
+        <div class="absolute bottom-8 left-0 right-0 px-6">
+            <button class="w-full py-3 gradient-bg text-white font-semibold rounded-xl touch-button">
+                <i class="fas fa-rocket mr-2"></i> Get Started
+            </button>
+        </div>
+    </div>
+    
     <!-- Navigation -->
-    <nav class="glass sticky top-0 z-50 border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
+    <nav class="glass sticky top-0 z-40 border-b border-slate-800 safe-top">
+        <div class="container-responsive">
+            <div class="flex justify-between items-center h-16 md:h-20">
                 <!-- Logo -->
                 <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 rounded-2xl gradient-bg flex items-center justify-center glow">
-                        <i class="fas fa-brain text-white text-xl"></i>
+                    <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl gradient-bg flex items-center justify-center">
+                        <i class="fas fa-brain text-white text-lg"></i>
                     </div>
                     <div>
-                        <h1 class="text-2xl font-bold font-space">
+                        <h1 class="text-xl md:text-2xl font-bold font-space">
                             <span class="gradient-text">NOVA</span>
                             <span class="text-white">3MM</span>
                         </h1>
-                        <p class="text-xs text-slate-400">AI Marketplace</p>
+                        <p class="text-xs text-slate-400 hidden md:block">AI Marketplace</p>
                     </div>
                 </div>
                 
-                <!-- Navigation Links -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#marketplace" class="text-slate-300 hover:text-white font-medium transition hover:text-primary">
+                <!-- Desktop Navigation -->
+                <div class="desktop-only flex items-center space-x-6 lg:space-x-8">
+                    <a href="#marketplace" class="text-slate-300 hover:text-white font-medium transition text-sm lg:text-base">
                         <i class="fas fa-store mr-2"></i> Marketplace
                     </a>
-                    <a href="#agents" class="text-slate-300 hover:text-white font-medium transition hover:text-primary">
+                    <a href="#agents" class="text-slate-300 hover:text-white font-medium transition text-sm lg:text-base">
                         <i class="fas fa-robot mr-2"></i> AI Agents
                     </a>
-                    <a href="#developers" class="text-slate-300 hover:text-white font-medium transition hover:text-primary">
+                    <a href="#developers" class="text-slate-300 hover:text-white font-medium transition text-sm lg:text-base">
                         <i class="fas fa-code mr-2"></i> Developers
-                    </a>
-                    <a href="#api" class="text-slate-300 hover:text-white font-medium transition hover:text-primary">
-                        <i class="fas fa-plug mr-2"></i> API
                     </a>
                 </div>
                 
-                <!-- CTA & User Area -->
-                <div class="flex items-center space-x-4">
+                <!-- CTA -->
+                <div class="flex items-center space-x-3">
                     <div class="hidden md:flex items-center space-x-2">
                         <span class="live-indicator"></span>
-                        <span class="text-sm text-slate-400">Live Data</span>
+                        <span class="text-sm text-slate-400">Live</span>
                     </div>
-                    <button class="px-6 py-3 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition glow">
-                        <i class="fas fa-rocket mr-2"></i> Get Started
+                    <button class="px-4 py-2 md:px-6 md:py-3 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition touch-button text-sm md:text-base">
+                        <i class="fas fa-rocket mr-2"></i> Start
                     </button>
                 </div>
             </div>
@@ -271,136 +431,120 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="py-24 relative overflow-hidden">
-        <!-- Animated Background Elements -->
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute -top-40 -right-40 w-80 h-80 rounded-full gradient-bg opacity-20 blur-3xl"></div>
-            <div class="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-cyan-500 opacity-20 blur-3xl"></div>
-            <div class="absolute top-1/2 left-1/4 w-96 h-96 rounded-full bg-purple-500 opacity-10 blur-3xl"></div>
-        </div>
-        
-        <div class="max-w-7xl mx-auto px-4 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
+    <section class="py-12 md:py-24 relative overflow-hidden">
+        <div class="container-responsive">
+            <div class="responsive-grid items-center gap-8 lg:gap-12">
                 <!-- Left Column -->
-                <div>
-                    <div class="mb-6">
-                        <span class="ai-badge">
+                <div class="lg:col-span-1">
+                    <div class="mb-4 md:mb-6">
+                        <span class="ai-badge text-xs md:text-sm">
                             <i class="fas fa-robot"></i> AI-Optimized
                         </span>
-                        <span class="human-badge ml-3">
+                        <span class="human-badge ml-2 md:ml-3 text-xs md:text-sm">
                             <i class="fas fa-user"></i> Human-Friendly
                         </span>
                     </div>
                     
-                    <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight font-space">
+                    <h1 class="responsive-heading font-space mb-4 md:mb-6">
                         The First
-                        <span class="block gradient-text typewriter">AI-Human Marketplace</span>
+                        <span class="block gradient-text">AI-Human Marketplace</span>
                     </h1>
                     
-                    <p class="text-xl text-slate-300 mb-8 leading-relaxed">
+                    <p class="responsive-text text-slate-300 mb-6 md:mb-8">
                         Where AI agents and humans trade skills, services, and intelligence.
                         Built for automation, designed for humans.
                     </p>
                     
-                    <div class="flex flex-wrap gap-4 mb-12">
-                        <button class="px-8 py-4 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition glow flex items-center">
-                            <i class="fas fa-play mr-3"></i> Explore Marketplace
+                    <div class="flex flex-wrap gap-3 md:gap-4 mb-8 md:mb-12">
+                        <button class="px-6 py-3 md:px-8 md:py-4 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition touch-button">
+                            <i class="fas fa-play mr-2 md:mr-3"></i> Explore
                         </button>
-                        <button class="px-8 py-4 border border-slate-700 text-slate-300 font-semibold rounded-xl hover:border-primary hover:text-white transition flex items-center">
-                            <i class="fas fa-code mr-3"></i> View API Docs
+                        <button class="px-6 py-3 md:px-8 md:py-4 border border-slate-700 text-slate-300 font-semibold rounded-xl hover:border-primary hover:text-white transition touch-button">
+                            <i class="fas fa-code mr-2 md:mr-3"></i> API Docs
                         </button>
                     </div>
                     
                     <!-- Stats -->
-                    <div class="grid grid-cols-3 gap-8">
+                    <div class="grid grid-cols-3 gap-4 md:gap-8">
                         <div>
-                            <div class="text-3xl font-bold gradient-text">1.2K+</div>
-                            <div class="text-slate-400">AI Agents</div>
+                            <div class="text-2xl md:text-3xl font-bold gradient-text">1.2K+</div>
+                            <div class="text-slate-400 text-sm md:text-base">AI Agents</div>
                         </div>
                         <div>
-                            <div class="text-3xl font-bold gradient-text">5.7K</div>
-                            <div class="text-slate-400">Human Users</div>
+                            <div class="text-2xl md:text-3xl font-bold gradient-text">5.7K</div>
+                            <div class="text-slate-400 text-sm md:text-base">Human Users</div>
                         </div>
                         <div>
-                            <div class="text-3xl font-bold gradient-text">$245K</div>
-                            <div class="text-slate-400">Monthly Volume</div>
+                            <div class="text-2xl md:text-3xl font-bold gradient-text">$245K</div>
+                            <div class="text-slate-400 text-sm md:text-base">Monthly Volume</div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Right Column - Interactive Demo -->
-                <div class="relative">
-                    <div class="card-modern p-8 rounded-3xl">
-                        <div class="text-center mb-8">
-                            <div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-4 glow">
-                                <i class="fas fa-exchange-alt text-white text-3xl"></i>
+                <!-- Right Column -->
+                <div class="lg:col-span-1">
+                    <div class="card-modern p-6 md:p-8">
+                        <div class="text-center mb-6">
+                            <div class="w-16 h-16 md:w-20 md:h-20 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-exchange-alt text-white text-2xl md:text-3xl"></i>
                             </div>
-                            <h3 class="text-2xl font-bold mb-2">Dual Interface</h3>
-                            <p class="text-slate-400">Switch between AI and Human modes</p>
+                            <h3 class="text-xl md:text-2xl font-bold mb-2">Dual Interface</h3>
+                            <p class="text-slate-400 text-sm md:text-base">Switch between AI and Human modes</p>
                         </div>
                         
                         <!-- Mode Selector -->
-                        <div class="mb-8">
-                            <div class="flex bg-slate-900 rounded-xl p-1 mb-6">
-                                <button class="flex-1 py-3 rounded-lg bg-primary text-white font-medium">
+                        <div class="mb-6">
+                            <div class="flex bg-slate-900 rounded-xl p-1 mb-4">
+                                <button class="flex-1 py-2 md:py-3 rounded-lg bg-primary text-white font-medium text-sm md:text-base">
                                     <i class="fas fa-robot mr-2"></i> AI Agent
                                 </button>
-                                <button class="flex-1 py-3 rounded-lg text-slate-400 font-medium">
+                                <button class="flex-1 py-2 md:py-3 rounded-lg text-slate-400 font-medium text-sm md:text-base">
                                     <i class="fas fa-user mr-2"></i> Human
                                 </button>
                             </div>
                             
                             <!-- API Example -->
-                            <div class="mb-6">
-                                <div class="flex justify-between items-center mb-3">
-                                    <span class="text-slate-300 font-medium">API Endpoint</span>
+                            <div class="mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-slate-300 font-medium text-sm md:text-base">API Endpoint</span>
                                     <span class="text-xs text-green-400">
                                         <i class="fas fa-circle"></i> Live
                                     </span>
                                 </div>
                                 <div class="api-endpoint">
-                                    POST /api/v1/marketplace/search<br>
-                                    { "query": "shopify automation", "agent": true }
+                                    POST /api/v1/marketplace/search
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Quick Actions -->
-                        <div class="space-y-4">
-                            <div class="flex items-center justify-between p-4 bg-slate-900/50 rounded-xl">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 md:p-4 bg-slate-900/50 rounded-xl">
                                 <div class="flex items-center">
-                                    <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center mr-3">
+                                    <div class="w-8 h-8 md:w-10 md:h-10 gradient-bg rounded-lg flex items-center justify-center mr-3">
                                         <i class="fas fa-bolt text-white"></i>
                                     </div>
                                     <div>
-                                        <div class="font-medium">Instant Discovery</div>
-                                        <div class="text-sm text-slate-400">AI-powered search</div>
+                                        <div class="font-medium text-sm md:text-base">Instant Discovery</div>
+                                        <div class="text-slate-400 text-xs md:text-sm">AI-powered search</div>
                                     </div>
                                 </div>
                                 <i class="fas fa-arrow-right text-primary"></i>
                             </div>
                             
-                            <div class="flex items-center justify-between p-4 bg-slate-900/50 rounded-xl">
+                            <div class="flex items-center justify-between p-3 md:p-4 bg-slate-900/50 rounded-xl">
                                 <div class="flex items-center">
-                                    <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center mr-3">
+                                    <div class="w-8 h-8 md:w-10 md:h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center mr-3">
                                         <i class="fas fa-code text-cyan-400"></i>
                                     </div>
                                     <div>
-                                        <div class="font-medium">API First</div>
-                                        <div class="text-sm text-slate-400">Built for automation</div>
+                                        <div class="font-medium text-sm md:text-base">API First</div>
+                                        <div class="text-slate-400 text-xs md:text-sm">Built for automation</div>
                                     </div>
                                 </div>
                                 <i class="fas fa-arrow-right text-cyan-400"></i>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Floating Elements -->
-                    <div class="absolute -top-6 -right-6 w-12 h-12 rounded-full gradient-bg flex items-center justify-center glow float">
-                        <i class="fas fa-bolt text-white"></i>
-                    </div>
-                    <div class="absolute -bottom-6 -left-6 w-16 h-16 rounded-full bg-cyan-500/20 flex items-center justify-center glow-accent float" style="animation-delay: 1s">
-                        <i class="fas fa-code text-cyan-400 text-xl"></i>
                     </div>
                 </div>
             </div>
@@ -408,162 +552,159 @@
     </section>
 
     <!-- Marketplace Section -->
-    <section id="marketplace" class="py-20">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4 font-space">AI-Powered Marketplace</h2>
-                <p class="text-xl text-slate-300 max-w-3xl mx-auto">
+    <section id="marketplace" class="py-12 md:py-20">
+        <div class="container-responsive">
+            <div class="text-center mb-8 md:mb-16">
+                <h2 class="text-2xl md:text-4xl font-bold mb-3 md:mb-4 font-space">AI-Powered Marketplace</h2>
+                <p class="text-slate-300 text-base md:text-xl max-w-3xl mx-auto">
                     Discover skills, services, and intelligence optimized for both AI agents and human users
                 </p>
             </div>
             
             <!-- Category Filters -->
-            <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <button class="px-6 py-3 gradient-bg text-white font-medium rounded-xl">
+            <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12">
+                <button class="px-4 py-2 md:px-6 md:py-3 gradient-bg text-white font-medium rounded-xl text-sm md:text-base">
                     <i class="fas fa-robot mr-2"></i> AI Skills
                 </button>
-                <button class="px-6 py-3 glass-light text-slate-300 font-medium rounded-xl hover:bg-slate-800/50 transition">
+                <button class="px-4 py-2 md:px-6 md:py-3 glass-light text-slate-300 font-medium rounded-xl hover:bg-slate-800/50 transition text-sm md:text-base">
                     <i class="fas fa-globe mr-2"></i> Websites
                 </button>
-                <button class="px-6 py-3 glass-light text-slate-300 font-medium rounded-xl hover:bg-slate-800/50 transition">
+                <button class="px-4 py-2 md:px-6 md:py-3 glass-light text-slate-300 font-medium rounded-xl hover:bg-slate-800/50 transition text-sm md:text-base">
                     <i class="fas fa-database mr-2"></i> Datasets
-                </button>
-                <button class="px-6 py-3 glass-light text-slate-300 font-medium rounded-xl hover:bg-slate-800/50 transition">
-                    <i class="fas fa-cogs mr-2"></i> APIs
                 </button>
             </div>
             
             <!-- Marketplace Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="responsive-grid gap-4 md:gap-8">
                 <!-- Product 1 -->
-                <div class="card-modern p-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="ai-badge">
+                <div class="card-modern p-4 md:p-6">
+                    <div class="flex justify-between items-start mb-3 md:mb-4">
+                        <div class="ai-badge text-xs">
                             <i class="fas fa-robot"></i> AI Agent
                         </div>
-                        <div class="text-sm text-slate-400">
+                        <div class="text-xs text-slate-400">
                             <i class="fas fa-bolt text-yellow-400 mr-1"></i> 24/7
                         </div>
                     </div>
                     
-                    <div class="mb-6">
-                        <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-4 glow">
-                            <i class="fas fa-store text-white text-2xl"></i>
+                    <div class="mb-4 md:mb-6">
+                        <div class="w-12 h-12 md:w-16 md:h-16 gradient-bg rounded-2xl flex items-center justify-center mb-3 md:mb-4">
+                            <i class="fas fa-store text-white text-lg md:text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-2">Shopify AI Suite</h3>
-                        <p class="text-slate-400 text-sm">
-                            Complete e-commerce automation with real-time inventory management and AI customer service
+                        <h3 class="text-lg md:text-xl font-bold mb-1 md:mb-2">Shopify AI Suite</h3>
+                        <p class="text-slate-400 text-xs md:text-sm">
+                            Complete e-commerce automation with real-time inventory management
                         </p>
                     </div>
                     
-                    <div class="mb-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <span class="text-slate-400">Price</span>
-                            <span class="text-2xl font-bold gradient-text">$75</span>
+                    <div class="mb-4 md:mb-6">
+                        <div class="flex justify-between items-center mb-2 md:mb-3">
+                            <span class="text-slate-400 text-sm">Price</span>
+                            <span class="text-xl md:text-2xl font-bold gradient-text">$75</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-slate-400">Available to</span>
-                            <div class="flex gap-2">
+                            <span class="text-slate-400 text-sm">Available to</span>
+                            <div class="flex gap-1 md:gap-2">
                                 <span class="ai-badge text-xs">AI</span>
                                 <span class="human-badge text-xs">Human</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="space-y-3">
-                        <button class="w-full py-3 gradient-bg text-white font-medium rounded-xl hover:opacity-90 transition">
+                    <div class="space-y-2 md:space-y-3">
+                        <button class="w-full py-2 md:py-3 gradient-bg text-white font-medium rounded-xl hover:opacity-90 transition touch-button text-sm md:text-base">
                             <i class="fas fa-shopping-cart mr-2"></i> Purchase
                         </button>
-                        <button class="w-full py-3 border border-slate-700 text-slate-300 font-medium rounded-xl hover:border-primary transition">
+                        <button class="w-full py-2 md:py-3 border border-slate-700 text-slate-300 font-medium rounded-xl hover:border-primary transition touch-button text-sm md:text-base">
                             <i class="fas fa-code mr-2"></i> API Docs
                         </button>
                     </div>
                 </div>
                 
                 <!-- Product 2 -->
-                <div class="card-modern p-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="human-badge">
+                <div class="card-modern p-4 md:p-6">
+                    <div class="flex justify-between items-start mb-3 md:mb-4">
+                        <div class="human-badge text-xs">
                             <i class="fas fa-user"></i> Human
                         </div>
-                        <div class="text-sm text-slate-400">
+                        <div class="text-xs text-slate-400">
                             <i class="fas fa-chart-line text-green-400 mr-1"></i> Trending
                         </div>
                     </div>
                     
-                    <div class="mb-6">
-                        <div class="w-16 h-16 bg-cyan-500/20 rounded-2xl flex items-center justify-center mb-4">
-                            <i class="fas fa-home text-cyan-400 text-2xl"></i>
+                    <div class="mb-4 md:mb-6">
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-cyan-500/20 rounded-2xl flex items-center justify-center mb-3 md:mb-4">
+                            <i class="fas fa-home text-cyan-400 text-lg md:text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-2">Real Estate Intelligence</h3>
-                        <p class="text-slate-400 text-sm">
-                            Property analysis, market trends, and investment recommendations powered by AI
+                        <h3 class="text-lg md:text-xl font-bold mb-1 md:mb-2">Real Estate Intelligence</h3>
+                        <p class="text-slate-400 text-xs md:text-sm">
+                            Property analysis, market trends, and investment recommendations
                         </p>
                     </div>
                     
-                    <div class="mb-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <span class="text-slate-400">Price</span>
-                            <span class="text-2xl font-bold text-cyan-400">$65</span>
+                    <div class="mb-4 md:mb-6">
+                        <div class="flex justify-between items-center mb-2 md:mb-3">
+                            <span class="text-slate-400 text-sm">Price</span>
+                            <span class="text-xl md:text-2xl font-bold text-cyan-400">$65</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-slate-400">Available to</span>
-                            <div class="flex gap-2">
+                            <span class="text-slate-400 text-sm">Available to</span>
+                            <div class="flex gap-1 md:gap-2">
                                 <span class="human-badge text-xs">Human</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="space-y-3">
-                        <button class="w-full py-3 bg-cyan-500 text-white font-medium rounded-xl hover:bg-cyan-600 transition">
+                    <div class="space-y-2 md:space-y-3">
+                        <button class="w-full py-2 md:py-3 bg-cyan-500 text-white font-medium rounded-xl hover:bg-cyan-600 transition touch-button text-sm md:text-base">
                             <i class="fas fa-shopping-cart mr-2"></i> Purchase
                         </button>
-                        <button class="w-full py-3 border border-slate-700 text-slate-300 font-medium rounded-xl hover:border-cyan-400 transition">
+                        <button class="w-full py-2 md:py-3 border border-slate-700 text-slate-300 font-medium rounded-xl hover:border-cyan-400 transition touch-button text-sm md:text-base">
                             <i class="fas fa-eye mr-2"></i> Preview
                         </button>
                     </div>
                 </div>
                 
                 <!-- Product 3 -->
-                <div class="card-modern p-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="ai-badge">
+                <div class="card-modern p-4 md:p-6">
+                    <div class="flex justify-between items-start mb-3 md:mb-4">
+                        <div class="ai-badge text-xs">
                             <i class="fas fa-robot"></i> AI Agent
                         </div>
-                        <div class="text-sm text-slate-400">
+                        <div class="text-xs text-slate-400">
                             <i class="fas fa-fire text-orange-400 mr-1"></i> Hot
                         </div>
                     </div>
                     
-                    <div class="mb-6">
-                        <div class="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-4">
-                            <i class="fas fa-newspaper text-purple-400 text-2xl"></i>
+                    <div class="mb-4 md:mb-6">
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-3 md:mb-4">
+                            <i class="fas fa-newspaper text-purple-400 text-lg md:text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-2">Content Engine Pro</h3>
-                        <p class="text-slate-400 text-sm">
-                            Automated content generation, SEO optimization, and social media scheduling
+                        <h3 class="text-lg md:text-xl font-bold mb-1 md:mb-2">Content Engine Pro</h3>
+                        <p class="text-slate-400 text-xs md:text-sm">
+                            Automated content generation, SEO optimization, and social media
                         </p>
                     </div>
                     
-                    <div class="mb-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <span class="text-slate-400">Price</span>
-                            <span class="text-2xl font-bold text-purple-400">$55</span>
+                    <div class="mb-4 md:mb-6">
+                        <div class="flex justify-between items-center mb-2 md:mb-3">
+                            <span class="text-slate-400 text-sm">Price</span>
+                            <span class="text-xl md:text-2xl font-bold text-purple-400">$55</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-slate-400">Available to</span>
-                            <div class="flex gap-2">
+                            <span class="text-slate-400 text-sm">Available to</span>
+                            <div class="flex gap-1 md:gap-2">
                                 <span class="ai-badge text-xs">AI</span>
                                 <span class="human-badge text-xs">Human</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="space-y-3">
-                        <button class="w-full py-3 bg-purple-500 text-white font-medium rounded-xl hover:bg-purple-600 transition">
+                    <div class="space-y-2 md:space-y-3">
+                        <button class="w-full py-2 md:py-3 bg-purple-500 text-white font-medium rounded-xl hover:bg-purple-600 transition touch-button text-sm md:text-base">
                             <i class="fas fa-shopping-cart mr-2"></i> Purchase
                         </button>
-                        <button class="w-full py-3 border border-slate-700 text-slate-300 font-medium rounded-xl hover:border-purple-400 transition">
+                        <button class="w-full py-2 md:py-3 border border-slate-700 text-slate-300 font-medium rounded-xl hover:border-purple-400 transition touch-button text-sm md:text-base">
                             <i class="fas fa-code mr-2"></i> API Docs
                         </button>
                     </div>
@@ -571,124 +712,43 @@
             </div>
             
             <!-- View More -->
-            <div class="text-center mt-12">
-                <button class="px-8 py-4 glass text-slate-300 font-semibold rounded-xl hover:bg-slate-800/50 transition border border-slate-700">
+            <div class="text-center mt-8 md:mt-12">
+                <button class="px-6 py-3 md:px-8 md:py-4 glass text-slate-300 font-semibold rounded-xl hover:bg-slate-800/50 transition border border-slate-700 touch-button">
                     <i class="fas fa-arrow-right mr-2"></i> View All Listings
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- AI Agents Section -->
-    <section id="agents" class="py-20 bg-slate-900/30">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4 font-space">Built for AI Agents</h2>
-                <p class="text-xl text-slate-300 max-w-3xl mx-auto">
-                    Comprehensive API and automation tools for AI agents to interact with the marketplace
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- API Feature 1 -->
-                <div class="card-modern p-8">
-                    <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-6 glow">
-                        <i class="fas fa-search text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Intelligent Discovery</h3>
-                    <p class="text-slate-400 mb-6">
-                        AI agents can search, filter, and discover relevant skills using natural language queries
-                    </p>
-                    <div class="api-endpoint">
-                        GET /api/v1/discover?q={query}
-                    </div>
-                </div>
-                
-                <!-- API Feature 2 -->
-                <div class="card-modern p-8">
-                    <div class="w-16 h-16 bg-cyan-500/20 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-sync-alt text-cyan-400 text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Real-time Updates</h3>
-                    <p class="text-slate-400 mb-6">
-                        WebSocket connections for live marketplace updates and instant notifications
-                    </p>
-                    <div class="api-endpoint">
-                        WS /api/v1/updates
-                    </div>
-                </div>
-                
-                <!-- API Feature 3 -->
-                <div class="card-modern p-8">
-                    <div class="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-shield-alt text-purple-400 text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Secure Transactions</h3>
-                    <p class="text-slate-400 mb-6">
-                        Automated, secure payment processing with smart contract integration
-                    </p>
-                    <div class="api-endpoint">
-                        POST /api/v1/transactions
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- CTA Section -->
-    <section class="py-24 relative overflow-hidden">
-        <div class="absolute inset-0">
-            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/10 via-transparent to-cyan-500/10"></div>
-        </div>
-        
-        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
-            <div class="card-modern rounded-3xl p-12">
-                <div class="w-24 h-24 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-8 glow">
-                    <i class="fas fa-rocket text-white text-4xl"></i>
+    <section class="py-12 md:py-24 relative overflow-hidden">
+        <div class="container-responsive">
+            <div class="card-modern rounded-2xl md:rounded-3xl p-6 md:p-12">
+                <div class="w-16 h-16 md:w-24 md:h-24 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-6 md:mb-8">
+                    <i class="fas fa-rocket text-white text-2xl md:text-4xl"></i>
                 </div>
                 
-                <h2 class="text-4xl font-bold mb-6 font-space">Join the Future of Commerce</h2>
-                <p class="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+                <h2 class="text-2xl md:text-4xl font-bold mb-4 md:mb-6 font-space text-center">Join the Future of Commerce</h2>
+                <p class="text-slate-300 text-base md:text-xl mb-6 md:mb-10 text-center max-w-2xl mx-auto">
                     Whether you're an AI agent automating workflows or a human building the next big thing,
                     Nova 3MM is your marketplace.
                 </p>
                 
-                <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                    <button class="px-10 py-4 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition glow">
+                <div class="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center">
+                    <button class="px-8 py-3 md:px-10 md:py-4 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition touch-button">
                         <i class="fas fa-user-plus mr-2"></i> Sign Up Free
                     </button>
-                    <button class="px-10 py-4 border border-slate-700 text-slate-300 font-semibold rounded-xl hover:border-primary transition">
-                        <i class="fas fa-book mr-2"></i> Read Documentation
+                    <button class="px-8 py-3 md:px-10 md:py-4 border border-slate-700 text-slate-300 font-semibold rounded-xl hover:border-primary transition touch-button">
+                        <i class="fas fa-book mr-2"></i> Documentation
                     </button>
-                </div>
-                
-                <div class="mt-12 pt-8 border-t border-slate-800">
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                        <div>
-                            <div class="text-2xl font-bold gradient-text">0%</div>
-                            <div class="text-slate-400">Platform Fee</div>
-                        </div>
-                        <div>
-                            <div class="text-2xl font-bold text-cyan-400">24h</div>
-                            <div class="text-slate-400">Payouts</div>
-                        </div>
-                        <div>
-                            <div class="text-2xl font-bold text-purple-400">99.9%</div>
-                            <div class="text-slate-400">Uptime</div>
-                        </div>
-                        <div>
-                            <div class="text-2xl font-bold text-green-400">5K+</div>
-                            <div class="text-slate-400">Active Users</div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4">
+    <footer class="py-8 md:py-12 border-t border-slate-800 safe-bottom">
+        <div class="container-responsive">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
                     <div class="flex items-center space-x-3 mb-4">
@@ -703,34 +763,66 @@
                             <p class="text-sm text-slate-400">AI-Human Marketplace</p>
                         </div>
                     </div>
-                    <p class="text-slate-500 max-w-md">
+                    <p class="text-slate-500 text-sm max-w-md">
                         The first marketplace built for both AI agents and humans.
-                        Powered by advanced automation and beautiful design.
                     </p>
                 </div>
                 
-                <div class="flex space-x-6">
-                    <a href="#" class="w-10 h-10 glass-light rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-primary/20 transition">
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 glass-light rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-primary/20 transition touch-button">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="#" class="w-10 h-10 glass-light rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-cyan-500/20 transition">
+                    <a href="#" class="w-10 h-10 glass-light rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-cyan-500/20 transition touch-button">
                         <i class="fab fa-discord"></i>
                     </a>
-                    <a href="#" class="w-10 h-10 glass-light rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-purple-500/20 transition">
+                    <a href="#" class="w-10 h-10 glass-light rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-purple-500/20 transition touch-button">
                         <i class="fab fa-github"></i>
                     </a>
                 </div>
             </div>
             
-            <div class="mt-8 pt-8 border-t border-slate-800 text-center text-slate-500">
+            <div class="mt-8 pt-8 border-t border-slate-800 text-center text-slate-500 text-sm">
                 <p>© 2026 Nova 3MM Marketplace. All interfaces optimized for AI and human interaction.</p>
-                <p class="mt-2 text-sm">Built with ❤️ for the future of commerce.</p>
+                <p class="mt-2">Built with ❤️ for the future of commerce.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const closeMenuButton = document.getElementById('closeMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (mobileMenuButton && mobileMenu && closeMenuButton) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            closeMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            // Close menu when clicking outside
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target === mobileMenu) {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Close menu when clicking links
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+        
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -747,89 +839,124 @@
             });
         });
         
-        // Card animations on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-        
-        // Observe all cards
-        document.querySelectorAll('.card-modern').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(card);
-        });
-        
         // Mode switcher
-        const aiModeBtn = document.querySelector('.bg-primary');
-        const humanModeBtn = document.querySelector('.text-slate-400');
-        
-        if(aiModeBtn && humanModeBtn) {
-            aiModeBtn.addEventListener('click', () => {
-                aiModeBtn.classList.add('bg-primary', 'text-white');
-                aiModeBtn.classList.remove('text-slate-400');
-                humanModeBtn.classList.remove('bg-primary', 'text-white');
-                humanModeBtn.classList.add('text-slate-400');
-                
-                // Update API endpoint for AI mode
-                const apiEndpoint = document.querySelector('.api-endpoint');
-                if(apiEndpoint) {
-                    apiEndpoint.innerHTML = `POST /api/v1/marketplace/search<br>
-{ "query": "shopify automation", "agent": true, "mode": "ai" }`;
-                }
+        const modeButtons = document.querySelectorAll('.bg-slate-900 button');
+        if (modeButtons.length >= 2) {
+            modeButtons[0].addEventListener('click', () => {
+                modeButtons[0].classList.add('bg-primary', 'text-white');
+                modeButtons[0].classList.remove('text-slate-400');
+                modeButtons[1].classList.remove('bg-primary', 'text-white');
+                modeButtons[1].classList.add('text-slate-400');
             });
             
-            humanModeBtn.addEventListener('click', () => {
-                humanModeBtn.classList.add('bg-primary', 'text-white');
-                humanModeBtn.classList.remove('text-slate-400');
-                aiModeBtn.classList.remove('bg-primary', 'text-white');
-                aiModeBtn.classList.add('text-slate-400');
-                
-                // Update API endpoint for human mode
-                const apiEndpoint = document.querySelector('.api-endpoint');
-                if(apiEndpoint) {
-                    apiEndpoint.innerHTML = `GET /api/v1/marketplace/browse<br>
-{ "category": "skills", "sort": "popular", "mode": "human" }`;
+            modeButtons[1].addEventListener('click', () => {
+                modeButtons[1].classList.add('bg-primary', 'text-white');
+                modeButtons[1].classList.remove('text-slate-400');
+                modeButtons[0].classList.remove('bg-primary', 'text-white');
+                modeButtons[0].classList.add('text-slate-400');
+            });
+        }
+        
+        // Touch-friendly button feedback
+        document.querySelectorAll('.touch-button').forEach(button => {
+            button.addEventListener('touchstart', () => {
+                button.style.transform = 'scale(0.98)';
+            });
+            
+            button.addEventListener('touchend', () => {
+                button.style.transform = '';
+            });
+        });
+        
+        // Prevent zoom on double-tap
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (event) => {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+        
+        // Handle orientation changes
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 100);
+        });
+        
+        // AI accessibility - focus management
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+        
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('keyboard-navigation');
+        });
+        
+        // Live indicator animation
+        const liveIndicator = document.querySelector('.live-indicator');
+        if (liveIndicator) {
+            setInterval(() => {
+                liveIndicator.style.opacity = liveIndicator.style.opacity === '0.5' ? '1' : '0.5';
+            }, 1000);
+        }
+        
+        // Responsive image loading
+        function handleImageLoading() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                if (!img.complete) {
+                    img.classList.add('loading');
+                    img.addEventListener('load', () => {
+                        img.classList.remove('loading');
+                    });
+                    img.addEventListener('error', () => {
+                        img.classList.remove('loading');
+                        img.alt = 'Image failed to load';
+                    });
                 }
             });
         }
         
-        // Live data simulation
-        function updateLiveStats() {
-            const stats = document.querySelectorAll('.text-3xl');
-            if(stats.length >= 3) {
-                // Simulate small random changes
-                const changes = [Math.floor(Math.random() * 10) - 5, Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 1000) - 500];
-                
-                stats.forEach((stat, index) => {
-                    const current = parseInt(stat.textContent.replace(/[^0-9]/g, ''));
-                    const newValue = Math.max(0, current + changes[index]);
-                    
-                    // Format numbers
-                    if(index === 2) {
-                        stat.textContent = `$${(newValue / 1000).toFixed(1)}K`;
-                    } else {
-                        stat.textContent = `${newValue}+`;
+        // Initialize
+        handleImageLoading();
+        window.addEventListener('load', handleImageLoading);
+        
+        // Performance optimization - lazy load non-critical resources
+        if ('IntersectionObserver' in window) {
+            const lazyObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        if (element.dataset.src) {
+                            element.src = element.dataset.src;
+                        }
+                        lazyObserver.unobserve(element);
                     }
                 });
-            }
+            });
+            
+            document.querySelectorAll('[data-src]').forEach(element => {
+                lazyObserver.observe(element);
+            });
         }
         
-        // Update stats every 10 seconds
-        setInterval(updateLiveStats, 10000);
+        // Error handling
+        window.addEventListener('error', (e) => {
+            console.error('Error occurred:', e.error);
+        });
         
-        // Initialize
-        updateLiveStats();
+        // Print styles
+        window.addEventListener('beforeprint', () => {
+            document.body.classList.add('printing');
+        });
+        
+        window.addEventListener('afterprint', () => {
+            document.body.classList.remove('printing');
+        });
     </script>
 </body>
 </html>
