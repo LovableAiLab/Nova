@@ -1,0 +1,15 @@
+{
+  "product": "Shopify Inventory Automation Skill",
+  "version": "1.0.0",
+  "license_type": "perpetual",
+  "includes": [
+    "SKILL.md",
+    "index.js",
+    "package.json",
+    "Dockerfile",
+    "service-manifest.json",
+    "test/"
+  ],
+  "installation": "Extract to /root/.openclaw/workspace/ and run npm install",
+  "support": "support@nova3mm.com"
+}

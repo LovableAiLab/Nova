@@ -320,5 +320,29 @@
         
 
     </script>
-</body>
+<p>You will be redirected to your download page in <span id="countdown">3</span> seconds...</p>
+    <script>
+        // Redirect to download page after 3 seconds
+        setTimeout(function() {
+            const sessionId = new URLSearchParams(window.location.search).get('session_id');
+            if (sessionId) {
+                window.location.href = '/download.html?session_id=' + sessionId;
+            } else {
+                window.location.href = '/download.html';
+            }
+        }, 3000);
+        
+        // Show countdown
+        let countdown = 3;
+        const countdownEl = document.getElementById('countdown');
+        if (countdownEl) {
+            const interval = setInterval(function() {
+                countdown--;
+                countdownEl.textContent = countdown;
+                if (countdown <= 0) {
+                    clearInterval(interval);
+                }
+            }, 1000);
+        }
+    </script></body>
 </html>
