@@ -527,9 +527,9 @@
                 <div class="text-center text-slate-400 text-sm mb-4">
                     <i class="fas fa-shield-alt mr-1"></i> Secure Payments
                 </div>
-                <a href="https://buy.stripe.com/YOUR_SHOPIFY_CHECKOUT_LINK" target="_blank" class="mobile-cta-button" style="text-decoration: none; width: 100%; display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 500;">
+                <button onclick="showStripeSetupModal('Shopify Inventory Automation Skill', 50)" class="mobile-cta-button" style="text-decoration: none; width: 100%; display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 500; border: none; cursor: pointer;">
                     <i class="fas fa-rocket mr-2"></i> Get Shopify Skill - $50
-                </a>
+                </button>
             </div>
         </div>
     </div>
@@ -674,9 +674,9 @@
                                     Get instant access to complete inventory automation. License includes 24/7 support and lifetime updates.
                                 </p>
                             </div>
-                            <a href="https://buy.stripe.com/YOUR_SHOPIFY_CHECKOUT_LINK" target="_blank" class="nova-payment-button" style="text-decoration: none; width: 100%; display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 500;">
+                            <button onclick="showStripeSetupModal('Shopify Inventory Automation Skill', 50)" class="nova-payment-button" style="text-decoration: none; width: 100%; display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 500; border: none; cursor: pointer;">
                                 <i class="fas fa-bolt mr-2"></i> Purchase License - $50.00
-                            </a>
+                            </button>
                         </div>
                         
                         <!-- Payment Options Note -->
@@ -899,9 +899,9 @@
                             <span class="price-amount" style="color: #f59e0b; font-size: 1.5rem;">$0.50</span>
                             <span class="price-period">test purchase</span>
                         </div>
-                        <a href="https://buy.stripe.com/YOUR_TEST_CHECKOUT_LINK" target="_blank" class="nova-payment-button" style="text-decoration: none; width: 100%; display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 500;">
+                        <button onclick="showStripeSetupModal('Payment System Test', 0.5)" class="nova-payment-button" style="text-decoration: none; width: 100%; display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 500; border: none; cursor: pointer;">
                             <i class="fas fa-vial mr-2"></i> Test Payment - $0.50
-                        </a>
+                        </button>
                     </div>
                     
                     <!-- Test Warning -->
@@ -1160,13 +1160,143 @@
         
 </div>
 
-    <!-- Stripe Payment Links -->
-    <!-- 
-        To setup:
-        1. Go to Stripe dashboard (Live mode)
-        2. Create payment links for:
-           - $50 Shopify skill: https://buy.stripe.com/...
-           - $0.50 test product: https://buy.stripe.com/...
-        3. Update the links above
-    -->
+    <!-- Stripe Setup Modal -->
+    <script>
+        function showStripeSetupModal(productName, price) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                padding: 20px;
+            `;
+
+            const modalContent = document.createElement('div');
+            modalContent.style.cssText = `
+                background: white;
+                padding: 30px;
+                border-radius: 12px;
+                max-width: 500px;
+                width: 100%;
+                text-align: center;
+                color: #333;
+            `;
+
+            const title = document.createElement('h3');
+            title.textContent = '🚀 Setup Stripe Payment Link';
+            title.style.cssText = `
+                font-size: 20px;
+                margin-bottom: 10px;
+                color: #0f172a;
+            `;
+
+            const description = document.createElement('p');
+            description.textContent = `To accept payments for "${productName}" ($${price}), you need to create a Stripe payment link.`;
+            description.style.cssText = `
+                color: #666;
+                margin-bottom: 20px;
+                font-size: 14px;
+            `;
+
+            const steps = document.createElement('div');
+            steps.style.cssText = `
+                background: #f8fafc;
+                border: 1px solid #e2e8f0;
+                border-radius: 8px;
+                padding: 20px;
+                margin-bottom: 20px;
+                text-align: left;
+            `;
+            steps.innerHTML = `
+                <strong>📋 Setup Steps (2 minutes):</strong>
+                <ol style="margin: 10px 0 0; padding-left: 20px; font-size: 13px; color: #475569;">
+                    <li>Go to <a href="https://dashboard.stripe.com/payment-links" target="_blank" style="color: #6366f1;">Stripe Payment Links</a> (Live mode)</li>
+                    <li>Click "Create payment link"</li>
+                    <li>Set product name: "${productName}"</li>
+                    <li>Set price: $${price}.00 (one-time)</li>
+                    <li>Set success URL: <code>https://nova-5mm.pages.dev/success.html</code></li>
+                    <li>Copy the payment link URL</li>
+                    <li>Update the button in index.html with your link</li>
+                </ol>
+            `;
+
+            const buttonContainer = document.createElement('div');
+            buttonContainer.style.cssText = `
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+                margin-top: 20px;
+            `;
+
+            const cancelButton = document.createElement('button');
+            cancelButton.textContent = 'Cancel';
+            cancelButton.style.cssText = `
+                padding: 12px 24px;
+                border: 1px solid #e2e8f0;
+                background: white;
+                color: #666;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 500;
+            `;
+            cancelButton.onclick = () => {
+                document.body.removeChild(modal);
+            };
+
+            const stripeButton = document.createElement('button');
+            stripeButton.textContent = 'Open Stripe Dashboard';
+            stripeButton.style.cssText = `
+                padding: 12px 24px;
+                background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 500;
+            `;
+            stripeButton.onclick = () => {
+                window.open('https://dashboard.stripe.com/payment-links', '_blank');
+                document.body.removeChild(modal);
+            };
+
+            const testButton = document.createElement('button');
+            testButton.textContent = 'Test with Sandbox First';
+            testButton.style.cssText = `
+                padding: 10px 20px;
+                background: #f59e0b;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 13px;
+                font-weight: 500;
+                margin-top: 10px;
+                width: 100%;
+            `;
+            testButton.onclick = () => {
+                window.open('https://dashboard.stripe.com/test/payment-links', '_blank');
+                document.body.removeChild(modal);
+            };
+
+            buttonContainer.appendChild(cancelButton);
+            buttonContainer.appendChild(stripeButton);
+
+            modalContent.appendChild(title);
+            modalContent.appendChild(description);
+            modalContent.appendChild(steps);
+            modalContent.appendChild(buttonContainer);
+            modalContent.appendChild(testButton);
+            modal.appendChild(modalContent);
+            document.body.appendChild(modal);
+        }
+    </script>
 </body></html>
