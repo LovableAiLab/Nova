@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova 3MM - Instant Payment Integration</title>
+    <style>
+        .nova-payment-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin: 5px;
+        }
+        
+        .nova-payment-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+        }
+        
+        .nova-payment-button.ai {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        .nova-payment-button.ai:hover {
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+        
+        .payment-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .payment-modal.active {
+            display: flex;
+        }
+        
+        .payment-content {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #6366f1;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Payment Modal -->
+    <div id="novaPaymentModal" class="payment-modal">
+        <div class="payment-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h3 style="font-size: 1.5rem; font-weight: bold; color: white;">Purchase Shopify Inventory Skill</h3>
+                <button onclick="closePaymentModal()" style="background: none; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer;">×</button>
+            </div>
+            
+            <!-- Buyer Type Selection -->
+            <div style="margin-bottom: 1.5rem;">
+                <h4 style="font-weight: 600; color: #e2e8f0; margin-bottom: 0.75rem;">Select Buyer Type</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <button id="humanOption" onclick="selectBuyerType('human')" style="
+                        background: #1e293b;
+                        border: 2px solid #6366f1;
+                        border-radius: 12px;
+                        padding: 1rem;
+                        text-align: left;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                    ">
+                        <div style="display: flex; align-items: center;">
+                            <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(99, 102, 241, 0.2); display: flex; align-items: center; justify-content: center; margin-right: 12px;">
+                                <span style="color: #6366f1; font-size: 1.25rem;">👤</span>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600; color: white;">Human</div>
+                                <div style="color: #94a3b8; font-size: 0.875rem;">Pay with credit card</div>
+                            </div>
+                        </div>
+                    </button>
+                    
+                    <button id="aiAgentOption" onclick="selectBuyerType('ai_agent')" style="
+                        background: #1e293b;
+                        border: 2px solid #475569;
+                        border-radius: 12px;
+                        padding: 1rem;
+                        text-align: left;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                    ">
+                        <div style="display: flex; align-items: center;">
+                            <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(16, 185, 129, 0.2); display: flex; align-items: center; justify-content: center; margin-right: 12px;">
+                                <span style="color: #10b981; font-size: 1.25rem;">🤖</span>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600; color: white;">AI Agent</div>
+                                <div style="color: #94a3b8; font-size: 0.875rem;">Pay with USDC</div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Human Payment Form -->
+            <div id="humanForm">
+                <h4 style="font-weight: 600; color: #e2e8f0; margin-bottom: 0.75rem;">Enter Email for License Delivery</h4>
+                <input type="email" id="customerEmail" placeholder="your@email.com" style="
+                    width: 100%;
+                    background: #1e293b;
+                    border: 1px solid #475569;
+                    border-radius: 12px;
+                    padding: 12px 16px;
+                    color: white;
+                    font-size: 16px;
+                    margin-bottom: 1rem;
+                ">
+                <button onclick="initiateStripePayment()" style="
+                    width: 100%;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+                    color: white;
+                    border: none;
+                    border-radius: 12px;
+                    font-weight: 600;
+                    font-size: 16px;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                ">
+                    💳 Pay $50 with Stripe
+                </button>
+                <p style="color: #94a3b8; font-size: 0.875rem; margin-top: 0.75rem;">
+                    You'll be redirected to Stripe checkout. License will be emailed immediately after payment.
+                </p>
+            </div>
+            
+            <!-- AI Agent Payment Form -->
+            <div id="aiAgentForm" style="display: none;">
+                <h4 style="font-weight: 600; color: #e2e8f0; margin-bottom: 0.75rem;">AI Agent Details</h4>
+                <input type="text" id="agentWallet" placeholder="0x..." style="
+                    width: 100%;
+                    background: #1e293b;
+                    border: 1px solid #475569;
+                    border-radius: 12px;
+                    padding: 12px 16px;
+                    color: white;
+                    font-size: 16px;
+                    margin-bottom: 12px;
+                ">
+                <input type="text" id="agentId" placeholder="Agent ID (optional)" style="
+                    width: 100%;
+                    background: #1e293b;
+                    border: 1px solid #475569;
+                    border-radius: 12px;
+                    padding: 12px 16px;
+                    color: white;
+                    font-size: 16px;
+                    margin-bottom: 1rem;
+                ">
+                <button onclick="initiateX402Payment()" style="
+                    width: 100%;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                    color: white;
+                    border: none;
+                    border-radius: 12px;
+                    font-weight: 600;
+                    font-size: 16px;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                ">
+                    🤖 Pay 50 USDC with x402
+                </button>
+                <p style="color: #94a3b8; font-size: 0.875rem; margin-top: 0.75rem;">
+                    You'll receive payment instructions. License will be delivered via webhook after confirmation.
+                </p>
+            </div>
+            
+            <!-- Loading State -->
+            <div id="paymentLoading" style="display: none; text-align: center; padding: 2rem;">
+                <div class="loading-spinner"></div>
+                <p style="color: #e2e8f0; margin-top: 1rem;">Processing payment...</p>
+            </div>
+            
+            <!-- Error State -->
+            <div id="paymentError" style="display: none; background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; border-radius: 12px; padding: 1rem; margin-top: 1rem;">
+                <div style="display: flex; align-items: center;">
+                    <span style="color: #ef4444; margin-right: 0.75rem;">⚠️</span>
+                    <div>
+                        <div style="font-weight: 600; color: #fca5a5;">Payment Error</div>
+                        <div id="errorMessage" style="color: #fca5a5; font-size: 0.875rem; margin-top: 0.25rem;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const API_URL = 'http://localhost:3000/api'; // Update with your payment API URL
+        const SKILL_ID = 'shopify-inventory-skill';
+        
+        let selectedBuyerType = 'human';
+        
+        // Show payment modal
+        function showPaymentModal() {
+            document.getElementById('novaPaymentModal').classList.add('active');
+            resetForms();
+        }
+        
+        // Close payment modal
+        function closePaymentModal() {
+            document.getElementById('novaPaymentModal').classList.remove('active');
+        }
+        
+        // Select buyer type
+        function selectBuyerType(type) {
+            selectedBuyerType = type;
+            
+            // Update UI
+            document.getElementById('humanOption').style.borderColor = type === 'human' ? '#6366f1' : '#475569';
+            document.getElementById('aiAgentOption').style.borderColor = type === 'ai_agent' ? '#10b981' : '#475569';
+            
+            document.getElementById('humanForm').style.display = type === 'human' ? 'block' : 'none';
+            document.getElementById('aiAgentForm').style.display = type === 'ai_agent' ? 'block' : 'none';
+        }
+        
+        // Reset forms
+        function resetForms() {
+            selectedBuyerType = 'human';
+            document.getElementById('humanOption').style.borderColor = '#6366f1';
+            document.getElementById('aiAgentOption').style.borderColor = '#475569';
+            document.getElementById('humanForm').style.display = 'block';
+            document.getElementById('aiAgentForm').style.display = 'none';
+            document.getElementById('paymentLoading').style.display = 'none';
+            document.getElementById('paymentError').style.display = 'none';
+            document.getElementById('customerEmail').value = '';
+            document.getElementById('agentWallet').value = '';
+            document.getElementById('agentId').value = '';
+        }
+        
+        // Show loading
+        function showLoading() {
+            document.getElementById('paymentLoading').style.display = 'block';
+            document.getElementById('paymentError').style.display = 'none';
+        }
+        
+        // Hide loading
+        function hideLoading() {
+            document.getElementById('paymentLoading').style.display = 'none';
+        }
+        
+        // Show error
+        function showError(message) {
+            document.getElementById('errorMessage').textContent = message;
+            document.getElementById('paymentError').style.display = 'block';
+        }
+        
+        // Validate email
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        // Validate Ethereum address
+        function validateEthAddress(address) {
+            return /^0x[a-fA-F0-9]{40}$/.test(address);
+        }
+        
+        // Initiate Stripe payment
+        async function initiateStripePayment() {
+            const email = document.getElementById('customerEmail').value.trim();
+            
+            if (!email) {
+                showError('Please enter your email address');
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                showError('Please enter a valid email address');
+                return;
+            }
+            
+            showLoading();
+            
+            try {
+                // For now, use a mock response since payment API isn't set up yet
+                // In production, this would call your actual payment API
+                
+                // Mock successful response
+                setTimeout(() => {
+                    hideLoading();
+                    
+                    // Show success message
+                    alert(`Payment initiated for ${email}\n\nIn production, you would be redirected to Stripe checkout.\n\nTo set up real payments:\n1. Create Stripe account\n2. Get API keys\n3. Configure payment server\n\nSee /tmp/setup-stripe-now.sh for setup instructions.`);
+                    
+                    closePaymentModal();
+                }, 1500);
+                
+                /*
+                // Production code (uncomment when API is ready):
+                const response = await fetch(`${API_URL}/payment/initiate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        skillId: SKILL_ID,
+                        buyerType: 'human',
+                        buyerData: { email }
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success && data.payment && data.payment.url) {
+                    // Redirect to Stripe checkout
+                    window.location.href = data.payment.url;
+                } else {
+                    showError(data.error || 'Payment initiation failed');
+                }
+                */
+                
+            } catch (error) {
+                hideLoading();
+                showError('Payment service temporarily unavailable. Please try again later.');
+                console.error('Payment error:', error);
+            }
+        }
+        
+        // Initiate x402 payment
+        async function initiateX402Payment() {
+            const walletAddress = document.getElementById('agentWallet').value.trim();
+            const agentId = document.getElementById('agentId').value.trim();
+            
+            if (!walletAddress) {
+                showError('Please enter wallet address');
+                return;
+            }
+            
+            if (!validateEthAddress(walletAddress)) {
+                showError('Please enter a valid Ethereum address (starts with 0x, 42 characters)');
+                return;
+            }
+            
+            showLoading();
+            
+            try {
+                // Mock response for x402 payment
+                setTimeout(() => {
+                    hideLoading();
+                    
+                    // Show x402 instructions
+                    const instructions = `
+Contract: 0x742d35Cc6634C0532925a3b844Bc9e... (x402 Payment Contract)
+Function: purchaseSkill(uint256 skillId)
+Skill ID: 1 (Shopify Inventory Automation)
+Amount: 50 USDC
+Gas Limit: 200,000
+Deadline: ${new Date(Date.now() + 3600000).toLocaleString()}
+
+Steps:
+1. Approve USDC spending for contract
+2. Call purchaseSkill(1) with 50 USDC
+3. Wait for transaction confirmation
+4. License delivered via webhook
+
+Need help? Contact support@nova3mm.com
+                    `;
+                    
+                    alert(`x402 Payment Instructions:\n\n${instructions}`);
+                    
+                    closePaymentModal();
+                }, 1500);
+                
+            } catch (error) {
+                hideLoading();
+                showError('Payment service temporarily unavailable. Please try again later.');
+                console.error('Payment error:', error);
+            }
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Nova Payment Integration loaded');
+            
+            // Add payment buttons to the page
+            // This would be integrated into your marketplace
+            // For now, we'll create a demo button
+            const demoButton = document.createElement('button');
+            demoButton.className = 'nova-payment-button';
+            demoButton.innerHTML = '🚀 Purchase Shopify Skill ($50)';
+            demoButton.onclick = showPaymentModal;
+            demoButton.style.position = 'fixed';
+            demoButton.style.bottom = '20px';
+            demoButton.style.right = '20px';
+            demoButton.style.zIndex = '9999';
+            
+            document.body.appendChild(demoButton);
+        });
+    </script>
+</body>
+</html>
