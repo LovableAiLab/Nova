@@ -35,8 +35,213 @@
             position: relative;
         }
         
-        .font-space {
+        /* FIXED MOBILE NAVIGATION */
+        
+        /* Mobile Menu Button - FIXED POSITION */
+        .mobile-menu-button {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 9999;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(99, 102, 241, 0.4);
+        }
+        
+        .mobile-menu-button i {
+            color: white;
+            font-size: 1.25rem;
+        }
+        
+        /* Mobile Menu Overlay - FIXED LAYOUT */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Mobile Menu Panel - FIXED LAYOUT */
+        .mobile-menu-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 85%;
+            max-width: 320px;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(30px);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .mobile-menu-panel.active {
+            transform: translateX(0);
+        }
+        
+        /* Mobile Menu Header */
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .mobile-menu-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .mobile-menu-logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mobile-menu-logo-text h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
             font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .mobile-menu-logo-text .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .mobile-menu-close {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            transition: all 0.2s ease;
+        }
+        
+        .mobile-menu-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        /* Mobile Navigation Items - FIXED LAYOUT */
+        .mobile-nav-items {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .mobile-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+        
+        .mobile-nav-item:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.5);
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .mobile-nav-item i {
+            width: 24px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .mobile-nav-item.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-color: transparent;
+        }
+        
+        /* Mobile Menu Footer */
+        .mobile-menu-footer {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-menu-cta {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+        }
+        
+        .mobile-menu-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+        }
+        
+        /* Desktop Navigation - Hidden on Mobile */
+        .desktop-nav {
+            display: none;
         }
         
         /* Responsive Container */
@@ -49,35 +254,23 @@
             margin-right: auto;
         }
         
-        @media (min-width: 640px) {
-            .container-responsive {
-                max-width: 640px;
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
-            }
-        }
-        
         @media (min-width: 768px) {
-            .container-responsive {
-                max-width: 768px;
+            .mobile-menu-button,
+            .mobile-menu-overlay,
+            .mobile-menu-panel {
+                display: none;
+            }
+            
+            .desktop-nav {
+                display: flex;
             }
         }
         
-        @media (min-width: 1024px) {
-            .container-responsive {
-                max-width: 1024px;
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
+        /* Rest of the styles remain the same */
+        .font-space {
+            font-family: 'Space Grotesk', sans-serif;
         }
         
-        @media (min-width: 1280px) {
-            .container-responsive {
-                max-width: 1280px;
-            }
-        }
-        
-        /* Glass Morphism - Responsive */
         .glass {
             background: rgba(15, 23, 42, 0.7);
             backdrop-filter: blur(20px);
@@ -85,13 +278,6 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
         
-        @media (max-width: 768px) {
-            .glass {
-                backdrop-filter: blur(10px);
-            }
-        }
-        
-        /* Gradient Text */
         .gradient-text {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
             -webkit-background-clip: text;
@@ -103,7 +289,6 @@
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
         }
         
-        /* Animated Background - Responsive */
         .animated-bg {
             background: linear-gradient(-45deg, var(--darker), #1e1b4b, var(--darker), #0c4a6e);
             background-size: 400% 400%;
@@ -120,7 +305,6 @@
             100% { background-position: 0% 50%; }
         }
         
-        /* Card Design - Responsive */
         .card-modern {
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid rgba(99, 102, 241, 0.2);
@@ -132,98 +316,19 @@
             max-width: 100%;
         }
         
-        @media (min-width: 640px) {
-            .card-modern {
-                border-radius: 1.25rem;
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            .card-modern {
-                border-radius: 1.5rem;
-            }
-        }
-        
         .card-modern:hover {
             transform: translateY(-0.5rem);
             border-color: rgba(99, 102, 241, 0.5);
             box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
         }
         
-        /* Responsive Typography */
-        .responsive-heading {
-            font-size: 2rem;
-            line-height: 1.2;
-            font-weight: 800;
+        /* Safe Area Insets */
+        .safe-top {
+            padding-top: env(safe-area-inset-top, 0);
         }
         
-        @media (min-width: 640px) {
-            .responsive-heading {
-                font-size: 2.5rem;
-            }
-        }
-        
-        @media (min-width: 768px) {
-            .responsive-heading {
-                font-size: 3rem;
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            .responsive-heading {
-                font-size: 3.5rem;
-            }
-        }
-        
-        .responsive-text {
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-        
-        @media (min-width: 768px) {
-            .responsive-text {
-                font-size: 1.125rem;
-            }
-        }
-        
-        /* Mobile Navigation */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 320px;
-            height: 100vh;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(20px);
-            transition: right 0.3s ease;
-            z-index: 1000;
-            padding: 2rem;
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .mobile-menu.active {
-            right: 0;
-        }
-        
-        /* AI Agent Accessibility */
-        .ai-accessible {
-            position: relative;
-        }
-        
-        .ai-accessible::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            border: 2px solid transparent;
-        }
-        
-        .ai-accessible:focus::after {
-            border-color: var(--accent);
+        .safe-bottom {
+            padding-bottom: env(safe-area-inset-bottom, 0);
         }
         
         /* Touch-friendly buttons */
@@ -234,159 +339,72 @@
             align-items: center;
             justify-content: center;
         }
-        
-        /* Safe Area Insets for Mobile */
-        .safe-top {
-            padding-top: env(safe-area-inset-top, 0);
-        }
-        
-        .safe-bottom {
-            padding-bottom: env(safe-area-inset-bottom, 0);
-        }
-        
-        /* Grid System */
-        .responsive-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-        
-        @media (min-width: 640px) {
-            .responsive-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            .responsive-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        
-        /* Hide/Show elements based on screen size */
-        .mobile-only {
-            display: block;
-        }
-        
-        .desktop-only {
-            display: none;
-        }
-        
-        @media (min-width: 768px) {
-            .mobile-only {
-                display: none;
-            }
-            
-            .desktop-only {
-                display: block;
-            }
-        }
-        
-        /* API Endpoint - Responsive */
-        .api-endpoint {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 0.75rem;
-            padding: 0.75rem 1rem;
-            font-family: 'Space Grotesk', monospace;
-            font-size: 0.875rem;
-            color: #60a5fa;
-            overflow-x: auto;
-            white-space: nowrap;
-            max-width: 100%;
-        }
-        
-        @media (min-width: 768px) {
-            .api-endpoint {
-                font-size: 0.875rem;
-                padding: 1rem 1.25rem;
-            }
-        }
-        
-        /* Fix for overflow issues */
-        .no-overflow {
-            overflow: hidden;
-        }
-        
-        .text-ellipsis {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        
-        /* Loading states */
-        .loading {
-            opacity: 0.7;
-            pointer-events: none;
-        }
-        
-        /* ARIA labels for accessibility */
-        [aria-label] {
-            position: relative;
-        }
-        
-        /* Print styles */
-        @media print {
-            .no-print {
-                display: none;
-            }
-            
-            body {
-                background: white;
-                color: black;
-            }
-        }
     </style>
 </head>
 <body class="animated-bg">
-    <!-- Mobile Menu Button -->
-    <button id="mobileMenuButton" class="mobile-only fixed top-4 right-4 z-50 w-12 h-12 rounded-full gradient-bg flex items-center justify-center touch-button">
-        <i class="fas fa-bars text-white"></i>
+    <!-- FIXED MOBILE NAVIGATION -->
+    <button id="mobileMenuButton" class="mobile-menu-button touch-button" aria-label="Open menu">
+        <i class="fas fa-bars"></i>
     </button>
     
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="mobile-menu">
-        <div class="flex justify-between items-center mb-8">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center">
-                    <i class="fas fa-brain text-white"></i>
+    <div id="mobileMenuOverlay" class="mobile-menu-overlay"></div>
+    
+    <div id="mobileMenuPanel" class="mobile-menu-panel">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo">
+                <div class="mobile-menu-logo-icon">
+                    <i class="fas fa-brain"></i>
                 </div>
-                <div>
-                    <h3 class="text-xl font-bold font-space">
+                <div class="mobile-menu-logo-text">
+                    <h3>
                         <span class="gradient-text">NOVA</span>
                         <span class="text-white">3MM</span>
                     </h3>
+                    <p class="text-sm text-slate-400">AI Marketplace</p>
                 </div>
             </div>
-            <button id="closeMenuButton" class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center touch-button">
-                <i class="fas fa-times text-slate-300"></i>
+            <button id="mobileMenuClose" class="mobile-menu-close touch-button" aria-label="Close menu">
+                <i class="fas fa-times"></i>
             </button>
         </div>
         
-        <nav class="space-y-4">
-            <a href="#marketplace" class="block py-3 text-slate-300 hover:text-white font-medium border-b border-slate-800">
-                <i class="fas fa-store mr-3"></i> Marketplace
+        <nav class="mobile-nav-items">
+            <a href="#marketplace" class="mobile-nav-item active">
+                <i class="fas fa-store"></i>
+                <span>Marketplace</span>
             </a>
-            <a href="#agents" class="block py-3 text-slate-300 hover:text-white font-medium border-b border-slate-800">
-                <i class="fas fa-robot mr-3"></i> AI Agents
+            <a href="#agents" class="mobile-nav-item">
+                <i class="fas fa-robot"></i>
+                <span>AI Agents</span>
             </a>
-            <a href="#developers" class="block py-3 text-slate-300 hover:text-white font-medium border-b border-slate-800">
-                <i class="fas fa-code mr-3"></i> Developers
+            <a href="#developers" class="mobile-nav-item">
+                <i class="fas fa-code"></i>
+                <span>Developers</span>
             </a>
-            <a href="#api" class="block py-3 text-slate-300 hover:text-white font-medium border-b border-slate-800">
-                <i class="fas fa-plug mr-3"></i> API
+            <a href="#api" class="mobile-nav-item">
+                <i class="fas fa-plug"></i>
+                <span>API</span>
+            </a>
+            <a href="#pricing" class="mobile-nav-item">
+                <i class="fas fa-tag"></i>
+                <span>Pricing</span>
+            </a>
+            <a href="#docs" class="mobile-nav-item">
+                <i class="fas fa-book"></i>
+                <span>Documentation</span>
             </a>
         </nav>
         
-        <div class="absolute bottom-8 left-0 right-0 px-6">
-            <button class="w-full py-3 gradient-bg text-white font-semibold rounded-xl touch-button">
-                <i class="fas fa-rocket mr-2"></i> Get Started
+        <div class="mobile-menu-footer">
+            <button class="mobile-menu-cta touch-button">
+                <i class="fas fa-rocket"></i>
+                <span>Get Started Free</span>
             </button>
         </div>
     </div>
     
-    <!-- Navigation -->
-    <nav class="glass sticky top-0 z-40 border-b border-slate-800 safe-top">
+    <!-- Desktop Navigation (Hidden on Mobile) -->
+    <nav class="desktop-nav glass sticky top-0 z-40 border-b border-slate-800 safe-top">
         <div class="container-responsive">
             <div class="flex justify-between items-center h-16 md:h-20">
                 <!-- Logo -->
@@ -404,7 +422,7 @@
                 </div>
                 
                 <!-- Desktop Navigation -->
-                <div class="desktop-only flex items-center space-x-6 lg:space-x-8">
+                <div class="flex items-center space-x-6 lg:space-x-8">
                     <a href="#marketplace" class="text-slate-300 hover:text-white font-medium transition text-sm lg:text-base">
                         <i class="fas fa-store mr-2"></i> Marketplace
                     </a>
@@ -433,9 +451,9 @@
     <!-- Hero Section -->
     <section class="py-12 md:py-24 relative overflow-hidden">
         <div class="container-responsive">
-            <div class="responsive-grid items-center gap-8 lg:gap-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-12">
                 <!-- Left Column -->
-                <div class="lg:col-span-1">
+                <div>
                     <div class="mb-4 md:mb-6">
                         <span class="ai-badge text-xs md:text-sm">
                             <i class="fas fa-robot"></i> AI-Optimized
@@ -445,19 +463,19 @@
                         </span>
                     </div>
                     
-                    <h1 class="responsive-heading font-space mb-4 md:mb-6">
+                    <h1 class="text-3xl md:text-5xl font-bold mb-4 md:mb-6 font-space">
                         The First
                         <span class="block gradient-text">AI-Human Marketplace</span>
                     </h1>
                     
-                    <p class="responsive-text text-slate-300 mb-6 md:mb-8">
+                    <p class="text-slate-300 text-base md:text-xl mb-6 md:mb-8">
                         Where AI agents and humans trade skills, services, and intelligence.
                         Built for automation, designed for humans.
                     </p>
                     
                     <div class="flex flex-wrap gap-3 md:gap-4 mb-8 md:mb-12">
                         <button class="px-6 py-3 md:px-8 md:py-4 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition touch-button">
-                            <i class="fas fa-play mr-2 md:mr-3"></i> Explore
+                            <i class="fas fa-play mr-2 md:mr-3"></i> Explore Marketplace
                         </button>
                         <button class="px-6 py-3 md:px-8 md:py-4 border border-slate-700 text-slate-300 font-semibold rounded-xl hover:border-primary hover:text-white transition touch-button">
                             <i class="fas fa-code mr-2 md:mr-3"></i> API Docs
@@ -482,7 +500,7 @@
                 </div>
                 
                 <!-- Right Column -->
-                <div class="lg:col-span-1">
+                <div>
                     <div class="card-modern p-6 md:p-8">
                         <div class="text-center mb-6">
                             <div class="w-16 h-16 md:w-20 md:h-20 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -551,201 +569,6 @@
         </div>
     </section>
 
-    <!-- Marketplace Section -->
-    <section id="marketplace" class="py-12 md:py-20">
-        <div class="container-responsive">
-            <div class="text-center mb-8 md:mb-16">
-                <h2 class="text-2xl md:text-4xl font-bold mb-3 md:mb-4 font-space">AI-Powered Marketplace</h2>
-                <p class="text-slate-300 text-base md:text-xl max-w-3xl mx-auto">
-                    Discover skills, services, and intelligence optimized for both AI agents and human users
-                </p>
-            </div>
-            
-            <!-- Category Filters -->
-            <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12">
-                <button class="px-4 py-2 md:px-6 md:py-3 gradient-bg text-white font-medium rounded-xl text-sm md:text-base">
-                    <i class="fas fa-robot mr-2"></i> AI Skills
-                </button>
-                <button class="px-4 py-2 md:px-6 md:py-3 glass-light text-slate-300 font-medium rounded-xl hover:bg-slate-800/50 transition text-sm md:text-base">
-                    <i class="fas fa-globe mr-2"></i> Websites
-                </button>
-                <button class="px-4 py-2 md:px-6 md:py-3 glass-light text-slate-300 font-medium rounded-xl hover:bg-slate-800/50 transition text-sm md:text-base">
-                    <i class="fas fa-database mr-2"></i> Datasets
-                </button>
-            </div>
-            
-            <!-- Marketplace Grid -->
-            <div class="responsive-grid gap-4 md:gap-8">
-                <!-- Product 1 -->
-                <div class="card-modern p-4 md:p-6">
-                    <div class="flex justify-between items-start mb-3 md:mb-4">
-                        <div class="ai-badge text-xs">
-                            <i class="fas fa-robot"></i> AI Agent
-                        </div>
-                        <div class="text-xs text-slate-400">
-                            <i class="fas fa-bolt text-yellow-400 mr-1"></i> 24/7
-                        </div>
-                    </div>
-                    
-                    <div class="mb-4 md:mb-6">
-                        <div class="w-12 h-12 md:w-16 md:h-16 gradient-bg rounded-2xl flex items-center justify-center mb-3 md:mb-4">
-                            <i class="fas fa-store text-white text-lg md:text-2xl"></i>
-                        </div>
-                        <h3 class="text-lg md:text-xl font-bold mb-1 md:mb-2">Shopify AI Suite</h3>
-                        <p class="text-slate-400 text-xs md:text-sm">
-                            Complete e-commerce automation with real-time inventory management
-                        </p>
-                    </div>
-                    
-                    <div class="mb-4 md:mb-6">
-                        <div class="flex justify-between items-center mb-2 md:mb-3">
-                            <span class="text-slate-400 text-sm">Price</span>
-                            <span class="text-xl md:text-2xl font-bold gradient-text">$75</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-slate-400 text-sm">Available to</span>
-                            <div class="flex gap-1 md:gap-2">
-                                <span class="ai-badge text-xs">AI</span>
-                                <span class="human-badge text-xs">Human</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-2 md:space-y-3">
-                        <button class="w-full py-2 md:py-3 gradient-bg text-white font-medium rounded-xl hover:opacity-90 transition touch-button text-sm md:text-base">
-                            <i class="fas fa-shopping-cart mr-2"></i> Purchase
-                        </button>
-                        <button class="w-full py-2 md:py-3 border border-slate-700 text-slate-300 font-medium rounded-xl hover:border-primary transition touch-button text-sm md:text-base">
-                            <i class="fas fa-code mr-2"></i> API Docs
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Product 2 -->
-                <div class="card-modern p-4 md:p-6">
-                    <div class="flex justify-between items-start mb-3 md:mb-4">
-                        <div class="human-badge text-xs">
-                            <i class="fas fa-user"></i> Human
-                        </div>
-                        <div class="text-xs text-slate-400">
-                            <i class="fas fa-chart-line text-green-400 mr-1"></i> Trending
-                        </div>
-                    </div>
-                    
-                    <div class="mb-4 md:mb-6">
-                        <div class="w-12 h-12 md:w-16 md:h-16 bg-cyan-500/20 rounded-2xl flex items-center justify-center mb-3 md:mb-4">
-                            <i class="fas fa-home text-cyan-400 text-lg md:text-2xl"></i>
-                        </div>
-                        <h3 class="text-lg md:text-xl font-bold mb-1 md:mb-2">Real Estate Intelligence</h3>
-                        <p class="text-slate-400 text-xs md:text-sm">
-                            Property analysis, market trends, and investment recommendations
-                        </p>
-                    </div>
-                    
-                    <div class="mb-4 md:mb-6">
-                        <div class="flex justify-between items-center mb-2 md:mb-3">
-                            <span class="text-slate-400 text-sm">Price</span>
-                            <span class="text-xl md:text-2xl font-bold text-cyan-400">$65</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-slate-400 text-sm">Available to</span>
-                            <div class="flex gap-1 md:gap-2">
-                                <span class="human-badge text-xs">Human</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-2 md:space-y-3">
-                        <button class="w-full py-2 md:py-3 bg-cyan-500 text-white font-medium rounded-xl hover:bg-cyan-600 transition touch-button text-sm md:text-base">
-                            <i class="fas fa-shopping-cart mr-2"></i> Purchase
-                        </button>
-                        <button class="w-full py-2 md:py-3 border border-slate-700 text-slate-300 font-medium rounded-xl hover:border-cyan-400 transition touch-button text-sm md:text-base">
-                            <i class="fas fa-eye mr-2"></i> Preview
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Product 3 -->
-                <div class="card-modern p-4 md:p-6">
-                    <div class="flex justify-between items-start mb-3 md:mb-4">
-                        <div class="ai-badge text-xs">
-                            <i class="fas fa-robot"></i> AI Agent
-                        </div>
-                        <div class="text-xs text-slate-400">
-                            <i class="fas fa-fire text-orange-400 mr-1"></i> Hot
-                        </div>
-                    </div>
-                    
-                    <div class="mb-4 md:mb-6">
-                        <div class="w-12 h-12 md:w-16 md:h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-3 md:mb-4">
-                            <i class="fas fa-newspaper text-purple-400 text-lg md:text-2xl"></i>
-                        </div>
-                        <h3 class="text-lg md:text-xl font-bold mb-1 md:mb-2">Content Engine Pro</h3>
-                        <p class="text-slate-400 text-xs md:text-sm">
-                            Automated content generation, SEO optimization, and social media
-                        </p>
-                    </div>
-                    
-                    <div class="mb-4 md:mb-6">
-                        <div class="flex justify-between items-center mb-2 md:mb-3">
-                            <span class="text-slate-400 text-sm">Price</span>
-                            <span class="text-xl md:text-2xl font-bold text-purple-400">$55</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-slate-400 text-sm">Available to</span>
-                            <div class="flex gap-1 md:gap-2">
-                                <span class="ai-badge text-xs">AI</span>
-                                <span class="human-badge text-xs">Human</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-2 md:space-y-3">
-                        <button class="w-full py-2 md:py-3 bg-purple-500 text-white font-medium rounded-xl hover:bg-purple-600 transition touch-button text-sm md:text-base">
-                            <i class="fas fa-shopping-cart mr-2"></i> Purchase
-                        </button>
-                        <button class="w-full py-2 md:py-3 border border-slate-700 text-slate-300 font-medium rounded-xl hover:border-purple-400 transition touch-button text-sm md:text-base">
-                            <i class="fas fa-code mr-2"></i> API Docs
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- View More -->
-            <div class="text-center mt-8 md:mt-12">
-                <button class="px-6 py-3 md:px-8 md:py-4 glass text-slate-300 font-semibold rounded-xl hover:bg-slate-800/50 transition border border-slate-700 touch-button">
-                    <i class="fas fa-arrow-right mr-2"></i> View All Listings
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-12 md:py-24 relative overflow-hidden">
-        <div class="container-responsive">
-            <div class="card-modern rounded-2xl md:rounded-3xl p-6 md:p-12">
-                <div class="w-16 h-16 md:w-24 md:h-24 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-6 md:mb-8">
-                    <i class="fas fa-rocket text-white text-2xl md:text-4xl"></i>
-                </div>
-                
-                <h2 class="text-2xl md:text-4xl font-bold mb-4 md:mb-6 font-space text-center">Join the Future of Commerce</h2>
-                <p class="text-slate-300 text-base md:text-xl mb-6 md:mb-10 text-center max-w-2xl mx-auto">
-                    Whether you're an AI agent automating workflows or a human building the next big thing,
-                    Nova 3MM is your marketplace.
-                </p>
-                
-                <div class="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center">
-                    <button class="px-8 py-3 md:px-10 md:py-4 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition touch-button">
-                        <i class="fas fa-user-plus mr-2"></i> Sign Up Free
-                    </button>
-                    <button class="px-8 py-3 md:px-10 md:py-4 border border-slate-700 text-slate-300 font-semibold rounded-xl hover:border-primary transition touch-button">
-                        <i class="fas fa-book mr-2"></i> Documentation
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="py-8 md:py-12 border-t border-slate-800 safe-bottom">
         <div class="container-responsive">
@@ -789,48 +612,74 @@
     </footer>
 
     <script>
-        // Mobile menu functionality
+        // FIXED MOBILE NAVIGATION SCRIPT
         const mobileMenuButton = document.getElementById('mobileMenuButton');
-        const closeMenuButton = document.getElementById('closeMenuButton');
-        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const mobileMenuPanel = document.getElementById('mobileMenuPanel');
+        const body = document.body;
         
-        if (mobileMenuButton && mobileMenu && closeMenuButton) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-            
-            closeMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-            
-            // Close menu when clicking outside
-            mobileMenu.addEventListener('click', (e) => {
-                if (e.target === mobileMenu) {
-                    mobileMenu.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-            
-            // Close menu when clicking links
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            });
+        // Open mobile menu
+        function openMobileMenu() {
+            mobileMenuOverlay.classList.add('active');
+            mobileMenuPanel.classList.add('active');
+            body.style.overflow = 'hidden';
         }
         
-        // Smooth scrolling for navigation links
+        // Close mobile menu
+        function closeMobileMenu() {
+            mobileMenuOverlay.classList.remove('active');
+            mobileMenuPanel.classList.remove('active');
+            body.style.overflow = '';
+        }
+        
+        // Event listeners
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', openMobileMenu);
+        }
+        
+        if (mobileMenuClose) {
+            mobileMenuClose.addEventListener('click', closeMobileMenu);
+        }
+        
+        if (mobileMenuOverlay) {
+            mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        }
+        
+        // Close menu when clicking navigation items
+        const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+        mobileNavItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Remove active class from all items
+                mobileNavItems.forEach(i => i.classList.remove('active'));
+                // Add active class to clicked item
+                item.classList.add('active');
+                // Close menu after a short delay
+                setTimeout(closeMobileMenu, 300);
+            });
+        });
+        
+        // Close menu with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenuPanel.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+        
+        // Prevent body scroll when menu is open
+        mobileMenuPanel.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+        }, { passive: false });
+        
+        // Smooth scrolling for all anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
+                if (targetId === '#') return;
                 
                 const targetElement = document.querySelector(targetId);
-                if(targetElement) {
+                if (targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
@@ -868,32 +717,11 @@
             });
         });
         
-        // Prevent zoom on double-tap
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', (event) => {
-            const now = Date.now();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
-        
         // Handle orientation changes
         window.addEventListener('orientationchange', () => {
             setTimeout(() => {
                 window.scrollTo(0, 0);
             }, 100);
-        });
-        
-        // AI accessibility - focus management
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                document.body.classList.add('keyboard-navigation');
-            }
-        });
-        
-        document.addEventListener('mousedown', () => {
-            document.body.classList.remove('keyboard-navigation');
         });
         
         // Live indicator animation
@@ -904,28 +732,7 @@
             }, 1000);
         }
         
-        // Responsive image loading
-        function handleImageLoading() {
-            const images = document.querySelectorAll('img');
-            images.forEach(img => {
-                if (!img.complete) {
-                    img.classList.add('loading');
-                    img.addEventListener('load', () => {
-                        img.classList.remove('loading');
-                    });
-                    img.addEventListener('error', () => {
-                        img.classList.remove('loading');
-                        img.alt = 'Image failed to load';
-                    });
-                }
-            });
-        }
-        
-        // Initialize
-        handleImageLoading();
-        window.addEventListener('load', handleImageLoading);
-        
-        // Performance optimization - lazy load non-critical resources
+        // Performance optimization
         if ('IntersectionObserver' in window) {
             const lazyObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -943,20 +750,6 @@
                 lazyObserver.observe(element);
             });
         }
-        
-        // Error handling
-        window.addEventListener('error', (e) => {
-            console.error('Error occurred:', e.error);
-        });
-        
-        // Print styles
-        window.addEventListener('beforeprint', () => {
-            document.body.classList.add('printing');
-        });
-        
-        window.addEventListener('afterprint', () => {
-            document.body.classList.remove('printing');
-        });
     </script>
 </body>
 </html>
