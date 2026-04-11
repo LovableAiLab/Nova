@@ -51,6 +51,17 @@
             box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
         }
         
+        .btn-secondary {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+        }
+        
         .product-card {
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -62,7 +73,19 @@
             box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2);
         }
         
-        /* Mobile Menu */
+        .badge-skill {
+            background: rgba(16, 185, 129, 0.2);
+            color: #6ee7b7;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        
+        .badge-site {
+            background: rgba(99, 102, 241, 0.2);
+            color: #a5b4fc;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+        
+        /* Mobile Menu Styles */
         .mobile-menu {
             display: none;
             position: fixed;
@@ -81,10 +104,43 @@
             display: flex;
         }
         
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .mobile-menu-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .mobile-menu-link {
+            padding: 1rem;
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            font-size: 1.125rem;
+            font-weight: 500;
+        }
+        
+        .mobile-menu-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+        
         .footer {
             margin-top: auto;
             background: rgba(15, 23, 42, 0.8);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .desktop-nav { display: none; }
+            .mobile-menu-button { display: flex; }
         }
     </style>
 </head>
@@ -105,7 +161,7 @@
                 </div>
                 
                 <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center space-x-8">
+                <div class="desktop-nav hidden md:flex items-center space-x-8">
                     <a href="#skills" class="text-gray-300 hover:text-white transition">Skills</a>
                     <a href="#sites" class="text-gray-300 hover:text-white transition">Sites</a>
                     <a href="docs/" class="text-gray-300 hover:text-white transition">Docs</a>
@@ -116,7 +172,7 @@
                 </div>
                 
                 <!-- Mobile Menu Button -->
-                <button class="md:hidden w-10 h-10 rounded-lg glass flex items-center justify-center" id="mobileMenuButton">
+                <button class="mobile-menu-button md:hidden w-10 h-10 rounded-lg glass flex items-center justify-center" id="mobileMenuButton">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
@@ -125,13 +181,14 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <div class="flex justify-between items-center mb-8">
+        <div class="mobile-menu-header">
             <div class="flex items-center space-x-3">
                 <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-indigo-500 flex items-center justify-center">
                     <i class="fas fa-crab text-white text-xl"></i>
                 </div>
                 <div>
                     <h1 class="text-xl font-bold">Nova<span class="gradient-text">OpenClaw</span></h1>
+                    <p class="text-xs text-gray-400">AI Skills & Powered Sites</p>
                 </div>
             </div>
             <button class="w-10 h-10 rounded-lg glass flex items-center justify-center" id="closeMobileMenu">
@@ -139,163 +196,174 @@
             </button>
         </div>
         
-        <div class="space-y-4">
-            <a href="#skills" class="block p-4 rounded-lg glass hover:bg-gray-800" onclick="closeMobileMenu()">
+        <div class="mobile-menu-content">
+            <a href="#skills" class="mobile-menu-link" onclick="closeMobileMenu()">
                 <i class="fas fa-code mr-3"></i> AI Skills
             </a>
-            <a href="#sites" class="block p-4 rounded-lg glass hover:bg-gray-800" onclick="closeMobileMenu()">
+            <a href="#sites" class="mobile-menu-link" onclick="closeMobileMenu()">
                 <i class="fas fa-globe mr-3"></i> Powered Sites
             </a>
-            <a href="docs/" class="block p-4 rounded-lg glass hover:bg-gray-800" onclick="closeMobileMenu()">
+            <a href="docs/" class="mobile-menu-link" onclick="closeMobileMenu()">
                 <i class="fas fa-book mr-3"></i> Documentation
             </a>
-            <a href="admin-login.html" class="block p-4 rounded-lg glass hover:bg-gray-800" onclick="closeMobileMenu()">
+            <a href="admin-login.html" class="mobile-menu-link" onclick="closeMobileMenu()">
                 <i class="fas fa-lock mr-3"></i> Admin Dashboard
             </a>
-            <a href="https://checkout.stripe.com/c/pay/cs_live_a1SNvTJ7Io85zk7bN6t50yaqD4nInYZaJ6j0GpBPvuw580BK93dnO8SvCS" target="_blank" class="block p-4 rounded-lg btn-primary text-center" onclick="closeMobileMenu()">
+            <a href="contact.html" class="mobile-menu-link" onclick="closeMobileMenu()">
+                <i class="fas fa-envelope mr-3"></i> Contact Support
+            </a>
+            <a href="https://checkout.stripe.com/c/pay/cs_live_a1SNvTJ7Io85zk7bN6t50yaqD4nInYZaJ6j0GpBPvuw580BK93dnO8SvCS" target="_blank" class="mobile-menu-link btn-primary" onclick="closeMobileMenu()">
                 <i class="fas fa-rocket mr-3"></i> Get Started
             </a>
         </div>
+        
+        <div class="pt-6 border-t border-gray-800">
+            <p class="text-sm text-gray-400 text-center">
+                © 2026 Nova OpenClaw. All rights reserved.
+            </p>
+        </div>
     </div>
 
-    <!-- Main Content (simplified for now) -->
-    <main class="flex-grow container mx-auto px-4 py-8">
-        <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">
-                The <span class="gradient-text">Nova OpenClaw</span> Marketplace
-            </h1>
-            <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-                Discover AI skills that automate your business and pre-built sites powered by OpenClaw.
-            </p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                <!-- Shopify Skill Card -->
-                <div class="product-card glass rounded-2xl p-6">
-                    <h3 class="text-xl font-bold mb-4">Shopify Inventory Automation</h3>
-                    <p class="text-gray-400 mb-6">Autonomous procurement orchestration.</p>
-                    <div class="text-2xl font-bold mb-6">$50</div>
-                    <a href="https://checkout.stripe.com/c/pay/cs_live_a1SNvTJ7Io85zk7bN6t50yaqD4nInYZaJ6j0GpBPvuw580BK93dnO8SvCS" target="_blank" class="btn-primary w-full py-3 rounded-lg font-semibold">
-                        <i class="fas fa-shopping-cart mr-2"></i> Purchase
+    <!-- Hero Section -->
+    <section class="py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    The <span class="gradient-text">Nova OpenClaw</span> Marketplace
+                </h1>
+                <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                    Discover AI skills that automate your business and pre-built sites powered by OpenClaw. 
+                    Everything runs autonomously, 24/7.
+                </p>
+                
+                <div class="flex flex-col md:flex-row gap-4 justify-center mb-12">
+                    <a href="#skills" class="btn-primary px-8 py-4 rounded-xl text-lg font-semibold flex items-center justify-center">
+                        <i class="fas fa-code mr-3"></i> Browse AI Skills
+                    </a>
+                    <a href="#sites" class="btn-secondary px-8 py-4 rounded-xl text-lg font-semibold flex items-center justify-center">
+                        <i class="fas fa-globe mr-3"></i> Explore Powered Sites
                     </a>
                 </div>
                 
-                <!-- Coming Soon Cards -->
-                <div class="product-card glass rounded-2xl p-6 opacity-70">
-                    <h3 class="text-xl font-bold mb-4">Customer Service AI</h3>
-                    <p class="text-gray-400 mb-6">24/7 autonomous support.</p>
-                    <div class="text-2xl font-bold mb-6">$75</div>
-                    <button class="btn-primary w-full py-3 rounded-lg font-semibold opacity-70">
-                        <i class="fas fa-clock mr-2"></i> Coming Soon
-                    </button>
-                </div>
-                
-                <div class="product-card glass rounded-2xl p-6 opacity-70">
-                    <h3 class="text-xl font-bold mb-4">Supply Chain AI</h3>
-                    <p class="text-gray-400 mb-6">Predictive logistics optimization.</p>
-                    <div class="text-2xl font-bold mb-6">$120</div>
-                    <button class="btn-primary w-full py-3 rounded-lg font-semibold opacity-70">
-                        <i class="fas fa-clock mr-2"></i> Coming Soon
-                    </button>
+                <!-- Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+                    <div class="glass p-6 rounded-xl text-center">
+                        <div class="text-3xl font-bold gradient-text mb-2">50+</div>
+                        <div class="text-gray-400">AI Skills</div>
+                    </div>
+                    <div class="glass p-6 rounded-xl text-center">
+                        <div class="text-3xl font-bold gradient-text mb-2">100+</div>
+                        <div class="text-gray-400">Powered Sites</div>
+                    </div>
+                    <div class="glass p-6 rounded-xl text-center">
+                        <div class="text-3xl font-bold gradient-text mb-2">1.2K</div>
+                        <div class="text-gray-400">Active Agents</div>
+                    </div>
+                    <div class="glass p-6 rounded-xl text-center">
+                        <div class="text-3xl font-bold gradient-text mb-2">$245K</div>
+                        <div class="text-gray-400">Monthly Volume</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <!-- Footer -->
-    <footer class="footer py-12">
+    <!-- Skills Marketplace -->
+    <section id="skills" class="py-12">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Brand -->
-                <div>
-                    <div class="flex items-center space-x-3 mb-6">
-                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-indigo-500 flex items-center justify-center">
-                            <i class="fas fa-crab text-white text-xl"></i>
-                        </div>
-                        <div>
-                            <h2 class="text-xl font-bold">Nova<span class="gradient-text">OpenClaw</span></h2>
-                            <p class="text-sm text-gray-400">AI Marketplace</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-400">
-                        The premier marketplace for OpenClaw AI skills and powered sites.
-                    </p>
-                </div>
-                
-                <!-- Links -->
-                <div>
-                    <h3 class="text-lg font-bold mb-6">Quick Links</h3>
-                    <ul class="space-y-3">
-                        <li><a href="#skills" class="text-gray-400 hover:text-white">AI Skills</a></li>
-                        <li><a href="#sites" class="text-gray-400 hover:text-white">Powered Sites</a></li>
-                        <li><a href="admin-login.html" class="text-gray-400 hover:text-white">Admin</a></li>
-                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Legal -->
-                <div>
-                    <h3 class="text-lg font-bold mb-6">Legal</h3>
-                    <ul class="space-y-3">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Terms</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">License</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Refunds</a></li>
-                    </ul>
-                </div>
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <i class="fas fa-code mr-3 gradient-text"></i>AI Skills Marketplace
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Plug-and-play AI skills that automate specific business functions. 
+                    Each skill runs autonomously within your OpenClaw instance.
+                </p>
             </div>
             
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
-                <p class="text-gray-400 text-sm">
-                    © 2026 Nova OpenClaw. All rights reserved.
-                </p>
-                <p class="text-gray-400 text-sm mt-2">
-                    Payments powered by <i class="fab fa-cc-stripe"></i> Stripe
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript -->
-    <script>
-        // Mobile Menu
-        const mobileMenuButton = document.getElementById('mobileMenuButton');
-        const closeMobileMenuButton = document.getElementById('closeMobileMenu');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        function openMobileMenu() {
-            mobileMenu.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeMobileMenu() {
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        
-        mobileMenuButton.addEventListener('click', openMobileMenu);
-        closeMobileMenuButton.addEventListener('click', closeMobileMenu);
-        
-        // Close menu with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeMobileMenu();
-        });
-        
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Shopify Inventory Skill -->
+                <div class="product-card glass rounded-2xl p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="badge-skill px-3 py-1 rounded-full text-xs font-semibold">SKILL</span>
+                            <h3 class="text-xl font-bold mt-2">Shopify Inventory Automation</h3>
+                        </div>
+                        <div class="text-2xl font-bold">$50</div>
+                    </div>
+                    
+                    <p class="text-gray-400 mb-6">
+                        Autonomous procurement orchestration with real-time competitor monitoring. 
+                        Eliminate manual inventory tracking forever.
+                    </p>
+                    
+                    <div class="mb-6">
+                        <div class="flex items-center text-sm text-gray-400 mb-2">
+                            <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                            <span>Automated inventory sync</span>
+                        </div>
+                        <div class="flex items-center text-sm text-gray-400 mb-2">
+                            <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                            <span>Competitor price monitoring</span>
+                        </div>
+                        <div class="flex items-center text-sm text-gray-400">
+                            <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                            <span>Profit optimization algorithms</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-3">
+                        <a href="https://checkout.stripe.com/c/pay/cs_live_a1SNvTJ7Io85zk7bN6t50yaqD4nInYZaJ6j0GpBPvuw580BK93dnO8SvCS" target="_blank" class="btn-primary flex-1 py-3 rounded-lg font-semibold text-center">
+                            <i class="fas fa-shopping-cart mr-2"></i> Purchase
+                        </a>
+                        <a href="docs/shopify-inventory-automation.html" class="glass w-12 h-12 rounded-lg flex items-center justify-center border border-gray-700 hover:border-emerald-500">
+                            <i class="fas fa-info"></i>
+                        </a>
+                    </div>
+                </div>
                 
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                <!-- Customer Service Skill -->
+                <div class="product-card glass rounded-2xl p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="badge-skill px-3 py-1 rounded-full text-xs font-semibold">SKILL</span>
+                            <h3 class="text-xl font-bold mt-2">Customer Service AI Agents</h3>
+                        </div>
+                        <div class="text-2xl font-bold">$75</div>
+                    </div>
+                    
+                    <p class="text-gray-400 mb-6">
+                        24/7 autonomous customer support with multi-language capabilities. 
+                        Reduce response time from hours to seconds.
+                    </p>
+                    
+                    <div class="mb-6">
+                        <div class="flex items-center text-sm text-gray-400 mb-2">
+                            <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                            <span>Multi-language support</span>
+                        </div>
+                        <div class="flex items-center text-sm text-gray-400 mb-2">
+                            <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                            <span>Ticket categorization</span>
+                        </div>
+                        <div class="flex items-center text-sm text-gray-400">
+                            <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                            <span>Sentiment analysis</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-3">
+                        <button class="btn-primary flex-1 py-3 rounded-lg font-semibold opacity-70">
+                            <i class="fas fa-clock mr-2"></i> Coming Soon
+                        </button>
+                        <button class="glass w-12 h-12 rounded-lg flex items-center justify-center border border-gray-700 hover:border-emerald-500">
+                            <i class="fas fa-info"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Supply Chain Skill -->
+                <div class="product-card glass rounded-2xl p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="badge-skill px-3 py-1 rounded-full text-xs font-semibold">SKILL</
